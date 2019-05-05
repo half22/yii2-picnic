@@ -1,6 +1,5 @@
 {
   "name": "half/picnic",
-  "version": "0.0.3",
   "description": "",
   "autoload" : {
     "psr-4" : {
