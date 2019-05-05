@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+
+    <link href="./css/site.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+    <div id="car" data-controller="car" data-actual-color="red">
+        Car <span data-element="type"></span> <a href="#" data-element="button">Change</a>
+    </div>
+
+    <a href="#" data-modal="newsletterModal">Newsletter</a><br/>
+    <a href="#" data-panel="menuPanel">Menu</a>
+
+    <div id="newsletterModal" class="c-modal" data-controller="newsletter" data-disable-backdrop-close="1">
+        <div data-element="content">Newsletter</div>
+        <button data-element="closeButton">Close</button>
+    </div>
+
+    <div id="menuPanel" class="c-panel" data-controller="menu">
+        <div data-element="content">Menu</div>
+        <button data-element="closeButton">Close</button>
+    </div>
+
+    <script type="text/javascript" src="./js/vendor/jquery.min.js"></script>
+    <script type="text/javascript" src="../dist/picnic.js"></script>
+
+
+    <script type="text/javascript" src="./js/locale/sk.js"></script>
+    <script type="text/javascript" src="./js/controllers/car.js"></script>
+    <script type="text/javascript" src="./js/controllers/newsletter.js"></script>
+    <script type="text/javascript" src="./js/controllers/menu.js"></script>
+    <script type="text/javascript" src="./js/init.js"></script>
+</body>
+</html>
