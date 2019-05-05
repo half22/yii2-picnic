@@ -5,30 +5,30 @@ use yii\web\AssetBundle;
 
 class PicnicDevAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/picnic/assets';
+    public $sourcePath = '@half/picnic/src';
 
     public $js = [
-        'src/picnic.js',
-        'src/components/backdrop.js',
-        'src/components/controller.js',
-        'src/components/event.js',
-        'src/components/filter.js',
-        'src/components/locale.js',
-        'src/components/modal.js',
-        'src/components/panel.js',
-        'src/components/router.js',
-        'src/components/scrollbar.js',
-        'src/components/url.js',
-        'src/extensions/javascript.js',
-        'src/plugins/clicked.js',
-        'src/plugins/dropdown.js',
-        'src/plugins/form-submit-button.js',
-        'src/plugins/lazy-load.js',
-        'src/plugins/scroll-to.js',
-        'src/plugins/sticky.js',
-        'src/plugins/tabs.js',
-        'src/plugins/title-bubble.js',
-        'src/plugins/tooltip.js',
+        'picnic.js',
+        'components/backdrop.js',
+        'components/controller.js',
+        'components/event.js',
+        'components/filter.js',
+        'components/locale.js',
+        'components/modal.js',
+        'components/panel.js',
+        'components/router.js',
+        'components/scrollbar.js',
+        'components/url.js',
+        'extensions/javascript.js',
+        'plugins/clicked.js',
+        'plugins/dropdown.js',
+        'plugins/form-submit-button.js',
+        'plugins/lazy-load.js',
+        'plugins/scroll-to.js',
+        'plugins/sticky.js',
+        'plugins/tabs.js',
+        'plugins/title-bubble.js',
+        'plugins/tooltip.js',
 
     ];
 
