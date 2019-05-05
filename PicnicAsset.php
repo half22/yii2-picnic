@@ -1,5 +1,5 @@
 <?php
-namespace picnic;
+namespace half\picnic;
 
 use yii\web\AssetBundle;
 
