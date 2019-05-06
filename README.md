@@ -30,17 +30,17 @@ $.extend(Car.prototype, picnic.controller.prototype,
 	},
   
 	bindEvents: function ()  
-    {  
+	{
 		this.on('click', colorButton, this.changeColor);
 	},
   
 	setName: function (name)  
-    {  
+	{
 		this.elements.name.html(name);
 	},
   
 	changeColor: function ()  
-	{  
+	{
 		this.elements.name.css('color', color);
 	}
 });
