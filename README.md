@@ -26,23 +26,23 @@ function Car()
 $.extend(Car.prototype, picnic.controller.prototype,  
 {    
 	init: function()  
-    {            
-	},  
+	{
+	},
   
 	bindEvents: function ()  
     {  
-        this.on('click', colorButton, this.changeColor);  
-	},  
+		this.on('click', colorButton, this.changeColor);
+	},
   
 	setName: function (name)  
     {  
-        this.elements.name.html(name);  
-	},  
+		this.elements.name.html(name);
+	},
   
 	changeColor: function ()  
 	{  
-	    this.elements.name.css('color', color);
-	}  
+		this.elements.name.css('color', color);
+	}
 });
 ```
 Start Picnic:
