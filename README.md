@@ -55,3 +55,57 @@ $(document).ready(function () {
 	$('#car').getController().setName('Audi Q8');  
 });
 ```
+
+###Plugins
+
+```html
+	<button data-plugin="clicked">Change color</button>
+```
+
+Available plugins:
+* clicked
+* dropdown
+* form-submit-button
+* lazy-load
+* scroll-to
+* sticky
+* tabs
+* title-bubble
+* tooltip
+
+###Other components
+
+```js
+//locale
+picnic.locale.messages = {
+	'hotel': ['{n} hotel', '{n} hotely', '{n} hotelov'],
+	'text': 'Hello {name}'
+};
+picnic.locale.t('text', {name: 'picnic'});
+picnic.locale.t('hotel', 5);
+picnic.locale.t('hotel', {n: 5});
+
+//router
+picnic.router.rules = {
+	'url': '/admin/url'
+};
+picnic.router.getUrl('url');
+
+//url
+picnic.url.queryStringToJson();
+
+//scrollbar
+picnic.scrollbar.disable();
+picnic.scrollbar.enable();
+
+//backdrop
+picnic.backdrop.open();
+picnic.backdrop.close();
+
+//events
+picnic.event.on('picnic.event.test', function(event, params) { } );
+picnic.event.trigger('picnic.event.test', {name: 'value'});
+
+picnic.event.on('picnic.event.test', $('#target'), function(event, params) { } );
+picnic.event.trigger('picnic.event.test', $('#target'), {name: 'value'});
+```
