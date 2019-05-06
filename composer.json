@@ -1,5 +1,5 @@
 {
-  "name": "half/yy2-picnic",
+  "name": "half/yii2-picnic",
   "description": "",
   "autoload" : {
     "psr-4" : {
