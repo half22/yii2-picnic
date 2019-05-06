@@ -56,7 +56,7 @@ $(document).ready(function () {
 });
 ```
 
-###Plugins
+## Plugins
 
 ```html
 <button data-plugin="clicked">Change color</button>
@@ -73,7 +73,7 @@ Available plugins:
 * title-bubble
 * tooltip
 
-###Other components
+## Other components
 
 ```js
 //locale
