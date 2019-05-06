@@ -59,7 +59,7 @@ $(document).ready(function () {
 ###Plugins
 
 ```html
-	<button data-plugin="clicked">Change color</button>
+<button data-plugin="clicked">Change color</button>
 ```
 
 Available plugins:
