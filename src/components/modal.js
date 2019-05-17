@@ -7,7 +7,7 @@
         picnic.controller.call(this);
 
         this.elements = ['content', 'closeButton', 'preloader', 'preloaderText'];
-        this.attributes = ['disableBackdropClose', 'ajaxUrl'];
+        this.attributes = ['disableBackdropClose', 'ajaxUrl', 'ajaxTriggers'];
     };
 
     $.extend(modal.prototype, picnic.controller.prototype,
@@ -56,14 +56,23 @@
             this.root.removeClass('is-loading');
         },
 
-        load: function()
+        load: function(triggerUrl)
         {
             if(this.isLoading) return;
-            if(!this.attributes.ajaxUrl) return;
+
+            var url = null;
+            if(this.attributes.ajaxUrl)
+            {
+                url = this.attributes.ajaxUrl;
+            }
+            if(this.attributes.ajaxTriggers && triggerUrl)
+            {
+                url = triggerUrl;
+            }
+            if(!url) return;
 
             this.showLoading(true);
 
-            var url = this.attributes.ajaxUrl;
             $.ajax( {
                 url: url,
                 type: 'GET',
@@ -72,7 +81,7 @@
             });
         },
 
-        open: function()
+        open: function(event)
         {
             if(this.isActive) return;
             this.isActive = true;
@@ -80,7 +89,8 @@
             this.root.addClass('is-active');
             picnic.backdrop.open({cssModifier: 'modal', disableClose: this.attributes.disableBackdropClose});
 
-            this.load();
+            var target = $(event.currentTarget);
+            this.load(target.attr('href'));
 
             picnic.activeModals = picnic.activeModals.add(this.root);
             picnic.event.trigger('picnic.modal.open', this.root);
@@ -126,7 +136,7 @@
         {
             if(event.target !== event.currentTarget) return;
 
-            var eventName = this.isActive ? 'picnic.panel.opened' : 'picnic.panel.closed';
+            var eventName = this.isActive ? 'picnic.modal.opened' : 'picnic.modal.closed';
             picnic.event.trigger(eventName, this.root);
         }
     });
