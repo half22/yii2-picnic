@@ -5,7 +5,7 @@ use yii\web\AssetBundle;
 
 class PicnicDevAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/half/picnic/src';
+    public $sourcePath = '@vendor/half/yii2-picnic/src';
 
     public $js = [
         'picnic.js',
