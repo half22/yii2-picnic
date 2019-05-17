@@ -19,6 +19,8 @@
         {
             this.transitionEndEvent = getTransitionEndEvent(this.root);
             this.triggers = $('*[data-modal=' + this.root.prop('id') + ']');
+
+            this.isBootstrapModal = isDefined(this.root.modal);
         },
 
         bindEvents: function()
@@ -86,8 +88,15 @@
             if(this.isActive) return;
             this.isActive = true;
 
-            this.root.addClass('is-active');
-            picnic.backdrop.open({cssModifier: 'modal', disableClose: this.attributes.disableBackdropClose});
+            if(this.isBootstrapModal)
+            {
+                this.root.modal('show');
+            }
+            else
+            {
+                this.root.addClass('is-active');
+                picnic.backdrop.open({cssModifier: 'modal', disableClose: this.attributes.disableBackdropClose});
+            }
 
             var target = $(event.currentTarget);
             this.load(target.attr('href'));
@@ -106,7 +115,14 @@
             if(!this.isActive) return;
             this.isActive = false;
 
-            this.root.removeClass('is-active');
+            if(this.isBootstrapModal)
+            {
+                this.root.modal('hide');
+            }
+            else
+            {
+                this.root.removeClass('is-active');
+            }
 
             picnic.activeModals = picnic.activeModals.not(this.root);
             picnic.event.trigger('picnic.modal.close', this.root);
