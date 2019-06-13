@@ -16,6 +16,32 @@
         findElement: function (name, selector)
         {
             return this.find('*[data-element=' + name + ']' + (selector || ''));
+        },
+
+        initController: function()
+        {
+            var previousController = this.getController();
+            if(previousController)
+            {
+                previousController.refresh();
+                return previousController;
+            }
+
+            var className = ucfirst(this.data('controller'));
+            var controller = new window[className]();
+
+            controller.root = this;
+            controller.initAttributes();
+            controller.initElements();
+            this.data('_controller', controller);
+
+            setTimeout(function ()
+            {
+                controller.init();
+                controller.bindEvents();
+            }, 0);
+
+            return controller;
         }
     });
 
@@ -43,25 +69,9 @@
             this.destroyControllers();
             $('*[data-controller]').each(function(index, domElement) {
                 var root = $(domElement);
-                var className = ucfirst(root.data('controller'));
-                var controller = new window[className]();
-                this.initController(controller, root);
+                var controller = root.initController();
+                this.controllers.push(controller);
             }.bind(this));
-        },
-
-        initController: function(controller, root)
-        {
-            controller.root = root;
-            controller.initAttributes();
-            controller.initElements();
-            root.data('_controller', controller);
-            this.controllers.push(controller);
-
-            setTimeout(function ()
-            {
-                controller.init();
-                controller.bindEvents();
-            }, 0);
         },
 
         initPlugins: function(element)
