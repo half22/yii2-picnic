@@ -49,11 +49,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = picnic.plugins.lazyLoad;
+		module.exports = $.fn.lazyLoad;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return picnic.plugins.lazyLoad; });
+		define(function() { return $.fn.lazyLoad; });
 	}
 
 })(window, jQuery, window.picnic || {});

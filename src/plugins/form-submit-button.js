@@ -26,11 +26,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = picnic.plugins.formSubmitButton;
+		module.exports = $.fn.formSubmitButton;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return picnic.plugins.formSubmitButton; });
+		define(function() { return $.fn.formSubmitButton; });
 	}
 
 })(window, jQuery, window.picnic || {});

@@ -62,11 +62,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = picnic.plugins.tabs;
+		module.exports = $.fn.tabs;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return picnic.plugins.tabs; });
+		define(function() { return $.fn.tabs; });
 	}
 
 })(window, jQuery, window.picnic || {});

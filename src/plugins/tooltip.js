@@ -63,11 +63,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = picnic.plugins.tooltip;
+		module.exports = $.fn.tooltip;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return picnic.plugins.tooltip; });
+		define(function() { return $.fn.tooltip; });
 	}
 
 })(window, jQuery, window.picnic || {});

@@ -48,11 +48,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = picnic.plugins.scrollTo;
+		module.exports = $.fn.scrollTo;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return picnic.plugins.scrollTo; });
+		define(function() { return $.fn.scrollTo; });
 	}
 
 })(window, jQuery, window.picnic || {});

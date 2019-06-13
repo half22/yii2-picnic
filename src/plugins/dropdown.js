@@ -93,11 +93,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = picnic.plugins.dropdown;
+		module.exports = $.fn.dropdown;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return picnic.plugins.dropdown; });
+		define(function() { return $.fn.dropdown; });
 	}
 
 })(window, jQuery, window.picnic || {});

@@ -114,11 +114,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = picnic.plugins.sticky;
+		module.exports = $.fn.sticky;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return picnic.plugins.sticky; });
+		define(function() { return $.fn.sticky; });
 	}
 
 })(window, jQuery, window.picnic || {});

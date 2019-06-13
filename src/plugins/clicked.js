@@ -36,11 +36,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = picnic.plugins.clicked;
+		module.exports = $.fn.clicked;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return picnic.plugins.clicked; });
+		define(function() { return $.fn.clicked; });
 	}
 
 })(window, jQuery, window.picnic || {});

@@ -40,11 +40,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = picnic.plugins.titleBubble;
+		module.exports = $.fn.titleBubble;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return picnic.plugins.titleBubble; });
+		define(function() { return $.fn.titleBubble; });
 	}
 
 })(window, jQuery, window.picnic || {});
