@@ -70,8 +70,7 @@
 
     function createPicnicEvent(eventName, target, callback, propagateEvent)
     {
-        if(arguments.length < 2) return;
-
+        if(!isDefined(target)) return;
         if(isFunction(target))
         {
             propagateEvent = callback;

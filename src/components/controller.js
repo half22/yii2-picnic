@@ -16,7 +16,6 @@
         on: function (eventName, target, callback, propagateEvent)
         {
             if(!isDefined(target)) return;
-
             if(isFunction(target))
             {
                 target = target.bind(this);
@@ -34,7 +33,6 @@
         one: function (eventName, target, callback, propagateEvent)
         {
             if(!isDefined(target)) return;
-
             if(isFunction(target))
             {
                 target = target.bind(this);
