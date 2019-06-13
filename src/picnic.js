@@ -10,7 +10,7 @@
 
         findController: function (name, selector)
         {
-            return this.find('*[data-controller=' + name + ']' + (selector || '')).getController();
+            return this.find('*[data-controller=' + name + ']' + (selector || ''));
         },
 
         findElement: function (name, selector)
