@@ -46,20 +46,18 @@
         return false;
     }
 
-    var tabs = function(elements)
-    {
-        return elements.each(function(index, domElement)
-        {
-            var element = $(domElement);
-            if(!element.data('plugin-tabs'))
-            {
-                element.find('*[data-tab-id] > a').on('click', onClick);
-                element.data('plugin-tabs', true);
-            }
-        });
-    };
+    $.extend($.fn, {
+        tabs: function () {
+            return this.each(function (index, domElement) {
+                var element = $(domElement);
+                if (!element.data('plugin-tabs')) {
+                    element.find('*[data-tab-id] > a').on('click', onClick);
+                    element.data('plugin-tabs', true);
+                }
+            });
+        }
+    });
 
-    picnic.plugins.tabs = tabs;
     window.picnic = picnic;
 
     if(typeof exports === 'object')

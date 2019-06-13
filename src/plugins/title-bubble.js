@@ -23,20 +23,19 @@
         target.data('title', title);
     }
 
-    var titleBubble = function(elements)
-    {
-        return elements.each(function(index, domElement)
+    $.extend($.fn, {
+        titleBubble: function ()
         {
-            var element = $(domElement);
-            if(!element.data('plugin-title-bubble'))
-            {
-                element.on('mouseover titleChanged', show);
-                element.data('plugin-title-bubble', true);
-            }
-        });
-    };
+            return this.each(function (index, domElement) {
+                var element = $(domElement);
+                if (!element.data('plugin-title-bubble')) {
+                    element.on('mouseover titleChanged', show);
+                    element.data('plugin-title-bubble', true);
+                }
+            });
+        }
+    });
 
-    picnic.plugins.titleBubble = titleBubble;
     window.picnic = picnic;
 
     if(typeof exports === 'object')

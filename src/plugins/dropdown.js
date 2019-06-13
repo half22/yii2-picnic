@@ -60,39 +60,35 @@
         }
     }
 
-    var dropdown = function(elements)
-    {
-        return elements.each(function(index, domElement)
+    $.extend($.fn, {
+        dropdown: function ()
         {
-            var element = $(domElement);
-            if(!element.data('plugin-dropdown'))
-            {
-                var dropdown = element.find('*[data-element=dropdown]');
-                var layer = element.find('*[data-element=layer]');
-                var layerClone = cloneLayer(layer);
-                var valueLink = layerClone.find('*[data-element=value-link]');
+            return this.each(function (index, domElement) {
+                var element = $(domElement);
+                if (!element.data('plugin-dropdown')) {
+                    var dropdown = element.find('*[data-element=dropdown]');
+                    var layer = element.find('*[data-element=layer]');
+                    var layerClone = cloneLayer(layer);
+                    var valueLink = layerClone.find('*[data-element=value-link]');
 
-                dropdown.on('click', function ()
-                {
-                    show(layer, layerClone);
-                });
+                    dropdown.on('click', function () {
+                        show(layer, layerClone);
+                    });
 
-                $('body').on('click', function (event)
-                {
-                    hide(event, dropdown, layerClone);
-                });
+                    $('body').on('click', function (event) {
+                        hide(event, dropdown, layerClone);
+                    });
 
-                valueLink.on('click', function (event)
-                {
-                    setValue(event, element, dropdown, layerClone);
-                });
+                    valueLink.on('click', function (event) {
+                        setValue(event, element, dropdown, layerClone);
+                    });
 
-                element.data('plugin-dropdown', true);
-            }
-        });
-    };
+                    element.data('plugin-dropdown', true);
+                }
+            });
+        }
+    });
 
-    picnic.plugins.dropdown = dropdown;
     window.picnic = picnic;
 
     if(typeof exports === 'object')

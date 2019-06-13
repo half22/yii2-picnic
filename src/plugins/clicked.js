@@ -19,20 +19,19 @@
         }
     }
 
-    var clicked = function (elements)
-    {
-        return elements.each(function (index, domElement)
+    $.extend($.fn, {
+        clicked: function ()
         {
-            var element = $(domElement);
-            if(!element.data('plugin-clicked'))
-            {
-                element.on('click', onClick);
-                element.data('plugin-clicked', true);
-            }
-        });
-    };
+            return this.each(function (index, domElement) {
+                var element = $(domElement);
+                if (!element.data('plugin-clicked')) {
+                    element.on('click', onClick);
+                    element.data('plugin-clicked', true);
+                }
+            });
+        }
+    });
 
-    picnic.plugins.clicked = clicked;
     window.picnic = picnic;
 
     if(typeof exports === 'object')

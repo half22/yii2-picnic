@@ -6,6 +6,8 @@
         this.elements = [];
         this.attributes = [];
         this.events = [];
+
+        this.register();
     };
 
     $.extend(controller.prototype,
@@ -98,9 +100,16 @@
             picnic.initPlugins(this.root);
         },
 
+        register: function()
+        {
+            this.id = Math.random().toString(36).substr(2, 9);
+            picnic.controllers[this.id] = this;
+        },
+
         destroy: function ()
         {
             this.unbindEvents();
+            delete picnic.controllers[this.id];
         }
     });
 

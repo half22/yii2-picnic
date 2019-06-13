@@ -31,35 +31,34 @@
         layer.removeClass('is-active');
     }
 
-    var tooltip = function(elements)
-    {
-        return elements.each(function(index, domElement)
+    $.extend($.fn, {
+        tooltip: function ()
         {
-            var element = $(domElement);
-            if(!element.data('plugin-tooltip'))
-            {
-                var isSticky = element.data('is-sticky');
-                var layer = element.find('*[data-element=layer]');
-                var layerClone = cloneLayer(layer);
+            return this.each(function (index, domElement) {
+                var element = $(domElement);
+                if (!element.data('plugin-tooltip')) {
+                    var isSticky = element.data('is-sticky');
+                    var layer = element.find('*[data-element=layer]');
+                    var layerClone = cloneLayer(layer);
 
-                layerClone.on('mouseout', function(event) {
-                    hide(event, element, layerClone);
-                });
+                    layerClone.on('mouseout', function (event) {
+                        hide(event, element, layerClone);
+                    });
 
-                element.on('mouseout', function(event) {
-                    hide(event, element, layerClone);
-                });
+                    element.on('mouseout', function (event) {
+                        hide(event, element, layerClone);
+                    });
 
-                element.on('mouseover', function() {
-                    show(layer, layerClone, isSticky);
-                });
+                    element.on('mouseover', function () {
+                        show(layer, layerClone, isSticky);
+                    });
 
-                element.data('plugin-tooltip', true);
-            }
-        });
-    };
+                    element.data('plugin-tooltip', true);
+                }
+            });
+        }
+    });
 
-    picnic.plugins.tooltip = tooltip;
     window.picnic = picnic;
 
     if(typeof exports === 'object')

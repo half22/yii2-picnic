@@ -26,29 +26,25 @@
         element.css('background-image', 'url(' + source + ')');
     }
 
-    var lazyLoad = function(elements)
-    {
-        return elements.each(function(index, domElement)
+    $.extend($.fn, {
+        lazyLoad: function ()
         {
-            var element = $(domElement);
-            if(!element.data('plugin-lazy-load'))
-            {
-                if(element.data('src'))
-                {
-                    load(element, element.data('src'), updateSrc);
+            return this.each(function (index, domElement) {
+                var element = $(domElement);
+                if (!element.data('plugin-lazy-load')) {
+                    if (element.data('src')) {
+                        load(element, element.data('src'), updateSrc);
+                    } else if (element.data('background')) {
+                        load(element, element.data('background'), updateBackground);
+                    }
+
+                    element.data('plugin-lazy-load', true);
                 }
-                else if(element.data('background'))
-                {
-                    load(element, element.data('background'), updateBackground);
-                }
 
-                element.data('plugin-lazy-load', true);
-            }
+            });
+        }
+    });
 
-        });
-    };
-
-    picnic.plugins.lazyLoad = lazyLoad;
     window.picnic = picnic;
 
     if(typeof exports === 'object')

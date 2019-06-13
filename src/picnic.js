@@ -46,8 +46,7 @@
     });
 
     var picnic = {
-        plugins: {},
-        controllers: [],
+        controllers: {},
 
         start: function ()
         {
@@ -55,32 +54,25 @@
             this.initPlugins();
         },
 
-        destroyControllers: function ()
-        {
-            $.each(this.controllers, function (index, controller)
-            {
-                controller.destroy();
-            }, this);
-            this.controllers = [];
-        },
-
         initControllers: function()
         {
-            this.destroyControllers();
-            $('*[data-controller]').each(function(index, domElement) {
-                var root = $(domElement);
-                var controller = root.initController();
-                this.controllers.push(controller);
+            $('*[data-controller]').each(function(index, domElement)
+            {
+                $(domElement).initController();
+
             }.bind(this));
         },
 
-        initPlugins: function(element)
+        initPlugins: function()
         {
-            element = element || $('body');
-            $.each(this.plugins, function (name, plugin)
+            $('*[data-plugin]').each(function(index, domElement)
             {
-                plugin(element.find('*[data-plugin*=' + name + ']'));
-            }, this);
+                var element = $(domElement);
+                var plugins = element.data('plugin').split(',');
+                $.each(plugins, function (index, plugin) {
+                   element[plugin.trim()]();
+                });
+            }.bind(this));
         }
     };
 

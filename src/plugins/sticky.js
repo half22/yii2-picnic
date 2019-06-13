@@ -89,28 +89,27 @@
         element.removeClass('is-sticky');
     }
 
-    var sticky = function(elements)
-	{
-	    return elements.each(function (index, domElement)
+    $.extend($.fn, {
+        sticky: function ()
         {
-            var element = $(domElement);
-            if(!element.data('plugin-sticky'))
-            {
-                init(element);
-                createPlaceholder(element);
+            return this.each(function (index, domElement) {
+                var element = $(domElement);
+                if (!element.data('plugin-sticky')) {
+                    init(element);
+                    createPlaceholder(element);
 
-                var scrollElement = element.data('scroll-element') ? element.closest(element.data('scroll-element')) : $(window);
-                scrollElement.on('scroll', function () {
-                    onScroll(element);
-                });
-                onScroll(scrollElement, element);
+                    var scrollElement = element.data('scroll-element') ? element.closest(element.data('scroll-element')) : $(window);
+                    scrollElement.on('scroll', function () {
+                        onScroll(element);
+                    });
+                    onScroll(scrollElement, element);
 
-                element.data('plugin-sticky', true);
-            }
-        });
-	};
+                    element.data('plugin-sticky', true);
+                }
+            });
+        }
+    });
 
-    picnic.plugins.sticky = sticky;
     window.picnic = picnic;
 
     if(typeof exports === 'object')

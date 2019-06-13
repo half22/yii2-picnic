@@ -31,20 +31,19 @@
         $('html, body').animate({scrollTop: top}, 'fast', null, callback);
     }
 
-    var scrollTo = function(elements)
-    {
-        return elements.each(function(index, domElement)
+    $.extend($.fn, {
+        scrollTo: function ()
         {
-            var element = $(domElement);
-            if(!element.data('plugin-scroll-to'))
-            {
-                element.on('click', onClick);
-                element.data('plugin-scroll-to', true);
-            }
-        });
-    };
+            return this.each(function (index, domElement) {
+                var element = $(domElement);
+                if (!element.data('plugin-scroll-to')) {
+                    element.on('click', onClick);
+                    element.data('plugin-scroll-to', true);
+                }
+            });
+        }
+    });
 
-    picnic.plugins.scrollTo = scrollTo;
     window.picnic = picnic;
 
     if(typeof exports === 'object')

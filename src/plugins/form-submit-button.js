@@ -9,20 +9,19 @@
         target.parents("form").submit();
     }
 
-    var formSubmitButton = function (elements)
-    {
-        return elements.each(function (index, domElement)
+    $.extend($.fn, {
+        formSubmitButton: function ()
         {
-            var element = $(domElement);
-            if(!element.data('plugin-form-submit-button'))
-            {
-                element.on('click', onClick);
-                element.data('plugin-form-submit-button', true);
-            }
-        });
-    };
+            return this.each(function (index, domElement) {
+                var element = $(domElement);
+                if (!element.data('plugin-form-submit-button')) {
+                    element.on('click', onClick);
+                    element.data('plugin-form-submit-button', true);
+                }
+            });
+        }
+    });
 
-    picnic.plugins.formSubmitButton = formSubmitButton;
     window.picnic = picnic;
 
     if(typeof exports === 'object')
