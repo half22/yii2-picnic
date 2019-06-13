@@ -16,6 +16,7 @@
     function logDispatch(target, params)
     {
         if(picnic.event.debug)
+
         {
             console.log('-- picnic.event.dispatch --');
             console.log(target);
@@ -60,7 +61,7 @@
             logDispatch(this.target, arguments);
             this.callback(event, params, arg1, arg2);
 
-            if(this.propagateEvent)
+            if(!this.propagateEvent)
             {
                 event.preventDefault();
             }
