@@ -20,7 +20,6 @@
             if(isFunction(target))
             {
                 target = target.bind(this);
-                callback = propagateEvent;
             }
             else
             {
@@ -39,7 +38,6 @@
             if(isFunction(target))
             {
                 target = target.bind(this);
-                callback = propagateEvent;
             }
             else
             {
