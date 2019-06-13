@@ -13,35 +13,39 @@
         init: function () {},
         bindEvents: function () {},
 
-        on: function (eventName, target, callback)
+        on: function (eventName, target, callback, propagateEvent)
         {
-            if(isUndefined(target)) return;
-            if(isUndefined(callback))
+            if(arguments.length < 2) return;
+
+            if(isFunction(target))
             {
                 target = target.bind(this);
+                callback = propagateEvent;
             }
             else
             {
                 callback = callback.bind(this);
             }
-            var event = picnic.event.on(eventName, target, callback);
+            var event = picnic.event.on(eventName, target, callback, propagateEvent);
             this.events.push(event);
 
             return event;
         },
 
-        one: function (eventName, target, callback)
+        one: function (eventName, target, callback, propagateEvent)
         {
-            if(isUndefined(target)) return;
-            if(isUndefined(callback))
+            if(arguments.length < 2) return;
+
+            if(isFunction(target))
             {
                 target = target.bind(this);
+                callback = propagateEvent;
             }
             else
             {
                 callback = callback.bind(this);
             }
-            var event = picnic.event.one(eventName, target, callback);
+            var event = picnic.event.one(eventName, target, callback, propagateEvent);
             this.events.push(event);
 
             return event;

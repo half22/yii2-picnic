@@ -23,11 +23,12 @@
         }
     }
 
-    var PicnicEvent = function(eventName, target, callback)
+    var PicnicEvent = function(eventName, target, callback, propagateEvent)
     {
         this.eventName = eventName;
         this.target = target;
         this.callback = callback;
+        this.propagateEvent = propagateEvent;
     };
 
     $.extend(PicnicEvent.prototype,
@@ -58,20 +59,26 @@
         {
             logDispatch(this.target, arguments);
             this.callback(event, params, arg1, arg2);
-            event.preventDefault();
+
+            if(this.propagateEvent)
+            {
+                event.preventDefault();
+            }
         }
     });
 
-    function createPicnicEvent(eventName, target, callback)
+    function createPicnicEvent(eventName, target, callback, propagateEvent)
     {
-        if(isUndefined(target)) return null;
-        if(isUndefined(callback))
+        if(arguments.length < 2) return;
+
+        if(isFunction(target))
         {
+            propagateEvent = callback;
             callback = target;
             target = $(document);
         }
 
-        return new PicnicEvent(eventName, target, callback);
+        return new PicnicEvent(eventName, target, callback, propagateEvent);
     }
 
     var event = {
@@ -93,9 +100,9 @@
             target.trigger(eventName, [params]);
         },
 
-        on: function(eventName, target, callback)
+        on: function(eventName, target, callback, propagateEvent)
         {
-            var picnicEvent = createPicnicEvent(eventName, target, callback);
+            var picnicEvent = createPicnicEvent(eventName, target, callback, propagateEvent);
             if(picnicEvent)
             {
                 picnicEvent.bind();
@@ -104,9 +111,9 @@
             return picnicEvent;
         },
 
-        one: function(eventName, target, callback)
+        one: function(eventName, target, callback, propagateEvent)
         {
-            var picnicEvent = createPicnicEvent(eventName, target, callback);
+            var picnicEvent = createPicnicEvent(eventName, target, callback, propagateEvent);
             if(picnicEvent)
             {
                 picnicEvent.bind(true);

@@ -15,6 +15,11 @@
         return !isUndefined(value);
     };
 
+    window.isFunction = function(value)
+    {
+        return typeof value === 'function';
+    };
+
     window.camelCase = function(string)
     {
         return string.replace(/^([A-Z])|[\s-_](\w)/g, function (match, p1, p2, offset)
