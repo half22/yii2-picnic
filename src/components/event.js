@@ -123,7 +123,6 @@
         }
     };
 
-
     picnic.event = event;
     window.picnic = picnic;
 
