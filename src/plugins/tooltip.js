@@ -32,7 +32,7 @@
     }
 
     $.extend($.fn, {
-        tooltip: function ()
+        picnicTooltip: function ()
         {
             return this.each(function (index, domElement) {
                 var element = $(domElement);
@@ -63,11 +63,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = $.fn.tooltip;
+		module.exports = $.fn.picnicTooltip;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return $.fn.tooltip; });
+		define(function() { return $.fn.picnicTooltip; });
 	}
 
 })(window, jQuery, window.picnic || {});

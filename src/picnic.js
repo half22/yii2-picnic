@@ -70,7 +70,7 @@
                 var element = $(domElement);
                 var plugins = element.data('plugin').split(',');
                 $.each(plugins, function (index, plugin) {
-                   element[plugin.trim()]();
+                   element['picnic' + ucfirst(plugin.trim())]();
                 });
             }.bind(this));
         }

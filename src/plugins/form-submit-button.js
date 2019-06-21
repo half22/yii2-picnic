@@ -10,7 +10,7 @@
     }
 
     $.extend($.fn, {
-        formSubmitButton: function ()
+        picnicFormSubmitButton: function ()
         {
             return this.each(function (index, domElement) {
                 var element = $(domElement);
@@ -26,11 +26,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = $.fn.formSubmitButton;
+		module.exports = $.fn.picnicFormSubmitButton;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return $.fn.formSubmitButton; });
+		define(function() { return $.fn.picnicFormSubmitButton; });
 	}
 
 })(window, jQuery, window.picnic || {});

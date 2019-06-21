@@ -20,7 +20,7 @@
     }
 
     $.extend($.fn, {
-        clicked: function ()
+        picnicClicked: function ()
         {
             return this.each(function (index, domElement) {
                 var element = $(domElement);
@@ -36,11 +36,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = $.fn.clicked;
+		module.exports = $.fn.picnicClicked;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return $.fn.clicked; });
+		define(function() { return $.fn.picnicClicked; });
 	}
 
 })(window, jQuery, window.picnic || {});

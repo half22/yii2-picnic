@@ -47,7 +47,7 @@
     }
 
     $.extend($.fn, {
-        tabs: function () {
+        picnicTabs: function () {
             return this.each(function (index, domElement) {
                 var element = $(domElement);
                 if (!element.data('plugin-tabs')) {
@@ -62,11 +62,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = $.fn.tabs;
+		module.exports = $.fn.picnicTabs;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return $.fn.tabs; });
+		define(function() { return $.fn.picnicTabs; });
 	}
 
 })(window, jQuery, window.picnic || {});

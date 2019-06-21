@@ -24,7 +24,7 @@
     }
 
     $.extend($.fn, {
-        titleBubble: function ()
+        picnicTitleBubble: function ()
         {
             return this.each(function (index, domElement) {
                 var element = $(domElement);
@@ -40,11 +40,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = $.fn.titleBubble;
+		module.exports = $.fn.picnicTitleBubble;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return $.fn.titleBubble; });
+		define(function() { return $.fn.picnicTitleBubble; });
 	}
 
 })(window, jQuery, window.picnic || {});

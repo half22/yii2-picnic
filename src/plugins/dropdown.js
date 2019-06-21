@@ -61,7 +61,7 @@
     }
 
     $.extend($.fn, {
-        dropdown: function ()
+        picnicDropdown: function ()
         {
             return this.each(function (index, domElement) {
                 var element = $(domElement);
@@ -93,11 +93,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = $.fn.dropdown;
+		module.exports = $.fn.picnicDropdown;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return $.fn.dropdown; });
+		define(function() { return $.fn.picnicDropdown; });
 	}
 
 })(window, jQuery, window.picnic || {});

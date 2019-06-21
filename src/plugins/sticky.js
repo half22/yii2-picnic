@@ -90,7 +90,7 @@
     }
 
     $.extend($.fn, {
-        sticky: function ()
+        picnicSticky: function ()
         {
             return this.each(function (index, domElement) {
                 var element = $(domElement);
@@ -114,11 +114,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = $.fn.sticky;
+		module.exports = $.fn.picnicSticky;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return $.fn.sticky; });
+		define(function() { return $.fn.picnicSticky; });
 	}
 
 })(window, jQuery, window.picnic || {});

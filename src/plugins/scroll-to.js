@@ -32,7 +32,7 @@
     }
 
     $.extend($.fn, {
-        scrollTo: function ()
+        picnicScrollTo: function ()
         {
             return this.each(function (index, domElement) {
                 var element = $(domElement);
@@ -48,11 +48,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = $.fn.scrollTo;
+		module.exports = $.fn.picnicScrollTo;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return $.fn.scrollTo; });
+		define(function() { return $.fn.picnicScrollTo; });
 	}
 
 })(window, jQuery, window.picnic || {});

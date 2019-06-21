@@ -27,7 +27,7 @@
     }
 
     $.extend($.fn, {
-        lazyLoad: function ()
+        picnicLazyLoad: function ()
         {
             return this.each(function (index, domElement) {
                 var element = $(domElement);
@@ -49,11 +49,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = $.fn.lazyLoad;
+		module.exports = $.fn.picnicLazyLoad;
 	}
 	else if(typeof define === 'function' && define.amd)
 	{
-		define(function() { return $.fn.lazyLoad; });
+		define(function() { return $.fn.picnicLazyLoad; });
 	}
 
 })(window, jQuery, window.picnic || {});
