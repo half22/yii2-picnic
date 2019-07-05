@@ -51,7 +51,7 @@
             return this.each(function (index, domElement) {
                 var element = $(domElement);
                 if (!element.data('plugin-tabs')) {
-                    element.find('*[data-tab-id] > a').on('click', onClick);
+                    element.find('*[data-tab-id] > *').on('click', onClick);
                     element.data('plugin-tabs', true);
                 }
             });
