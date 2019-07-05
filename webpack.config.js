@@ -5,6 +5,7 @@ module.exports = {
         'picnic.js': [
             "./src/picnic.js",
             "./src/extensions/javascript.js",
+            "./src/extensions/jquery.js",
             "./src/components/locale.js",
             "./src/components/url.js",
             "./src/components/router.js",
