@@ -47,7 +47,11 @@
         {
             this.isLoading = true;
             this.root.addClass('is-loading');
-            this.elements.preloaderText.toggle(withText);
+
+            if(this.elements.preloaderText.length)
+            {
+                this.elements.preloaderText.toggle(withText);
+            }
         },
 
         hideLoading: function()
