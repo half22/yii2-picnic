@@ -48,7 +48,7 @@
             this.isLoading = true;
             this.root.addClass('is-loading');
 
-            if(this.elements.preloaderText.length)
+            if(this.elements.preloaderText.length > 0)
             {
                 this.elements.preloaderText.toggle(withText);
             }
