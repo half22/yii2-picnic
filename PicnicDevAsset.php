@@ -20,6 +20,7 @@ class PicnicDevAsset extends AssetBundle
         'components/scrollbar.js',
         'components/url.js',
         'extensions/javascript.js',
+        'extensions/jquery.js',
         'plugins/clicked.js',
         'plugins/dropdown.js',
         'plugins/form-submit-button.js',
