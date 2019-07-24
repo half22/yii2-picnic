@@ -48,7 +48,6 @@
                 this.element.addClass(this.actualOptions.cssClassName + '--' + this.actualOptions.cssModifier);
             }
             this.element.addClass('is-active');
-
             picnic.event.trigger('picnic.backdrop.opened');
         },
 
@@ -60,7 +59,6 @@
             this.isActive = false;
 
             this.element.removeClass('is-active');
-
             picnic.event.trigger('picnic.backdrop.closed');
         },
 
