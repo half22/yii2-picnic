@@ -49,7 +49,6 @@
             }
             this.element.addClass('is-active');
 
-            picnic.scrollbar.disable();
             picnic.event.trigger('picnic.backdrop.opened');
         },
 
@@ -62,7 +61,6 @@
 
             this.element.removeClass('is-active');
 
-            picnic.scrollbar.enable();
             picnic.event.trigger('picnic.backdrop.closed');
         },
 
