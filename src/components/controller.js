@@ -4,11 +4,11 @@
     {
         if($.isArray(callback))
         {
-            callback[0].bind(scope);
+            callback[0] = callback[0].bind(scope);
         }
         else
         {
-            callback.bind(scope);
+            callback = callback.bind(scope);
         }
         return callback;
     }
