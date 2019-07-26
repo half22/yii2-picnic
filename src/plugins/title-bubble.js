@@ -6,7 +6,7 @@
     {
         var target = $(event.currentTarget);
         var title = target.prop('title');
-        if(target.data('title').length)
+        if(target.data('title') && target.data('title').length)
         {
             title = target.data('title');
         }
