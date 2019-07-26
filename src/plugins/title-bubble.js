@@ -9,7 +9,7 @@
         var bubble = target.findElement('bubble');
         if(!bubble.length)
         {
-            bubble = '<span class="c-title-bubble" data-element="bubble"></span>';
+            bubble = $('<span class="c-title-bubble" data-element="bubble"></span>');
             target.append(bubble);
         }
 
