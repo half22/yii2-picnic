@@ -58,8 +58,19 @@
 
         dispatch: function(event, params, arg1, arg2)
         {
-            logDispatch(this.target, arguments);
-            this.callback(event, params, arg1, arg2);
+            if($.isArray(this.callback))
+            {
+                setTimeout(function ()
+                {
+                    logDispatch(this.target, arguments);
+                    this.callback[1](event, params, arg1, arg2);
+                }.bind(this), this.callback[1]);
+            }
+            else
+            {
+                logDispatch(this.target, arguments);
+                this.callback(event, params, arg1, arg2);
+            }
 
             if(!this.propagateEvent)
             {
