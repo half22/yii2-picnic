@@ -63,7 +63,7 @@
                 setTimeout(function ()
                 {
                     logDispatch(this.target, arguments);
-                    this.callback[1](event, params, arg1, arg2);
+                    this.callback[0](event, params, arg1, arg2);
                 }.bind(this), this.callback[1]);
             }
             else
