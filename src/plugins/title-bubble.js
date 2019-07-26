@@ -21,6 +21,17 @@
         bubble.html(title);
         target.prop('title', '');
         target.data('title', title);
+
+        bubble.hide();
+        target.on('mouseover', function ()
+        {
+            bubble.show();
+        });
+
+        target.on('mouseout', function ()
+        {
+            bubble.hide();
+        });
     }
 
     $.extend($.fn, {
