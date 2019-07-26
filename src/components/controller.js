@@ -1,5 +1,18 @@
 (function(window, $, picnic) {
 
+    function bindCallback(callback, scope)
+    {
+        if($.isArray(callback))
+        {
+            callback[0].bind(scope);
+        }
+        else
+        {
+            callback.bind(scope);
+        }
+        return callback;
+    }
+
     var controller = function()
     {
         this.root = null;
@@ -18,13 +31,14 @@
         on: function (eventName, target, callback, propagateEvent)
         {
             if(!isDefined(target)) return;
+
             if(isFunction(target))
             {
-                target = target.bind(this);
+                target = bindCallback(target, this);
             }
             else
             {
-                callback = callback.bind(this);
+                callback = bindCallback(callback, this);
             }
             var event = picnic.event.on(eventName, target, callback, propagateEvent);
             this.events.push(event);
@@ -37,11 +51,11 @@
             if(!isDefined(target)) return;
             if(isFunction(target))
             {
-                target = target.bind(this);
+                target = bindCallback(target, this);
             }
             else
             {
-                callback = callback.bind(this);
+                callback = bindCallback(callback, this);
             }
             var event = picnic.event.one(eventName, target, callback, propagateEvent);
             this.events.push(event);
