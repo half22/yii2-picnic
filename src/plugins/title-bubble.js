@@ -11,27 +11,24 @@
             title = target.data('title');
         }
 
-        var bubble = target.find('*[data-element=bubble]');
+        var bubble = target.findElement('bubble');
         if(!bubble.length)
         {
             bubble = '<span class="c-title-bubble" data-element="bubble"></span>';
             target.append(bubble);
         }
 
-        bubble.html(title);
         target.prop('title', '');
         target.data('title', title);
+        bubble.html(title);
+        bubble.show();
+    }
 
+    function hide()
+    {
+        var target = $(event.currentTarget);
+        var bubble = target.findElement('bubble');
         bubble.hide();
-        target.on('mouseover', function ()
-        {
-            bubble.show();
-        });
-
-        target.on('mouseout', function ()
-        {
-            bubble.hide();
-        });
     }
 
     $.extend($.fn, {
@@ -39,8 +36,10 @@
         {
             return this.each(function (index, domElement) {
                 var element = $(domElement);
-                if (!element.data('plugin-title-bubble')) {
+                if (!element.data('plugin-title-bubble'))
+                {
                     element.on('mouseover titleChanged', show);
+                    element.on('mouseout', hide);
                     element.data('plugin-title-bubble', true);
                 }
             });
