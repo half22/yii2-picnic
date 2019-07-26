@@ -5,11 +5,6 @@
     function show(event)
     {
         var target = $(event.currentTarget);
-        var title = target.prop('title');
-        if(target.data('title') && target.data('title').length)
-        {
-            title = target.data('title');
-        }
 
         var bubble = target.findElement('bubble');
         if(!bubble.length)
@@ -18,8 +13,14 @@
             target.append(bubble);
         }
 
+        var title = target.prop('title');
+        if(target.data('title') && target.data('title').length)
+        {
+            title = target.data('title');
+        }
         target.prop('title', '');
         target.data('title', title);
+
         bubble.html(title);
         bubble.show();
     }
