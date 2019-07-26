@@ -18,11 +18,11 @@
         {
             title = target.data('title');
         }
-        target.prop('title', '');
-        target.data('title', title);
-
         bubble.html(title);
         bubble.show();
+
+        target.prop('title', '');
+        target.data('title', title);
     }
 
     function hide()
