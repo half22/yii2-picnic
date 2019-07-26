@@ -114,4 +114,12 @@ picnic.event.trigger('picnic.event.test', {name: 'value'});
 
 picnic.event.on('picnic.event.test', $('#target'), function(event, params) { } );
 picnic.event.trigger('picnic.event.test', $('#target'), {name: 'value'});
+
+//utils
+$('body').findElement('elementName');
+$('body').findController('controllerName');
+$('body').findController('controllerName').initController();
+$('body').findController('controllerName').getController();
+$('body').findController('controllerName').getController().refresh();
+picnic.initControllers();
 ```
