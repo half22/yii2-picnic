@@ -35,17 +35,17 @@
     function setValue(event, element, button, layer)
     {
         var target = $(event.currentTarget);
-        var item = target.closest('*[data-element=item]');
+        var item = target.closestElement('item');
 
-        var value = button.find('*[data-element=value]');
-        var icon = button.find('*[data-element=icon]');
+        var value = button.findElement('value');
+        var icon = button.findElement('icon');
 
-        var valueHtml = target.find('*[data-element=value]').length > 0 ? target.find('*[data-element=value]').html() : target.html();
+        var valueHtml = target.findElement('value').length > 0 ? target.findElement('value').html() : target.html();
         value.html(valueHtml);
 
         if(icon.length)
         {
-            icon.html(target.find('*[data-element=icon]').html());
+            icon.html(target.findElement('icon').html());
         }
 
         item.siblings().removeClass('is-active');

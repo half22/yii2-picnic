@@ -117,6 +117,7 @@ picnic.event.trigger('picnic.event.test', $('#target'), {name: 'value'});
 
 //utils
 $('body').findElement('elementName');
+$('body').closestElement('elementName');
 $('body').findController('controllerName');
 $('body').findController('controllerName').initController();
 $('body').findController('controllerName').getController();

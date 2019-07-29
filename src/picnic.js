@@ -18,6 +18,11 @@
             return this.find('*[data-element=' + name + ']' + (selector || ''));
         },
 
+        closestElement: function (name, selector)
+        {
+            return this.closest('*[data-element=' + name + ']' + (selector || ''));
+        },
+
         initController: function()
         {
             var previousController = this.getController();
