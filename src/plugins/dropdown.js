@@ -25,7 +25,7 @@
 
     function hide(event, button, layer)
     {
-        var target = $(event.currentTarget);
+        var target = $(event.target);
         if (!target.closest(button).length && !target.closest(layer).length)
         {
             layer.removeClass('is-active');
