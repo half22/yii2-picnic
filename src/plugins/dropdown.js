@@ -23,22 +23,22 @@
         return false;
     }
 
-    function hide(event, dropdown, layer)
+    function hide(event, button, layer)
     {
         var target = $(event.currentTarget);
-        if (!target.closest(dropdown).length && !target.closest(layer).length)
+        if (!target.closest(button).length && !target.closest(layer).length)
         {
             layer.removeClass('is-active');
         }
     }
 
-    function setValue(event, element, dropdown, layer)
+    function setValue(event, element, button, layer)
     {
         var target = $(event.currentTarget);
         var item = target.closest('*[data-element=item]');
 
-        var value = dropdown.find('*[data-element=value]');
-        var icon = dropdown.find('*[data-element=icon]');
+        var value = button.find('*[data-element=value]');
+        var icon = button.find('*[data-element=icon]');
 
         var valueHtml = target.find('*[data-element=value]').length > 0 ? target.find('*[data-element=value]').html() : target.html();
         value.html(valueHtml);
@@ -66,21 +66,21 @@
             return this.each(function (index, domElement) {
                 var element = $(domElement);
                 if (!element.data('plugin-dropdown')) {
-                    var dropdown = element.find('*[data-element=dropdown]');
-                    var layer = element.find('*[data-element=layer]');
+                    var button = element.findElement('button');
+                    var layer = element.findElement('layer');
                     var layerClone = cloneLayer(layer);
-                    var valueLink = layerClone.find('*[data-element=value-link]');
+                    var valueLink = layerClone.findElement('valueLink');
 
-                    dropdown.on('click', function () {
+                    button.on('click', function () {
                         show(layer, layerClone);
                     });
 
                     $('body').on('click', function (event) {
-                        hide(event, dropdown, layerClone);
+                        hide(event, button, layerClone);
                     });
 
                     valueLink.on('click', function (event) {
-                        setValue(event, element, dropdown, layerClone);
+                        setValue(event, element, button, layerClone);
                     });
 
                     element.data('plugin-dropdown', true);
