@@ -13,6 +13,13 @@
         {
             var url = this.base();
             var queryString = $.extend(this.queryStringToJson(), params);
+            $.each(params, function (key, value)
+            {
+                if(value === null)
+                {
+                    delete queryString[key];
+                }
+            });
             return url + '?' + $.param(queryString);
         },
 
