@@ -20,7 +20,7 @@
                     delete queryString[key];
                 }
             });
-            return url + '?' + $.param(queryString);
+            return url + (jQuery.isEmptyObject(queryString) ? '' : ('?' + $.param(queryString)));
         },
 
         queryStringToJson: function()

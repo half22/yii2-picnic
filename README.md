@@ -99,6 +99,7 @@ picnic.router.getUrl('url');
 
 //url
 picnic.url.queryStringToJson();
+picnic.url.current([param: value]);
 
 //scrollbar
 picnic.scrollbar.disable();
