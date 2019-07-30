@@ -4,7 +4,7 @@
     {
         picnic.controller.call(this);
 
-        this.elements = ['checkboxList', 'input', 'submitButton', 'resetButton'];
+        this.elements = ['checkboxes', 'input', 'submitButton', 'resetButton'];
         this.attributes = ['autoSubmit', 'autoReload', 'ajaxUrl'];
     };
 
@@ -77,11 +77,11 @@
 
         disableUnusedCheckboxes: function ()
         {
-            this.elements.checkboxList.each(function(index, domElement) {
-                var checkboxList = $(domElement);
-                if(checkboxList.findElement('input').length == checkboxList.findElement('input', ':checked').length || checkboxList.findElement('input', ':checked').length == 0)
+            this.elements.checkboxes.each(function(index, domElement) {
+                var checkboxes = $(domElement);
+                if(checkboxes.findElement('input').length == checkboxes.findElement('input', ':checked').length || checkboxes.findElement('input', ':checked').length == 0)
                 {
-                    checkboxList.findElement('input').attr('disabled', 'disabled');
+                    checkboxes.findElement('input').attr('disabled', 'disabled');
                 }
 
             }.bind(this));
