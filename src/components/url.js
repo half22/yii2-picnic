@@ -3,10 +3,21 @@
     'use strict';
 
     var url = {
-        
+
+        base: function ()
+        {
+            return window.location.pathname;
+        },
+
+        current: function (params)
+        {
+            var url = this.base();
+            var queryString = $.extend(this.queryStringToJson(), params);
+            return url + '?' + $.param(queryString);
+        },
+
         queryStringToJson: function()
         {
-        
             var query = window.location.search;
             if (query.length == 0) return {};
         
