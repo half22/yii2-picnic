@@ -10,6 +10,11 @@
 
     $.extend(filter.prototype, picnic.controller.prototype,
     {
+        init: function ()
+        {
+
+        },
+
         bindEvents: function()
         {
             this.on('change', this.elements.input, this.onInputChange);
