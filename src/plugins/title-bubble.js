@@ -4,17 +4,17 @@
 
     function titleChanged(event)
     {
-        var target = $(event.target);
+        var target = $(event.currentTarget);
         var bubble = getBubble(target);
         updateTitle(target, bubble);
     }
 
     function updateTitle(element, bubble)
     {
-        var title = target.prop('title');
+        var title = element.prop('title');
         if(element.data('title') && element.data('title').length)
         {
-            title = target.data('title');
+            title = element.data('title');
         }
 
         bubble.html(title);
@@ -30,6 +30,7 @@
         {
             bubble = $('<span class="c-title-bubble" data-element="bubble"></span>');
             element.append(bubble);
+            bubble.hide();
         }
 
         return bubble;
@@ -37,7 +38,7 @@
 
     function show(event)
     {
-        var target = $(event.target);
+        var target = $(event.currentTarget);
         var bubble = getBubble(target);
         updateTitle(target, bubble);
 
@@ -46,7 +47,7 @@
 
     function hide()
     {
-        var target = $(event.target);
+        var target = $(event.currentTarget);
         var bubble = getBubble(target);
         bubble.hide();
     }
