@@ -2,33 +2,52 @@
 
     'use strict';
 
-    function show(event)
+    function titleChanged(event)
     {
-        var target = $(event.currentTarget);
+        var target = $(event.target);
+        var bubble = getBubble(target);
+        updateTitle(target, bubble);
+    }
 
-        var bubble = target.findElement('bubble');
-        if(!bubble.length)
-        {
-            bubble = $('<span class="c-title-bubble" data-element="bubble"></span>');
-            target.append(bubble);
-        }
-
+    function updateTitle(element, bubble)
+    {
         var title = target.prop('title');
-        if(target.data('title') && target.data('title').length)
+        if(element.data('title') && element.data('title').length)
         {
             title = target.data('title');
         }
-        bubble.html(title);
-        bubble.show();
 
-        target.prop('title', '');
-        target.data('title', title);
+        bubble.html(title);
+
+        element.prop('title', '');
+        element.data('title', title);
+    }
+
+    function getBubble(element)
+    {
+        var bubble = element.findElement('bubble');
+        if(!bubble.length)
+        {
+            bubble = $('<span class="c-title-bubble" data-element="bubble"></span>');
+            element.append(bubble);
+        }
+
+        return bubble;
+    }
+
+    function show(event)
+    {
+        var target = $(event.target);
+        var bubble = getBubble(target);
+        updateTitle(target, bubble);
+
+        bubble.show();
     }
 
     function hide()
     {
-        var target = $(event.currentTarget);
-        var bubble = target.findElement('bubble');
+        var target = $(event.target);
+        var bubble = getBubble(target);
         bubble.hide();
     }
 
@@ -39,7 +58,8 @@
                 var element = $(domElement);
                 if (!element.data('plugin-title-bubble'))
                 {
-                    element.on('mouseover titleChanged', show);
+                    element.on('titleChanged', titleChanged);
+                    element.on('mouseover', show);
                     element.on('mouseout', hide);
                     element.data('plugin-title-bubble', true);
                 }
