@@ -30,6 +30,7 @@
 
         reset: function()
         {
+            this.elements.input.val('');
             this.elements.input.prop('checked', false);
             this.submit();
         },
