@@ -10,17 +10,17 @@
 
         findController: function (name, selector)
         {
-            return this.find('*[data-controller=' + name + ']' + (selector || ''));
+            return this.find('*[data-controller~=' + name + ']' + (selector || ''));
         },
 
         findElement: function (name, selector)
         {
-            return this.find('*[data-element=' + name + ']' + (selector || ''));
+            return this.find('*[data-element~=' + name + ']' + (selector || ''));
         },
 
         closestElement: function (name, selector)
         {
-            return this.closest('*[data-element=' + name + ']' + (selector || ''));
+            return this.closest('*[data-element~=' + name + ']' + (selector || ''));
         },
 
         initController: function()
