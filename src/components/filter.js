@@ -85,7 +85,7 @@
         {
             this.elements.checkboxes.each(function(index, domElement) {
                 var checkboxes = $(domElement);
-                if(checkboxes.findElement('input', ':enabled').length == checkboxes.findElement('input', ':checked').length || checkboxes.findElement('input', ':checked').length == 0)
+                if(checkboxes.findElement('input').length == checkboxes.findElement('input', ':checked').length || checkboxes.findElement('input', ':checked').length == 0)
                 {
                     checkboxes.findElement('input').attr('disabled', 'disabled');
                 }
