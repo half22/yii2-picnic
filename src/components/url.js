@@ -79,6 +79,21 @@
                 }
             }
             return params;
+        },
+
+        replaceHash: function (newhash)
+        {
+            if ('replaceState' in history)
+            {
+                if ((''+newhash).charAt(0) !== '#') newhash = '#' + newhash;
+                history.replaceState('', '', newhash);
+            }
+            else
+            {
+                var hash = location.hash;
+                if (location.hash !== hash) history.back();
+                location.hash = newhash;
+            }
         }
     };
 

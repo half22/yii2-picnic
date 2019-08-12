@@ -15,9 +15,9 @@
             {
                 animateScroll(position - offset, function ()
                 {
-                    if(hash != 'top')
+                    if(!target.data('dont-replace-hash'))
                     {
-                        window.replaceHash(hash);
+                        pinic.url.replaceHash(hash);
                     }
                 });
             }
