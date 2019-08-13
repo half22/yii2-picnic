@@ -5,18 +5,15 @@
     function onClick(event)
     {
         var target = $(event.currentTarget);
-        if (!target.hasClass('is-clicked'))
+        target.addClass('is-clicked');
+
+        var timeout = isUndefined(target.data('click-timeout')) ? 400 : target.data('click-timeout');
+        setTimeout(function ()
         {
-            target.addClass('is-clicked');
+            target.off(event).get(0).click();
+        }, timeout);
 
-            var timeout = isUndefined(target.data('click-timeout')) ? 400 : target.data('click-timeout');
-            setTimeout(function ()
-            {
-                target.off(event).get(0).click();
-            }, timeout);
-
-            return false;
-        }
+        return false;
     }
 
     $.extend($.fn, {
