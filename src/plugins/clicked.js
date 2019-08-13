@@ -10,7 +10,9 @@
         var timeout = isUndefined(target.data('click-timeout')) ? 400 : target.data('click-timeout');
         setTimeout(function ()
         {
+            target.off(event);
             target.get(0).click();
+            target.on('click', onClick);
         }, timeout);
 
         return false;
