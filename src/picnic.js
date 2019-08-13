@@ -55,8 +55,8 @@
 
         start: function ()
         {
-            this.initControllers();
             this.initPlugins();
+            this.initControllers();
         },
 
         initControllers: function()
