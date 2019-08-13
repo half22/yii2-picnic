@@ -7,13 +7,14 @@
         picnic.controller.call(this);
 
         this.elements = ['content', 'closeButton', 'preloader', 'preloaderText'];
-        this.attributes = ['disableBackdropClose', 'ajaxUrl'];
+        this.attributes = ['disableBackdropClose', 'backdropCssModifier', 'ajaxUrl'];
     };
 
     $.extend(panel.prototype, picnic.controller.prototype,
     {
         isLoading: false,
         isActive: false,
+        backdropCssModifier: 'panel',
 
         init: function ()
         {
@@ -78,7 +79,8 @@
             this.isActive = true;
 
             this.root.addClass('is-active');
-            picnic.backdrop.open({cssModifier: 'panel', disableClose: this.attributes.disableBackdropClose});
+            var backdropCssModifier = this.attributes.backdropCssModifier ? this.attributes.backdropCssModifier : this.backdropCssModifier;
+            picnic.backdrop.open({cssModifier: backdropCssModifier, disableClose: this.attributes.disableBackdropClose});
 
             this.load();
 
