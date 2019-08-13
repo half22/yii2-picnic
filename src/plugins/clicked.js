@@ -4,6 +4,8 @@
 
     function onClick(event)
     {
+        event.stopImmediatePropagation();
+
         var target = $(event.currentTarget);
         target.addClass('is-clicked');
 
