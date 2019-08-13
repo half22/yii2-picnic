@@ -4,18 +4,21 @@
 
     function onClick(event)
     {
-        event.stopImmediatePropagation();
-
         var target = $(event.currentTarget);
-        target.addClass('is-clicked');
 
-        var timeout = isUndefined(target.data('click-timeout')) ? 400 : target.data('click-timeout');
-        setTimeout(function ()
+        if(!target.data('dispatching-event'))
         {
-            target.off(event);
-            target.get(0).click();
-            target.on('click', onClick);
-        }, timeout);
+            event.stopImmediatePropagation();
+
+            target.addClass('is-clicked');
+            var timeout = isUndefined(target.data('click-timeout')) ? 400 : target.data('click-timeout');
+            setTimeout(function ()
+            {
+                target.data('dispatching-event', true);
+                target.trigger('click');
+                target.data('dispatching-event', false);
+            }, timeout);
+        }
 
         return false;
     }
