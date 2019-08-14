@@ -45,7 +45,7 @@
             this.element.addClass(this.actualOptions.cssClassName);
             if(this.actualOptions.cssModifier)
             {
-                this.element.addClass(this.actualOptions.cssClassName + '--' + this.actualOptions.cssModifier);
+                this.element.addClass(this.actualOptions.cssModifier);
             }
             this.element.addClass('is-active');
             picnic.event.trigger('picnic.backdrop.opened');
