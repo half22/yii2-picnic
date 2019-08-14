@@ -33,20 +33,29 @@
             }
 
             var className = ucfirst(this.data('controller'));
-            var controller = new window[className]();
 
-            controller.root = this;
-            controller.initAttributes();
-            controller.initElements();
-            this.data('_controller', controller);
-
-            setTimeout(function ()
+            if(window[className])
             {
-                controller.init();
-                controller.bindEvents();
-            }, 0);
+                var controller = new window[className]();
 
-            return controller;
+                controller.root = this;
+                controller.initAttributes();
+                controller.initElements();
+                this.data('_controller', controller);
+
+                setTimeout(function ()
+                {
+                    controller.init();
+                    controller.bindEvents();
+                }, 0);
+
+                return controller;
+            }
+            else
+            {
+                console.error('PICNIC: Controller "' + className + '" does not exist.');
+            }
+            return null;
         }
     });
 
