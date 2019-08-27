@@ -84,7 +84,15 @@
                 var element = $(domElement);
                 var plugins = element.data('plugin').split(',');
                 $.each(plugins, function (index, plugin) {
-                   element['picnic' + ucfirst(plugin.trim())]();
+                    var pluginName = 'picnic' + ucfirst(plugin.trim());
+                    if(element[pluginName])
+                    {
+                        element[pluginName]();
+                    }
+                    else
+                    {
+                        console.error('PICNIC: Plugin "' + pluginName + '" does not exist.');
+                    }
                 });
             }.bind(this));
         }
