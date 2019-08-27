@@ -35,14 +35,14 @@
             var classNames = [
                 this.data('controller'),
                 ucfirst(this.data('controller')),
-                camelCase(this.data('controller'))
+                ucfirst(camelCase(this.data('controller')))
             ];
 
             var controller = null;
             for(var i = 0; i < classNames.length; i++)
             {
                 var className = classNames[i];
-                if(window[className])
+                if(isFunction(window[className]))
                 {
                     controller = new window[className]();
                     break;
