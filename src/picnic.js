@@ -32,12 +32,25 @@
                 return previousController;
             }
 
-            var className = ucfirst(this.data('controller'));
+            var classNames = [
+                this.data('controller'),
+                ucfirst(this.data('controller')),
+                camelCase(this.data('controller'))
+            ];
 
-            if(window[className])
+            var controller = null;
+            for(var i = 0; i < classNames.length; i++)
             {
-                var controller = new window[className]();
+                var className = classNames[i];
+                if(window[className])
+                {
+                    controller = new window[className]();
+                    break;
+                }
+            }
 
+            if(controller)
+            {
                 controller.root = this;
                 controller.initAttributes();
                 controller.initElements();
@@ -53,7 +66,7 @@
             }
             else
             {
-                console.error('PICNIC: Controller "' + className + '" does not exist.');
+                console.error('PICNIC: Controller "' + this.data('controller') + '" does not exist.');
             }
             return null;
         }
