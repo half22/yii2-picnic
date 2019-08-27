@@ -84,14 +84,19 @@
                 var element = $(domElement);
                 var plugins = element.data('plugin').split(',');
                 $.each(plugins, function (index, plugin) {
-                    var pluginName = 'picnic' + ucfirst(plugin.trim());
-                    if(element[pluginName])
+                    var picnicPluginName = 'picnic' + ucfirst(plugin.trim());
+                    var customPluginName = plugin.trim();
+                    if(element[picnicPluginName])
                     {
-                        element[pluginName]();
+                        element[picnicPluginName]();
+                    }
+                    else if(element[customPluginName])
+                    {
+                        element[customPluginName]();
                     }
                     else
                     {
-                        console.error('PICNIC: Plugin "' + pluginName + '" does not exist.');
+                        console.error('PICNIC: Plugin "' + customPluginName + '" does not exist.');
                     }
                 });
             }.bind(this));
