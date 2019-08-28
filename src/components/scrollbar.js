@@ -35,7 +35,8 @@
             if(isMobile())
             {
                 $('body').css({
-                    'position': ''
+                    'position': '',
+                    'margin-top': ''
                 });
                 $(document).scrollTop(this.scrollTop);
             }
@@ -55,7 +56,8 @@
             {
                 this.scrollTop = $(document).scrollTop();
                 $('body').css({
-                    'position': 'fixed'
+                    'position': 'fixed',
+                    'margin-top': (this.scrollTop * -1) + 'px'
                 });
             }
         }
