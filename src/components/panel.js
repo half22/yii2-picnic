@@ -82,7 +82,7 @@
             var backdropCssModifier = this.attributes.backdropCssModifier ? this.attributes.backdropCssModifier : this.backdropCssModifier;
 
             picnic.backdrop.open({cssModifier: backdropCssModifier, disableClose: this.attributes.disableBackdropClose});
-            picnic.scrollbar.hide();
+            picnic.scrollbar.disable();
 
             this.load();
 
@@ -121,7 +121,7 @@
         {
             if(!picnic.activePanels.length)
             {
-                picnic.scrollbar.show();
+                picnic.scrollbar.enable();
                 picnic.backdrop.close();
             }
         },
