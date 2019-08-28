@@ -18,14 +18,26 @@
         return (w1 - w2);
     }
 
+    function preventScroll(event)
+    {
+        var target = $(event.target);
+        if(picnic.scrollbar.allowedTarget && target.closest(picnic.scrollbar.allowedTarget).length)
+        {
+            return true;
+        }
+        event.preventDefault();
+        return false;
+    }
+
     var scrollbar = {
         isDisabled: false,
-        scrollTop: null,
+        allowedTarget: null,
 
         enable: function()
         {
             if(!this.isDisabled) return;
             this.isDisabled = false;
+            this.allowedTarget = null;
 
             $('body').css({
                 'overflow': '',
@@ -34,7 +46,7 @@
 
             if(isMobile())
             {
-                $('body').off('touchstart', function (event) { event.preventDefault() });
+                $(document).off('touchstart', preventScroll);
                 // $('body').css({
                 //     'position': '',
                 //     'width': '',
@@ -44,10 +56,11 @@
             }
         },
 
-        disable: function()
+        disable: function(allowedTarget)
         {
             if(this.isDisabled) return;
             this.isDisabled = true;
+            this.allowedTarget = allowedTarget || null;
 
             $('body').css({
                 'overflow': 'hidden',
@@ -56,7 +69,7 @@
 
             if(isMobile())
             {
-                $('body').on('touchstart', function (event) { event.preventDefault() });
+                $(document).on('touchstart', preventScroll);
                 // this.scrollTop = $(document).scrollTop();
                 // $('body').css({
                 //     'position': 'fixed',

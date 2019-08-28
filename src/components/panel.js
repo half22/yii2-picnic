@@ -97,7 +97,7 @@
 
         onOpened: function ()
         {
-            picnic.scrollbar.disable();
+            picnic.scrollbar.disable(this.root);
         },
 
         forceClose: function ()
