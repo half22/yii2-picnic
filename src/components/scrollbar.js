@@ -56,6 +56,7 @@
                 // $(document).scrollTop(this.scrollTop);
             }
 
+
             this.allowedTarget = null;
         },
 
