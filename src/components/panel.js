@@ -80,7 +80,9 @@
 
             this.root.addClass('is-active');
             var backdropCssModifier = this.attributes.backdropCssModifier ? this.attributes.backdropCssModifier : this.backdropCssModifier;
+
             picnic.backdrop.open({cssModifier: backdropCssModifier, disableClose: this.attributes.disableBackdropClose});
+            picnic.scrollbar.hide();
 
             this.load();
 
@@ -119,6 +121,7 @@
         {
             if(!picnic.activePanels.length)
             {
+                picnic.scrollbar.show();
                 picnic.backdrop.close();
             }
         },
