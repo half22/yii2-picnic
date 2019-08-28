@@ -36,6 +36,7 @@
             {
                 $('body').css({
                     'position': '',
+                    'width': '',
                     'margin-top': ''
                 });
                 $(document).scrollTop(this.scrollTop);
@@ -57,6 +58,7 @@
                 this.scrollTop = $(document).scrollTop();
                 $('body').css({
                     'position': 'fixed',
+                    'width': '100%',
                     'margin-top': (this.scrollTop * -1) + 'px'
                 });
             }
