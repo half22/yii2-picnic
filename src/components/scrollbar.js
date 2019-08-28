@@ -34,10 +34,10 @@
 
             if(isMobile())
             {
-                $('body').scrollTop(this.scrollTop);
                 $('body').css({
                     'position': ''
                 });
+                $('body').scrollTop(this.scrollTop);
             }
         },
 

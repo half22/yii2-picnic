@@ -27,6 +27,8 @@
             this.on('click', this.triggers, this.open);
             this.on('click', this.elements.closeButton, this.forceClose);
             this.on('picnic.backdrop.closed', this.close);
+            this.on('picnic.panel.opened', this.onOpened);
+            this.on('picnic.panel.closed', this.onClosed);
 
             if(this.transitionEndEvent)
             {
@@ -82,7 +84,6 @@
             var backdropCssModifier = this.attributes.backdropCssModifier ? this.attributes.backdropCssModifier : this.backdropCssModifier;
 
             picnic.backdrop.open({cssModifier: backdropCssModifier, disableClose: this.attributes.disableBackdropClose});
-            picnic.scrollbar.disable();
 
             this.load();
 
@@ -92,6 +93,11 @@
             {
                 picnic.event.trigger('picnic.panel.opened', this.root);
             }
+        },
+
+        onOpened: function ()
+        {
+            picnic.scrollbar.disable();
         },
 
         forceClose: function ()
@@ -114,16 +120,16 @@
                 picnic.event.trigger('picnic.panel.closed', this.root);
             }
 
-            this.afterClose();
-        },
-
-        afterClose: function()
-        {
             if(!picnic.activePanels.length)
             {
                 picnic.scrollbar.enable();
                 picnic.backdrop.close();
             }
+        },
+
+        onClosed: function()
+        {
+
         },
 
         onTransitionEnd: function(event)
