@@ -20,7 +20,7 @@
 
     function preventScroll(event)
     {
-        event.preventDefault();
+        event.stopImmediatePropagation();
     }
 
     var scrollbar = {
