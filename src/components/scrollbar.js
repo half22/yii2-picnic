@@ -28,6 +28,7 @@
 
             $('body').css({
                 'overflow': '',
+                'position': '',
                 'margin-right': ''
             });
         },
@@ -39,6 +40,7 @@
 
             $('body').css({
                 'overflow': 'hidden',
+                'position': 'fixed',
                 'margin-right': getScrollbarWidth()
             });
         }
