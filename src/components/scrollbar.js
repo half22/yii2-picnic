@@ -37,7 +37,7 @@
                 $('body').css({
                     'position': ''
                 });
-                $('body').scrollTop(this.scrollTop);
+                $(document).scrollTop(this.scrollTop);
             }
         },
 
@@ -53,7 +53,7 @@
 
             if(isMobile())
             {
-                this.scrollTop = $('body').scrollTop();
+                this.scrollTop = $(document).scrollTop();
                 $('body').css({
                     'position': 'fixed'
                 });
