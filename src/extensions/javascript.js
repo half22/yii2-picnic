@@ -48,4 +48,9 @@
         }
     };
 
+    window.isMobile = function()
+    {
+        return ('ontouchstart' in document.documentElement);
+    };
+
 }(window));

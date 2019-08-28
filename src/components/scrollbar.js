@@ -29,11 +29,16 @@
 
             $('body').css({
                 'overflow': '',
-                'position': '',
                 'margin-right': ''
             });
 
-            $('body').scrollTop(this.scrollTop);
+            if(isMobile())
+            {
+                $('body').scrollTop(this.scrollTop);
+                $('body').css({
+                    'position': ''
+                });
+            }
         },
 
         disable: function()
@@ -41,12 +46,18 @@
             if(this.isDisabled) return;
             this.isDisabled = true;
 
-            this.scrollTop = $('body').scrollTop();
             $('body').css({
                 'overflow': 'hidden',
-                'position': 'fixed',
                 'margin-right': getScrollbarWidth()
             });
+
+            if(isMobile())
+            {
+                this.scrollTop = $('body').scrollTop();
+                $('body').css({
+                    'position': 'fixed'
+                });
+            }
         }
     };
 
