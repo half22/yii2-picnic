@@ -20,6 +20,7 @@
 
     var scrollbar = {
         isDisabled: false,
+        scrollTop: null,
 
         enable: function()
         {
@@ -31,6 +32,8 @@
                 'position': '',
                 'margin-right': ''
             });
+
+            $('body').scrollTop(this.scrollTop);
         },
 
         disable: function()
@@ -38,6 +41,7 @@
             if(this.isDisabled) return;
             this.isDisabled = true;
 
+            this.scrollTop = $('body').scrollTop();
             $('body').css({
                 'overflow': 'hidden',
                 'position': 'fixed',
