@@ -34,12 +34,13 @@
 
             if(isMobile())
             {
-                $('body').css({
-                    'position': '',
-                    'width': '',
-                    'margin-top': ''
-                });
-                $(document).scrollTop(this.scrollTop);
+                $('body').off('touchstart', function (event) { event.preventDefault() });
+                // $('body').css({
+                //     'position': '',
+                //     'width': '',
+                //     'margin-top': ''
+                // });
+                // $(document).scrollTop(this.scrollTop);
             }
         },
 
@@ -55,12 +56,13 @@
 
             if(isMobile())
             {
-                this.scrollTop = $(document).scrollTop();
-                $('body').css({
-                    'position': 'fixed',
-                    'width': '100%',
-                    'margin-top': (this.scrollTop * -1) + 'px'
-                });
+                $('body').on('touchstart', function (event) { event.preventDefault() });
+                // this.scrollTop = $(document).scrollTop();
+                // $('body').css({
+                //     'position': 'fixed',
+                //     'width': '100%',
+                //     'margin-top': (this.scrollTop * -1) + 'px'
+                // });
             }
         }
     };
