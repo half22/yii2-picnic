@@ -20,24 +20,16 @@
 
     function preventScroll(event)
     {
-        var target = $(event.target);
-        if(picnic.scrollbar.allowedTarget && target.closest(picnic.scrollbar.allowedTarget).length)
-        {
-            return true;
-        }
         event.preventDefault();
-        return false;
     }
 
     var scrollbar = {
         isDisabled: false,
-        allowedTarget: null,
 
         enable: function()
         {
             if(!this.isDisabled) return;
             this.isDisabled = false;
-            this.allowedTarget = null;
 
             $('body').css({
                 'overflow': '',
@@ -46,7 +38,6 @@
 
             if(isMobile())
             {
-                $(document).off('touchstart', preventScroll);
                 // $('body').css({
                 //     'position': '',
                 //     'width': '',
@@ -60,7 +51,6 @@
         {
             if(this.isDisabled) return;
             this.isDisabled = true;
-            this.allowedTarget = allowedTarget || null;
 
             $('body').css({
                 'overflow': 'hidden',
@@ -69,7 +59,11 @@
 
             if(isMobile())
             {
-                $(document).on('touchstart', preventScroll);
+                if(allowedTarget)
+                {
+                    allowedTarget.on('touchstart', preventScroll);
+                }
+
                 // this.scrollTop = $(document).scrollTop();
                 // $('body').css({
                 //     'position': 'fixed',
