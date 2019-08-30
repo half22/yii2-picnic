@@ -18,14 +18,14 @@
         return (w1 - w2);
     }
 
-    function preventScroll(event)
+    function enableElementScroll(event)
     {
-        var target = $(event.currentTarget);
+        event.stopImmediatePropagation();
+    }
 
-        if(picnic.scrollbar.allowedTarget && target != picnic.scrollbar.allowedTarget)
-        {
-            event.preventDefault();
-        }
+    function disableElementScroll(event)
+    {
+        event.preventDefault();
     }
 
     var scrollbar = {
@@ -39,6 +39,7 @@
 
             $('body').css({
                 'overflow': '',
+                'touch-action': '',
                 'margin-right': ''
             });
 
@@ -46,7 +47,8 @@
             {
                 if(this.allowedTarget)
                 {
-                    this.allowedTarget.off('touchstart', preventScroll);
+                    this.allowedTarget.off('touchstart', enableElementScroll);
+                    $(document).off('touchstart', disableElementScroll);
                 }
                 // $('body').css({
                 //     'position': '',
@@ -68,6 +70,7 @@
 
             $('body').css({
                 'overflow': 'hidden',
+                'touch-action': 'none',
                 'margin-right': getScrollbarWidth()
             });
 
@@ -75,7 +78,8 @@
             {
                 if(this.allowedTarget)
                 {
-                    this.allowedTarget.on('touchstart', preventScroll);
+                    this.allowedTarget.on('touchstart', enableElementScroll);
+                    $(document).on('touchstart', disableElementScroll);
                 }
 
                 // this.scrollTop = $(document).scrollTop();
