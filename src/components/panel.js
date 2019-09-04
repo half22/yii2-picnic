@@ -112,6 +112,8 @@
             if(!this.isActive) return;
             this.isActive = false;
 
+            picnic.activePanels = picnic.activePanels.not(this.root);
+
             if(!picnic.activePanels.length)
             {
                 picnic.scrollbar.enable();
@@ -120,7 +122,6 @@
 
             this.root.removeClass('is-active');
 
-            picnic.activePanels = picnic.activePanels.not(this.root);
             picnic.event.trigger('picnic.panel.close', this.root);
             if(!this.transitionEndEvent)
             {
