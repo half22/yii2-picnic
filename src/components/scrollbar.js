@@ -20,11 +20,13 @@
 
     function enableElementScroll(event)
     {
+        alert('enable');
         event.stopImmediatePropagation();
     }
 
     function disableElementScroll(event)
     {
+        alert('disable');
         event.preventDefault();
     }
 
