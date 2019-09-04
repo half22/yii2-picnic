@@ -20,7 +20,6 @@
 
     function enableElementScroll(event)
     {
-        alert('enable');
         event.stopImmediatePropagation();
     }
 
@@ -28,6 +27,7 @@
     {
         alert('disable');
         event.preventDefault();
+        return false;
     }
 
     var scrollbar = {
