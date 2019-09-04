@@ -53,4 +53,10 @@
         return ('ontouchstart' in document.documentElement);
     };
 
+    window.isIOS = function ()
+    {
+        return !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+    };
+
+
 }(window));

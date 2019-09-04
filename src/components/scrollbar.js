@@ -18,20 +18,9 @@
         return (w1 - w2);
     }
 
-    function enableElementScroll(event)
-    {
-        event.stopImmediatePropagation();
-    }
-
-    function disableElementScroll(event)
-    {
-        event.preventDefault();
-        return false;
-    }
-
     var scrollbar = {
         isDisabled: false,
-        allowedTarget: null,
+        scrollTop: null,
 
         enable: function()
         {
@@ -44,30 +33,22 @@
                 'margin-right': ''
             });
 
-            if(isMobile())
+            if(isIOS())
             {
-                if(this.allowedTarget)
-                {
-                    this.allowedTarget.off('touchmove', enableElementScroll);
-                    $(document).off('touchmove', disableElementScroll);
-                }
-                // $('body').css({
-                //     'position': '',
-                //     'width': '',
-                //     'margin-top': ''
-                // });
-                // $(document).scrollTop(this.scrollTop);
+                $('body').css({
+                    'position': '',
+                    'width': '',
+                    'margin-top': ''
+                });
+                $(document).scrollTop(this.scrollTop);
+                this.scrollTop = null;
             }
-
-
-            this.allowedTarget = null;
         },
 
-        disable: function(allowedTarget)
+        disable: function()
         {
             if(this.isDisabled) return;
             this.isDisabled = true;
-            this.allowedTarget = allowedTarget || null;
 
             $('body').css({
                 'overflow': 'hidden',
@@ -75,20 +56,14 @@
                 'margin-right': getScrollbarWidth()
             });
 
-            if(isMobile())
+            if(isIOS())
             {
-                if(this.allowedTarget)
-                {
-                    this.allowedTarget.on('touchstart', enableElementScroll);
-                    $(document).on('touchstart', disableElementScroll);
-                }
-
-                // this.scrollTop = $(document).scrollTop();
-                // $('body').css({
-                //     'position': 'fixed',
-                //     'width': '100%',
-                //     'margin-top': (this.scrollTop * -1) + 'px'
-                // });
+                this.scrollTop = $(document).scrollTop();
+                $('body').css({
+                    'position': 'fixed',
+                    'width': '100%',
+                    'margin-top': (this.scrollTop * -1) + 'px'
+                });
             }
         }
     };
