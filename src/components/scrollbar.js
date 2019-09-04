@@ -37,7 +37,7 @@
             {
                 if(this.allowedTarget)
                 {
-                    enableBodyScroll(this.allowedTarget.get(0));
+                    bodyScrollLock.enableBodyScroll(this.allowedTarget.get(0));
                 }
                 // $('body').css({
                 //     'position': '',
@@ -65,7 +65,7 @@
 
             if(isIOS())
             {
-                disableBodyScroll(this.allowedTarget.get(0));
+                bodyScrollLock.disableBodyScroll(this.allowedTarget.get(0));
 
                 // this.scrollTop = $(document).scrollTop();
                 // $('body').css({
