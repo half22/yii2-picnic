@@ -19,6 +19,7 @@ class PicnicDevAsset extends AssetBundle
         'components/router.js',
         'components/scrollbar.js',
         'components/url.js',
+        'vendor/body-scroll-lock.js',
         'extensions/javascript.js',
         'extensions/jquery.js',
         'plugins/clicked.js',
