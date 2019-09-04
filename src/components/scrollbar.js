@@ -38,7 +38,7 @@
                 $('body').css({
                     'position': '',
                     'width': '',
-                    'margin-top': ''
+                    'top': ''
                 });
                 $(document).scrollTop(this.scrollTop);
             }
