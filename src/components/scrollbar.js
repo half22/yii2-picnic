@@ -25,7 +25,6 @@
 
     function disableElementScroll(event)
     {
-        alert('disable');
         event.preventDefault();
         return false;
     }
@@ -49,8 +48,8 @@
             {
                 if(this.allowedTarget)
                 {
-                    this.allowedTarget.off('touchstart', enableElementScroll);
-                    $(document).off('touchstart', disableElementScroll);
+                    this.allowedTarget.off('touchmove', enableElementScroll);
+                    $(document).off('touchmove', disableElementScroll);
                 }
                 // $('body').css({
                 //     'position': '',
