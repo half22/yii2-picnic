@@ -60,8 +60,6 @@
 
             if(isIOS())
             {
-                alert('aaa');
-
                 this.scrollTop = $(document).scrollTop();
                 $('body').css({
                     'position': 'fixed',
