@@ -113,20 +113,26 @@
             this.isActive = false;
 
             picnic.activePanels = picnic.activePanels.not(this.root);
-
             if(!picnic.activePanels.length)
             {
                 picnic.scrollbar.enable();
-                picnic.backdrop.close();
             }
 
-            this.root.removeClass('is-active');
+            setTimeout(function() {
+                this.root.removeClass('is-active');
 
-            picnic.event.trigger('picnic.panel.close', this.root);
-            if(!this.transitionEndEvent)
-            {
-                picnic.event.trigger('picnic.panel.closed', this.root);
-            }
+                picnic.event.trigger('picnic.panel.close', this.root);
+                if(!this.transitionEndEvent)
+                {
+                    picnic.event.trigger('picnic.panel.closed', this.root);
+                }
+
+                if(!picnic.activePanels.length)
+                {
+                    picnic.backdrop.close();
+                }
+
+            }.bind(this), 0);
         },
 
         onClosed: function()
