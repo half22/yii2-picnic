@@ -55,7 +55,6 @@
 
     window.isIOS = function ()
     {
-        return true;
         return !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
     };
 

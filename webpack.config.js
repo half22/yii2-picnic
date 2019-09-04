@@ -4,7 +4,6 @@ module.exports = {
     entry: {
         'picnic.js': [
             "./src/picnic.js",
-            "./src/vendor/body-scroll-lock.js",
             "./src/extensions/javascript.js",
             "./src/extensions/jquery.js",
             "./src/components/locale.js",

@@ -20,7 +20,7 @@
 
     var scrollbar = {
         isDisabled: false,
-        allowedTarget: null,
+        scrollTop: null,
 
         enable: function()
         {
@@ -35,27 +35,22 @@
 
             if(isIOS())
             {
-                if(this.allowedTarget)
-                {
-                    bodyScrollLock.enableBodyScroll(this.allowedTarget.get(0));
-                }
-                // $('body').css({
-                //     'position': '',
-                //     'width': '',
-                //     'margin-top': ''
-                // });
-                // $(document).scrollTop(this.scrollTop);
+                $('body').css({
+                    'position': '',
+                    'width': '',
+                    'margin-top': ''
+                });
+                $(document).scrollTop(this.scrollTop);
             }
 
 
             this.allowedTarget = null;
         },
 
-        disable: function(allowedTarget)
+        disable: function()
         {
             if(this.isDisabled) return;
             this.isDisabled = true;
-            this.allowedTarget = allowedTarget || null;
 
             $('body').css({
                 'overflow': 'hidden',
@@ -65,15 +60,14 @@
 
             if(isIOS())
             {
-                bodyScrollLock.disableBodyScroll(this.allowedTarget.get(0));
                 alert('aaa');
 
-                // this.scrollTop = $(document).scrollTop();
-                // $('body').css({
-                //     'position': 'fixed',
-                //     'width': '100%',
-                //     'margin-top': (this.scrollTop * -1) + 'px'
-                // });
+                this.scrollTop = $(document).scrollTop();
+                $('body').css({
+                    'position': 'fixed',
+                    'width': '100%',
+                    'top': (this.scrollTop * -1) + 'px'
+                });
             }
         }
     };
