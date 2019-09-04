@@ -24,6 +24,7 @@
 
         enable: function()
         {
+            return;
             if(!this.isDisabled) return;
             this.isDisabled = false;
 
@@ -47,6 +48,7 @@
 
         disable: function()
         {
+            return;
             if(this.isDisabled) return;
             this.isDisabled = true;
 
