@@ -66,6 +66,7 @@
             if(isIOS())
             {
                 bodyScrollLock.disableBodyScroll(this.allowedTarget.get(0));
+                alert('aaa');
 
                 // this.scrollTop = $(document).scrollTop();
                 // $('body').css({
