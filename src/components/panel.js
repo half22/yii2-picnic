@@ -98,7 +98,7 @@
         onOpened: function ()
         {
             if(!this.isActive) return;
-            picnic.scrollbar.disable();
+            picnic.scrollbar.disable(this.root);
         },
 
         forceClose: function ()
@@ -112,27 +112,20 @@
             if(!this.isActive) return;
             this.isActive = false;
 
+            this.root.removeClass('is-active');
+
             picnic.activePanels = picnic.activePanels.not(this.root);
+            picnic.event.trigger('picnic.panel.close', this.root);
+            if(!this.transitionEndEvent)
+            {
+                picnic.event.trigger('picnic.panel.closed', this.root);
+            }
+
             if(!picnic.activePanels.length)
             {
                 picnic.scrollbar.enable();
+                picnic.backdrop.close();
             }
-
-            setTimeout(function() {
-                this.root.removeClass('is-active');
-
-                picnic.event.trigger('picnic.panel.close', this.root);
-                if(!this.transitionEndEvent)
-                {
-                    picnic.event.trigger('picnic.panel.closed', this.root);
-                }
-
-                if(!picnic.activePanels.length)
-                {
-                    picnic.backdrop.close();
-                }
-
-            }.bind(this), 0);
         },
 
         onClosed: function()
