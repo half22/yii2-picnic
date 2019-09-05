@@ -37,14 +37,13 @@
             {
                 $('body').css({
                     'position': '',
-                    'width': '',
-                    'top': ''
+                    'top': '',
+                    'left': '',
+                    'right': '',
+                    'bottom': ''
                 });
                 $(document).scrollTop(this.scrollTop);
             }
-
-
-            this.allowedTarget = null;
         },
 
         disable: function()
@@ -64,7 +63,10 @@
                 $('body').css({
                     'position': 'fixed',
                     'width': '100%',
-                    'top': (this.scrollTop * -1) + 'px'
+                    'top': (this.scrollTop * -1) + 'px',
+                    'left': '0px',
+                    'right': '0px',
+                    'bottom': '0px'
                 });
             }
         }
