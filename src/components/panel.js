@@ -80,11 +80,12 @@
             if(this.isActive) return;
             this.isActive = true;
 
-            this.root.addClass('is-active');
-            var backdropCssModifier = this.attributes.backdropCssModifier ? this.attributes.backdropCssModifier : this.backdropCssModifier;
+            picnic.scrollbar.disable();
 
+            var backdropCssModifier = this.attributes.backdropCssModifier ? this.attributes.backdropCssModifier : this.backdropCssModifier;
             picnic.backdrop.open({cssModifier: backdropCssModifier, disableClose: this.attributes.disableBackdropClose});
 
+            this.root.addClass('is-active');
             this.load();
 
             picnic.activePanels = picnic.activePanels.add(this.root);
@@ -97,8 +98,8 @@
 
         onOpened: function ()
         {
-            if(!this.isActive) return;
-            picnic.scrollbar.disable();
+
+
         },
 
         forceClose: function ()
