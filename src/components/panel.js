@@ -19,12 +19,11 @@
         init: function ()
         {
             this.transitionEndEvent = getTransitionEndEvent(this.root);
-            this.triggers = $('*[data-panel=' + this.root.prop('id') + ']');
         },
 
         bindEvents: function()
         {
-            this.on('click', this.triggers, this.open);
+            this.on('click', $('*[data-panel=' + this.root.prop('id') + ']'), this.open);
             this.on('click', this.elements.closeButton, this.forceClose);
             this.on('picnic.backdrop.closed', this.close);
             this.on('picnic.panel.opened', this.onOpened);
