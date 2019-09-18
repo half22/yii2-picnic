@@ -7,7 +7,7 @@
         picnic.controller.call(this);
 
         this.elements = ['content', 'closeButton', 'preloader', 'preloaderText'];
-        this.attributes = ['disableBackdropClose', 'backdropCssModifier', 'ajaxUrl'];
+        this.attributes = ['disableBackdropClose', 'backdropCssModifier', 'ajaxUrl', 'ajaxTriggers'];
     };
 
     $.extend(panel.prototype, picnic.controller.prototype,
@@ -19,11 +19,13 @@
         init: function ()
         {
             this.transitionEndEvent = getTransitionEndEvent(this.root);
+
+            //triggers
+            $('body').on('click', '*[data-panel=' + this.root.prop('id') + ']', this.onTriggerClick.bind(this));
         },
 
         bindEvents: function()
         {
-            this.on('click', $('*[data-panel=' + this.root.prop('id') + ']'), this.open);
             this.on('click', this.elements.closeButton, this.forceClose);
             this.on('picnic.backdrop.closed', this.close);
             this.on('picnic.panel.opened', this.onOpened);
@@ -33,6 +35,13 @@
             {
                 this.on(this.transitionEndEvent, this.root, this.onTransitionEnd);
             }
+        },
+
+        onTriggerClick: function (event)
+        {
+            var target = $(event.target);
+            this.open(target.attr('href'));
+            return false;
         },
 
         onLoaded: function(data)
@@ -49,7 +58,11 @@
         {
             this.isLoading = true;
             this.root.addClass('is-loading');
-            this.elements.preloaderText.toggle(withText);
+
+            if(this.elements.preloaderText.length > 0)
+            {
+                this.elements.preloaderText.toggle(withText);
+            }
         },
 
         hideLoading: function()
@@ -58,14 +71,23 @@
             this.root.removeClass('is-loading');
         },
 
-        load: function()
+        load: function(triggerUrl)
         {
             if(this.isLoading) return;
-            if(!this.attributes.ajaxUrl) return;
+
+            var url = null;
+            if(this.attributes.ajaxUrl)
+            {
+                url = this.attributes.ajaxUrl;
+            }
+            if(this.attributes.ajaxTriggers && triggerUrl)
+            {
+                url = triggerUrl;
+            }
+            if(!url) return;
 
             this.showLoading(true);
 
-            var url = this.attributes.ajaxUrl;
             $.ajax( {
                 url: url,
                 type: 'GET',
@@ -74,7 +96,7 @@
             });
         },
 
-        open: function()
+        open: function(url)
         {
             if(this.isActive) return;
             this.isActive = true;
@@ -85,7 +107,7 @@
             picnic.backdrop.open({cssModifier: backdropCssModifier, disableClose: this.attributes.disableBackdropClose});
 
             this.root.addClass('is-active');
-            this.load();
+            this.load(url);
 
             picnic.activePanels = picnic.activePanels.add(this.root);
             picnic.event.trigger('picnic.panel.open', this.root);
@@ -96,10 +118,7 @@
         },
 
         onOpened: function ()
-        {
-
-
-        },
+        {},
 
         forceClose: function ()
         {
@@ -129,9 +148,7 @@
         },
 
         onClosed: function()
-        {
-
-        },
+        {},
 
         onTransitionEnd: function(event)
         {

@@ -7,29 +7,41 @@
         picnic.controller.call(this);
 
         this.elements = ['content', 'closeButton', 'preloader', 'preloaderText'];
-        this.attributes = ['disableBackdropClose', 'ajaxUrl', 'ajaxTriggers'];
+        this.attributes = ['disableBackdropClose', 'backdropCssModifier', 'ajaxUrl', 'ajaxTriggers'];
     };
 
     $.extend(modal.prototype, picnic.controller.prototype,
     {
         isLoading: false,
         isActive: false,
+        backdropCssModifier: 'modal',
 
         init: function ()
         {
             this.transitionEndEvent = getTransitionEndEvent(this.root);
+
+            //triggers
+            $('body').on('click', '*[data-modal=' + this.root.prop('id') + ']', this.onTriggerClick.bind(this));
         },
 
         bindEvents: function()
         {
-            this.on('click', $('*[data-modal=' + this.root.prop('id') + ']'), this.open);
             this.on('click', this.elements.closeButton, this.forceClose);
             this.on('picnic.backdrop.closed', this.close);
+            this.on('picnic.panel.opened', this.onOpened);
+            this.on('picnic.panel.closed', this.onClosed);
 
             if(this.transitionEndEvent)
             {
                 this.on(this.transitionEndEvent, this.root, this.onTransitionEnd);
             }
+        },
+
+        onTriggerClick: function (event)
+        {
+            var target = $(event.target);
+            this.open(target.attr('href'));
+            return false;
         },
 
         onLoaded: function(data)
@@ -84,16 +96,16 @@
             });
         },
 
-        open: function(event)
+        open: function(url)
         {
             if(this.isActive) return;
             this.isActive = true;
 
-            this.root.addClass('is-active');
-            picnic.backdrop.open({cssModifier: 'modal', disableClose: this.attributes.disableBackdropClose});
+            var backdropCssModifier = this.attributes.backdropCssModifier ? this.attributes.backdropCssModifier : this.backdropCssModifier;
+            picnic.backdrop.open({cssModifier: backdropCssModifier, disableClose: this.attributes.disableBackdropClose});
 
-            var target = $(event.currentTarget);
-            this.load(target.attr('href'));
+            this.root.addClass('is-active');
+            this.load(url);
 
             picnic.activeModals = picnic.activeModals.add(this.root);
             picnic.event.trigger('picnic.modal.open', this.root);
@@ -103,9 +115,17 @@
             }
         },
 
+        onOpened: function ()
+        {},
+
+        forceClose: function ()
+        {
+            picnic.backdrop.enableClose();
+            this.close();
+        },
+
         close: function()
         {
-            if(this.isLoading) return;
             if(!this.isActive) return;
             this.isActive = false;
 
@@ -118,22 +138,15 @@
                 picnic.event.trigger('picnic.modal.closed', this.root);
             }
 
-            this.afterClose();
-        },
-
-        forceClose: function ()
-        {
-            picnic.backdrop.enableClose();
-            this.close();
-        },
-
-        afterClose: function()
-        {
             if(!picnic.activeModals.length)
             {
                 picnic.backdrop.close();
             }
         },
+
+
+        onClosed: function()
+        {},
 
         onTransitionEnd: function(event)
         {
