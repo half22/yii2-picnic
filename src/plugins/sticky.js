@@ -100,7 +100,7 @@
 
                     var scrollElement = element.data('scroll-element') ? element.closest(element.data('scroll-element')) : $(window);
                     scrollElement.on('scroll', function () {
-                        onScroll(element);
+                        onScroll(scrollElement, element);
                     });
                     onScroll(scrollElement, element);
 
