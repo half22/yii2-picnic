@@ -15,13 +15,26 @@
         isLoading: false,
         isActive: false,
         backdropCssModifier: 'panel',
+        triggersInitialized: false,
 
         init: function ()
         {
-            this.transitionEndEvent = getTransitionEndEvent(this.root);
+            this.initTransitionEndEvent();
+            this.initTriggers();
+        },
 
-            //triggers
-            $('body').on('click', '*[data-panel=' + this.root.prop('id') + ']', this.onTriggerClick.bind(this));
+        initTransitionEndEvent: function ()
+        {
+            this.transitionEndEvent = getTransitionEndEvent(this.root);
+        },
+
+        initTriggers: function ()
+        {
+            if(!this.triggersInitialized)
+            {
+                $('body').on('click', '*[data-panel=' + this.root.prop('id') + ']', this.onTriggerClick.bind(this));
+                this.triggersInitialized = true;
+            }
         },
 
         bindEvents: function()
