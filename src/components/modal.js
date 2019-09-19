@@ -40,7 +40,8 @@
         onTriggerClick: function (event)
         {
             var target = $(event.target);
-            this.open(target.attr('href'));
+            var url = this.attributes.ajaxTriggers ? target.attr('href') : null;
+            this.open(url);
             return false;
         },
 
@@ -48,10 +49,15 @@
         {
             if(data.html)
             {
-                this.elements.content.html(data.html);
-                this.refresh();
+                this.updateContent(data.html);
                 picnic.event.trigger('picnic.modal.loaded', this.root);
             }
+        },
+
+        updateContent: function (html)
+        {
+            this.elements.content.html(html);
+            this.refresh();
         },
 
         showLoading: function(withText)
@@ -71,21 +77,9 @@
             this.root.removeClass('is-loading');
         },
 
-        load: function(triggerUrl)
+        load: function(url)
         {
             if(this.isLoading) return;
-
-            var url = null;
-            if(this.attributes.ajaxUrl)
-            {
-                url = this.attributes.ajaxUrl;
-            }
-            if(this.attributes.ajaxTriggers && triggerUrl)
-            {
-                url = triggerUrl;
-            }
-            if(!url) return;
-
             this.showLoading(true);
 
             $.ajax( {
@@ -105,7 +99,11 @@
             picnic.backdrop.open({cssModifier: backdropCssModifier, disableClose: this.attributes.disableBackdropClose});
 
             this.root.addClass('is-active');
-            this.load(url);
+
+            if(url = url ? url : this.attributes.ajaxUrl)
+            {
+                this.load(url);
+            }
 
             picnic.activeModals = picnic.activeModals.add(this.root);
             picnic.event.trigger('picnic.modal.open', this.root);
