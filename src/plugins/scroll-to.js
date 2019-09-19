@@ -17,7 +17,7 @@
                 {
                     if(!target.data('dont-replace-hash'))
                     {
-                        pinic.url.replaceHash(hash);
+                        picnic.url.replaceHash(hash);
                     }
                 });
             }
