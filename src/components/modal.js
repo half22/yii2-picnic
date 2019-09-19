@@ -15,7 +15,7 @@
         isLoading: false,
         isActive: false,
         backdropCssModifier: 'modal',
-        triggersInitialized: false,
+        areTriggersInitialized: false,
 
         init: function ()
         {
@@ -30,10 +30,10 @@
 
         initTriggers: function ()
         {
-            if(!this.triggersInitialized)
+            if(!this.areTriggersInitialized)
             {
                 $('body').on('click', '*[data-modal=' + this.root.prop('id') + ']', this.onTriggerClick.bind(this));
-                this.triggersInitialized = true;
+                this.areTriggersInitialized = true;
             }
         },
 
