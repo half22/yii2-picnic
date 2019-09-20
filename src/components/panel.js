@@ -1,5 +1,7 @@
 (function(window, $, picnic) {
 
+    picnic.activeLayers['panel'] = $();
+
     var panel = function()
     {
         picnic.layer.call(this);

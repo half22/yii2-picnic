@@ -1,6 +1,6 @@
 (function(window, $, picnic) {
 
-    picnic.activeLayers = $();
+    picnic.activeLayers = {};
 
     var layer = function()
     {
