@@ -27,27 +27,15 @@
     function onScroll(scrollElement, element)
     {
         var scrollTop = scrollElement.scrollTop();
-        var scrollLimit = parseInt(element.data('scroll-limit') || 0);
-        var topAnchor = parseInt(element.data('top-anchor') || 0);
-        var offsetTop = element.data('offset-top') - topAnchor;
+        var topBoundary = parseInt(element.data('top-boundary') || 0);
+        var offsetTop = element.data('offset-top') - topBoundary;
 
         if(element.height() < $(window).height())
         {
-            if (scrollLimit)
+            if(offsetTop <= scrollTop)
             {
-                if(scrollTop >= scrollLimit)
-                {
-                    activate(element);
-                    return;
-                }
-            }
-            else
-            {
-                if(offsetTop <= scrollTop)
-                {
-                    activate(element);
-                    return;
-                }
+                activate(element);
+                return;
             }
         }
 
