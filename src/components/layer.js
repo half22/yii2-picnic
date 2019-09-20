@@ -184,5 +184,3 @@
 	}
 
 }(window, jQuery, window.picnic || {}));
-
-

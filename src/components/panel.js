@@ -26,5 +26,3 @@
 	}
 
 }(window, jQuery, window.picnic || {}));
-
-
