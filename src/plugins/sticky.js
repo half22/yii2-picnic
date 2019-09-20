@@ -57,9 +57,9 @@
     function activate(element)
     {
         var top = 0;
-        if(element.data('top-anchor'))
+        if(element.data('top-boundary'))
         {
-            top = element.data('top-anchor');
+            top = element.data('top-boundary');
         }
 
         if(element.data('bottom-barrier'))
