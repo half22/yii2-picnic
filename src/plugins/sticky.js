@@ -55,9 +55,9 @@
             var barrier = $(element.data('bottom-barrier'));
             if(barrier.length)
             {
-                if(top + element.outerHeight() > barrier.offset().top - $(window).scrollTop())
+                if(top + element.outerHeight(true) > barrier.offset().top - $(window).scrollTop())
                 {
-                    top -= (top + element.outerHeight()) - (barrier.offset().top - $(window).scrollTop());
+                    top -= (top + element.outerHeight(true)) - (barrier.offset().top - $(window).scrollTop());
                 }
             }
         }
