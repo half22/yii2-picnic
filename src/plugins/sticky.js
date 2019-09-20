@@ -52,7 +52,7 @@
 
         if(element.data('bottom-barrier'))
         {
-            var barrier = $('.' + element.data('bottom-barrier'));
+            var barrier = $(element.data('bottom-barrier'));
             if(barrier.length)
             {
                 if(top + element.outerHeight() > barrier.offset().top - $(window).scrollTop())
