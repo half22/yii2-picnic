@@ -15,6 +15,7 @@ class PicnicDevAsset extends AssetBundle
         'components/filter.js',
         'components/locale.js',
         'components/modal.js',
+        'components/layer.js',
         'components/panel.js',
         'components/router.js',
         'components/scrollbar.js',
