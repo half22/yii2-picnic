@@ -112,9 +112,10 @@
             picnic.initPlugins(this.root);
         },
 
-        register: function()
+        register: function(root)
         {
             this.id = Math.random().toString(36).substr(2, 9);
+            this.root = root;
             this.root.data('_controller', this);
             picnic.controllers[this.id] = this;
         },

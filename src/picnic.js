@@ -52,8 +52,7 @@
 
             if(controller)
             {
-                controller.root = this;
-                controller.register();
+                controller.register(this);
                 controller.initAttributes();
                 controller.initElements();
 
