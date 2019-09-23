@@ -83,12 +83,21 @@
             {
                 this.elements.preloaderText.toggle(withText);
             }
+            if(this.elements.preloader && this.elements.preloader.length > 0)
+            {
+                this.elements.preloader.show();
+            }
         },
 
         hideLoading: function()
         {
             this.isLoading = false;
             this.root.removeClass('is-loading');
+
+            if(this.elements.preloader && this.elements.preloader.length > 0)
+            {
+                this.elements.preloader.hide();
+            }
         },
 
         load: function(url)
