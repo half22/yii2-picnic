@@ -85,10 +85,10 @@
 
         stop: function ()
         {
-            for(var i = 0; i < this.controllers.length; i++)
+            $.each(this.controllers, function(key, controller)
             {
-                this.controllers[i].destroy();
-            }
+                controller.destroy();
+            });
         },
 
         initControllers: function()
