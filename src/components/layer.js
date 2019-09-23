@@ -16,6 +16,7 @@
         isLoading: false,
         isActive: false,
         backdropCssModifier: '',
+        onTriggerClickCallback: null,
 
         init: function ()
         {
@@ -30,8 +31,13 @@
 
         initTriggers: function ()
         {
-            $('body').off('click', '*[data-' + this.type + '=' + this.root.prop('id') + ']', this.onTriggerClick.bind(this));
-            $('body').on('click', '*[data-' + this.type + '=' + this.root.prop('id') + ']', this.onTriggerClick.bind(this));
+            var selector = '*[data-' + this.type + '=' + this.root.prop('id') + ']';
+            if(this.onTriggerClickCallback)
+            {
+                $('body').off('click', selector, this.onTriggerClickCallback);
+            }
+            this.onTriggerClickCallback = this.onTriggerClick.bind(this);
+            $('body').on('click', selector, this.onTriggerClickCallback);
         },
 
         bindEvents: function()
