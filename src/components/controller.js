@@ -117,12 +117,14 @@
         register: function()
         {
             this.id = Math.random().toString(36).substr(2, 9);
+            this.root.data('_controller', this);
             picnic.controllers[this.id] = this;
         },
 
         destroy: function ()
         {
             this.unbindEvents();
+            this.root.data('_controller', null);
             delete picnic.controllers[this.id];
         }
     });

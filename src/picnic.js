@@ -55,7 +55,6 @@
                 controller.root = this;
                 controller.initAttributes();
                 controller.initElements();
-                this.data('_controller', controller);
 
                 setTimeout(function ()
                 {
@@ -89,6 +88,7 @@
             {
                 controller.destroy();
             });
+            this.controllers = {};
         },
 
         initControllers: function()
