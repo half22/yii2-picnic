@@ -21,7 +21,7 @@
         init: function ()
         {
             this.initTransitionEndEvent();
-            this.initTriggers();
+            this.bindTriggers();
         },
 
         initTransitionEndEvent: function ()
@@ -29,15 +29,23 @@
             this.transitionEndEvent = getTransitionEndEvent(this.root);
         },
 
-        initTriggers: function ()
+        getTriggersSelector: function ()
         {
-            var selector = '*[data-' + this.type + '=' + this.root.prop('id') + ']';
+            return '*[data-' + this.type + '=' + this.root.prop('id') + ']';
+        },
+
+        bindTriggers: function ()
+        {
+            this.onTriggerClickCallback = this.onTriggerClick.bind(this);
+            $('body').on('click', this.getTriggersSelector(), this.onTriggerClickCallback);
+        },
+
+        unbindTriggers: function ()
+        {
             if(this.onTriggerClickCallback)
             {
-                $('body').off('click', selector, this.onTriggerClickCallback);
+                $('body').off('click', this.getTriggersSelector(), this.onTriggerClickCallback);
             }
-            this.onTriggerClickCallback = this.onTriggerClick.bind(this);
-            $('body').on('click', selector, this.onTriggerClickCallback);
         },
 
         bindEvents: function()
@@ -179,6 +187,12 @@
 
             var eventName = this.isActive ? 'picnic.' + this.type + '.opened' : 'picnic.' + this.type + '.closed';
             picnic.event.trigger(eventName, this.root);
+        },
+
+        destroy: function ()
+        {
+            this.unbindTriggers();
+            picnic.controller.prototype.destroy.call(this);
         }
     });
 

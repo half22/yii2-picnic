@@ -78,8 +78,17 @@
 
         start: function ()
         {
+            this.stop();
             this.initPlugins();
             this.initControllers();
+        },
+
+        stop: function ()
+        {
+            for(var i = 0; i < this.controllers.length; i++)
+            {
+                this.controllers[i].destroy();
+            }
         },
 
         initControllers: function()
