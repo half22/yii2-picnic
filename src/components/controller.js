@@ -19,8 +19,6 @@
         this.elements = [];
         this.attributes = [];
         this.events = [];
-
-        this.register();
     };
 
     $.extend(controller.prototype,
