@@ -1,6 +1,7 @@
 {
   "name": "half/yii2-picnic",
   "description": "",
+  "license": "MIT",
   "autoload" : {
     "psr-4" : {
       "half\\picnic\\" : ""
