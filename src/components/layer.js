@@ -129,9 +129,6 @@
             }
         },
 
-        onOpened: function ()
-        {},
-
         forceClose: function ()
         {
             picnic.backdrop.enableClose();
@@ -158,6 +155,9 @@
                 picnic.backdrop.close();
             }
         },
+
+        onOpened: function ()
+        {},
 
         onClosed: function()
         {},
