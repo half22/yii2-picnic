@@ -89,11 +89,11 @@
             this.isLoading = true;
             this.root.addClass('is-loading');
 
-            if(this.elements.preloaderText && this.elements.preloaderText.length > 0)
+            if(this.elements.preloaderText.length)
             {
                 this.elements.preloaderText.toggle(withText);
             }
-            if(this.elements.preloader && this.elements.preloader.length > 0)
+            if(this.elements.preloader.length)
             {
                 this.elements.preloader.show();
             }
@@ -104,7 +104,7 @@
             this.isLoading = false;
             this.root.removeClass('is-loading');
 
-            if(this.elements.preloader && this.elements.preloader.length > 0)
+            if(this.elements.preloader.length)
             {
                 this.elements.preloader.hide();
             }
