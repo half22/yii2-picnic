@@ -77,8 +77,7 @@
             $.each(this.elements, function (index, value)
             {
                 var name = $.isArray(this.elements) ? value: index;
-                var element = this.root.findElement(name);
-                elements[name] = element.length ? element : null;
+                elements[name] = this.root.findElement(name);
             }.bind(this));
 
             this.elements = elements;
