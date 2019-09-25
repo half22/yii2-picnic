@@ -23,6 +23,11 @@
             return this.closest('*[data-element~=' + name + ']' + (selector || ''));
         },
 
+        closestController: function (name, selector)
+        {
+            return this.closest('*[data-controller~=' + name + ']' + (selector || ''));
+        },
+
         initController: function()
         {
             var previousController = this.getController();
