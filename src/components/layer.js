@@ -88,6 +88,7 @@
         {
             this.isLoading = true;
             this.root.addClass('is-loading');
+            this.elements.content.empty();
 
             if(this.elements.preloaderText.length)
             {
