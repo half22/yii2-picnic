@@ -13,7 +13,7 @@
 
     function deactivate(tab)
     {
-        var tabId = tab.data('tab-id');
+        var tabId = tab.data('tab');
         var tabContent = $('#' + tabId);
         tabContent.removeClass('is-active');
         tab.removeClass('is-active');
@@ -21,7 +21,7 @@
 
     function activate(tab)
     {
-        var tabId = tab.data('tab-id');
+        var tabId = tab.data('tab');
         var tabContent = $('#' + tabId);
         tabContent.addClass('is-active');
         tab.addClass('is-active');
@@ -32,7 +32,7 @@
         var target = $(event.currentTarget);
         var tab = target.closest('*[data-tab]');
         var tabs = tab.siblings();
-        var tabId = tab.data('tab-id');
+        var tabId = tab.data('tab');
         var element = target.closest('*[data-plugin=tabs]');
 
         if(!tab.hasClass('is-disabled'))
