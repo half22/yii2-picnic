@@ -30,7 +30,7 @@
     function onClick(event)
     {
         var target = $(event.currentTarget);
-        var tab = target.closest('*[data-tab-id]');
+        var tab = target.closest('*[data-tab]');
         var tabs = tab.siblings();
         var tabId = tab.data('tab-id');
         var element = target.closest('*[data-plugin=tabs]');
@@ -51,8 +51,8 @@
             return this.each(function (index, domElement) {
                 var element = $(domElement);
 
-                element.find('*[data-tab-id] > *').off('click', onClick);
-                element.find('*[data-tab-id] > *').on('click', onClick);
+                element.find('*[data-tab] > *').off('click', onClick);
+                element.find('*[data-tab] > *').on('click', onClick);
                 element.data('plugin-tabs', true);
             });
         }
