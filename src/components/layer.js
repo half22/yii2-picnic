@@ -1,6 +1,8 @@
 (function(window, $, picnic) {
 
-    picnic.activeLayers = {};
+    picnic.activeLayers = {
+        totalCount: 0
+    };
 
     var layer = function()
     {
@@ -142,6 +144,8 @@
             }
 
             picnic.activeLayers[this.type] = picnic.activeLayers[this.type].add(this.root);
+            picnic.activeLayers.totalCount++;
+
             picnic.event.trigger('picnic.' + this.type + '.open', this.root);
             if(!this.transitionEndEvent)
             {
@@ -163,13 +167,15 @@
             this.root.removeClass('is-active');
 
             picnic.activeLayers[this.type] = picnic.activeLayers[this.type].not(this.root);
+            picnic.activeLayers.totalCount--;
+
             picnic.event.trigger('picnic.' + this.type + '.close', this.root);
             if(!this.transitionEndEvent)
             {
                 picnic.event.trigger('picnic.' + this.type + '.closed', this.root);
             }
 
-            if(!picnic.activeLayers[this.type].length)
+            if(!picnic.activeLayers.totalCount)
             {
                 picnic.scrollbar.enable();
                 picnic.backdrop.close();

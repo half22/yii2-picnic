@@ -49,12 +49,15 @@
             if(!this.isActive) return;
             this.isActive = false;
 
-            picnic.scrollbar.enable();
-            picnic.backdrop.enableClose();
-            picnic.backdrop.close();
-
             this.element.removeClass('is-active');
             picnic.event.trigger('picnic.preloader.closed');
+
+            if(!picnic.activeLayers.totalCount)
+            {
+                picnic.backdrop.enableClose();
+                picnic.scrollbar.enable();
+                picnic.backdrop.close();
+            }
         }
     };
 
