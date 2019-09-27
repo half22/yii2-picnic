@@ -50,6 +50,7 @@
             this.isActive = false;
 
             picnic.scrollbar.enable();
+            picnic.backdrop.enableClose();
             picnic.backdrop.close();
 
             this.element.removeClass('is-active');
