@@ -18,6 +18,7 @@ class PicnicDevAsset extends AssetBundle
         'components/modal.js',
         'components/panel.js',
         'components/router.js',
+        'components/preloader.js',
         'components/scrollbar.js',
         'components/url.js',
         'extensions/javascript.js',

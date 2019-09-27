@@ -11,6 +11,7 @@ module.exports = {
             "./src/components/router.js",
             "./src/components/backdrop.js",
             "./src/components/scrollbar.js",
+            "./src/components/preloader.js",
             "./src/components/event.js",
             "./src/components/controller.js",
             "./src/components/layer.js",
