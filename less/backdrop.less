@@ -1,0 +1,19 @@
+.c-backdrop {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: visibility 0s linear 0.5s, opacity 0.2s ease;
+
+    &.is-active {
+        visibility: visible;
+        opacity: 1;
+        transition-delay: 0s;
+    }
+}
+
