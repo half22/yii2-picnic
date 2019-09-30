@@ -60,10 +60,10 @@
 
         close: function()
         {
-            if(this.actualOptions.disableClose) return;
-
             if(!this.isActive) return;
             this.isActive = false;
+
+            if(this.actualOptions.disableClose) return;
 
             this.actualOptions = null;
             this.optionsStack = [];
