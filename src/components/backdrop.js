@@ -84,8 +84,8 @@
 
         triggerCloseEvent: function ()
         {
-            if(this.actualOptions.disableClose) return;
             if(!this.isActive) return;
+            if(this.actualOptions.disableClose) return;
 
             picnic.event.trigger('picnic.backdrop.closeEventTriggered', this.actualOptions.parent);
         },
