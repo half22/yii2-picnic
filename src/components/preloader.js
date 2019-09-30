@@ -32,7 +32,7 @@
             picnic.scrollbar.disable();
 
             var backdropCssModifier = this.actualOptions.backdropCssModifier;
-            picnic.backdrop.open({cssModifier: backdropCssModifier, disableClose: true});
+            picnic.backdrop.open({parent: this.element, cssModifier: backdropCssModifier, disableClose: true});
 
             this.element.removeClass();
             this.element.addClass(this.actualOptions.cssClassName);
@@ -52,11 +52,15 @@
             this.element.removeClass('is-active');
             picnic.event.trigger('picnic.preloader.closed');
 
-            if(!picnic.activeLayers.totalCount)
+            if(picnic.backdrop.isStackEmpty())
             {
                 picnic.backdrop.enableClose();
                 picnic.scrollbar.enable();
                 picnic.backdrop.close();
+            }
+            else
+            {
+                picnic.backdrop.previous();
             }
         }
     };

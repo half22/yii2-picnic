@@ -12,7 +12,7 @@
         var code = event.charCode || event.keyCode;
         if(code === 27)
         {
-            picnic.backdrop.close();
+            picnic.backdrop.triggerCloseEvent();
         }
     }
     $(window).on('keydown', keyDown);
@@ -22,23 +22,26 @@
         isActive: false,
 
         defaultOptions: {
+            parent: $(document),
             cssClassName: 'c-backdrop',
             disableClose: false,
             cssModifier: null
         },
-        actualOptions: {},
+        actualOptions: null,
+        optionsStack: [],
 
         open: function(options)
         {
             if(!this.element)
             {
                 this.element = createElement();
-                this.element.on('click', this.close.bind(this));
+                this.element.on('click', this.triggerCloseEvent.bind(this));
             }
 
-            if(this.isActive) return;
-            this.isActive = true;
-
+            if(this.actualOptions)
+            {
+                this.optionsStack.push(this.actualOptions);
+            }
             this.actualOptions = $.extend({}, this.defaultOptions, options || {});
 
             this.element.removeClass();
@@ -47,6 +50,10 @@
             {
                 this.element.addClass(this.actualOptions.cssModifier);
             }
+
+            if(this.isActive) return;
+            this.isActive = true;
+
             this.element.addClass('is-active');
             picnic.event.trigger('picnic.backdrop.opened');
         },
@@ -57,6 +64,9 @@
 
             if(!this.isActive) return;
             this.isActive = false;
+
+            this.actualOptions = null;
+            this.optionsStack = [];
 
             this.element.removeClass('is-active');
             picnic.event.trigger('picnic.backdrop.closed');
@@ -70,6 +80,25 @@
         disableClose: function ()
         {
             this.actualOptions.disableClose = true;
+        },
+
+        triggerCloseEvent: function ()
+        {
+            if(this.actualOptions.disableClose) return;
+            if(!this.isActive) return;
+
+            picnic.event.trigger('picnic.backdrop.closeEventTriggered', this.actualOptions.parent);
+        },
+
+        isStackEmpty: function ()
+        {
+            return this.optionsStack.length;
+        },
+
+        previous: function ()
+        {
+            var previousOptions = this.optionsStack.pop();
+            this.open(previousOptions);
         }
     };
 

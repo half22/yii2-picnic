@@ -17,8 +17,11 @@
         type: null,
         isLoading: false,
         isActive: false,
-        backdropCssModifier: '',
         onTriggerClickCallback: null,
+
+        //backdrop
+        backdropCssModifier: '',
+        disableBackdropClose: false,
 
         init: function ()
         {
@@ -53,7 +56,7 @@
         bindEvents: function()
         {
             this.on('click', this.elements.closeButton, this.forceClose);
-            this.on('picnic.backdrop.closed', this.close);
+            this.on('picnic.backdrop.closeEventTriggered', this.root, this.close);
             this.on('picnic.' + this.type + '.opened', this.onOpened);
             this.on('picnic.' + this.type + '.closed', this.onClosed);
 
@@ -126,25 +129,42 @@
             });
         },
 
+        getBackdropOptions: function ()
+        {
+            return {
+                parent: this.root,
+                cssModifier: this.attributes.backdropCssModifier ? this.attributes.backdropCssModifier : this.backdropCssModifier,
+                disableClose: this.attributes.disableBackdropClose ? this.attributes.disableBackdropClose : this.disableBackdropClose
+            };
+        },
+
+        registerLayer: function ()
+        {
+            picnic.activeLayers[this.type] = picnic.activeLayers[this.type].add(this.root);
+            picnic.activeLayers.totalCount++;
+        },
+
+        unregisterLayer: function ()
+        {
+            picnic.activeLayers[this.type] = picnic.activeLayers[this.type].not(this.root);
+            picnic.activeLayers.totalCount--;
+        },
+
         open: function(url)
         {
             if(this.isActive) return;
             this.isActive = true;
 
             picnic.scrollbar.disable();
-
-            var backdropCssModifier = this.attributes.backdropCssModifier ? this.attributes.backdropCssModifier : this.backdropCssModifier;
-            picnic.backdrop.open({cssModifier: backdropCssModifier, disableClose: this.attributes.disableBackdropClose});
+            picnic.backdrop.open(this.getBackdropOptions());
 
             this.root.addClass('is-active');
+            this.registerLayer();
 
             if(url = url ? url : this.attributes.ajaxUrl)
             {
                 this.load(url);
             }
-
-            picnic.activeLayers[this.type] = picnic.activeLayers[this.type].add(this.root);
-            picnic.activeLayers.totalCount++;
 
             picnic.event.trigger('picnic.' + this.type + '.open', this.root);
             if(!this.transitionEndEvent)
@@ -165,9 +185,7 @@
             this.isActive = false;
 
             this.root.removeClass('is-active');
-
-            picnic.activeLayers[this.type] = picnic.activeLayers[this.type].not(this.root);
-            picnic.activeLayers.totalCount--;
+            this.unregisterLayer();
 
             picnic.event.trigger('picnic.' + this.type + '.close', this.root);
             if(!this.transitionEndEvent)
@@ -175,10 +193,14 @@
                 picnic.event.trigger('picnic.' + this.type + '.closed', this.root);
             }
 
-            if(!picnic.activeLayers.totalCount)
+            if(picnic.backdrop.isStackEmpty())
             {
                 picnic.scrollbar.enable();
                 picnic.backdrop.close();
+            }
+            else
+            {
+                picnic.backdrop.previous();
             }
         },
 
