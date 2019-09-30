@@ -72,7 +72,10 @@
 
     function deactivate(element)
     {
-        element.data('placeholder').hide();
+        if(element.data('placeholder'))
+        {
+            element.data('placeholder').hide();
+        }
         element.attr('style' , '');
         element.removeClass('is-sticky');
     }
