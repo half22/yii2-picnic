@@ -2,6 +2,12 @@
 
     'use strict';
 
+    var defaultOptions = {
+        cssClassName: 'c-preloader',
+        cssModifier: null,
+        backdropCssModifier: 'preloader'
+    };
+
     function createElement()
     {
         return $('<div>').appendTo('body');
@@ -10,13 +16,7 @@
     var preloader = {
         element: null,
         isActive: false,
-
-        defaultOptions: {
-            cssClassName: 'c-preloader',
-            cssModifier: null,
-            backdropCssModifier: 'preloader'
-        },
-        actualOptions: {},
+        options: {},
 
         open: function(options)
         {
@@ -27,18 +27,18 @@
 
             if(this.isActive) return;
             this.isActive = true;
-            this.actualOptions = $.extend({}, this.defaultOptions, options || {});
+            this.options = $.extend({}, defaultOptions, options || {});
 
             picnic.scrollbar.disable();
 
-            var backdropCssModifier = this.actualOptions.backdropCssModifier;
+            var backdropCssModifier = this.options.backdropCssModifier;
             picnic.backdrop.open({parent: this.element, cssModifier: backdropCssModifier, disableClose: true});
 
             this.element.removeClass();
-            this.element.addClass(this.actualOptions.cssClassName);
-            if(this.actualOptions.cssModifier)
+            this.element.addClass(this.options.cssClassName);
+            if(this.options.cssModifier)
             {
-                this.element.addClass(this.actualOptions.cssModifier);
+                this.element.addClass(this.options.cssModifier);
             }
             this.element.addClass('is-active');
             picnic.event.trigger('picnic.preloader.opened');

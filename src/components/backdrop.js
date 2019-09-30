@@ -2,6 +2,14 @@
 
     'use strict';
 
+    var defaultOptions = {
+        parent: $(document),
+        cssClassName: 'c-backdrop',
+        disableClose: false,
+        cssModifier: null
+    };
+
+
     function createElement()
     {
         return $('<div>').appendTo('body');
@@ -20,14 +28,7 @@
     var backdrop = {
         element: null,
         isActive: false,
-
-        defaultOptions: {
-            parent: $(document),
-            cssClassName: 'c-backdrop',
-            disableClose: false,
-            cssModifier: null
-        },
-        actualOptions: null,
+        options: null,
         optionsStack: [],
 
         open: function(options)
@@ -38,17 +39,17 @@
                 this.element.on('click', this.triggerCloseEvent.bind(this));
             }
 
-            if(this.actualOptions)
+            if(this.options)
             {
-                this.optionsStack.push(this.actualOptions);
+                this.optionsStack.push(this.options);
             }
-            this.actualOptions = $.extend({}, this.defaultOptions, options || {});
+            this.options = $.extend({}, defaultOptions, options || {});
 
             this.element.removeClass();
-            this.element.addClass(this.actualOptions.cssClassName);
-            if(this.actualOptions.cssModifier)
+            this.element.addClass(this.options.cssClassName);
+            if(this.options.cssModifier)
             {
-                this.element.addClass(this.actualOptions.cssModifier);
+                this.element.addClass(this.options.cssModifier);
             }
             this.element.addClass('is-active');
 
@@ -63,9 +64,9 @@
             if(!this.isActive) return;
             this.isActive = false;
 
-            if(this.actualOptions.disableClose) return;
+            if(this.options.disableClose) return;
 
-            this.actualOptions = null;
+            this.options = null;
             this.optionsStack = [];
 
             this.element.removeClass('is-active');
@@ -74,25 +75,25 @@
 
         enableClose: function ()
         {
-            this.actualOptions.disableClose = false;
+            this.options.disableClose = false;
         },
 
         disableClose: function ()
         {
-            this.actualOptions.disableClose = true;
+            this.options.disableClose = true;
         },
 
         triggerCloseEvent: function ()
         {
             if(!this.isActive) return;
-            if(this.actualOptions.disableClose) return;
+            if(this.options.disableClose) return;
 
-            picnic.event.trigger('picnic.backdrop.closeEventTriggered', this.actualOptions.parent);
+            picnic.event.trigger('picnic.backdrop.closeEventTriggered', this.options.parent);
         },
 
         isStackEmpty: function ()
         {
-            return this.optionsStack.length;
+            return this.optionsStack.length == 0;
         },
 
         previous: function ()
