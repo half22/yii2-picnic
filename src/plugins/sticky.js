@@ -90,7 +90,10 @@
                     scrollElement.on('scroll', function () {
                         onScroll(scrollElement, element);
                     });
-                    onScroll(scrollElement, element);
+                    setTimeout(function ()
+                    {
+                        onScroll(scrollElement, element);
+                    }, 0);
 
                     element.data('plugin-sticky', true);
                 }
