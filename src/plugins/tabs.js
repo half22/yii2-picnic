@@ -13,7 +13,7 @@
 
     function deactivate(tab)
     {
-        var tabId = tab.data('tab');
+        var tabId = tab.children().eq(0).data('tab');
         var tabContent = $('#' + tabId);
         tabContent.removeClass('is-active');
         tab.removeClass('is-active');
@@ -21,7 +21,7 @@
 
     function activate(tab)
     {
-        var tabId = tab.data('tab');
+        var tabId = tab.children().eq(0).data('tab');
         var tabContent = $('#' + tabId);
         tabContent.addClass('is-active');
         tab.addClass('is-active');
@@ -30,9 +30,9 @@
     function onClick(event)
     {
         var target = $(event.currentTarget);
-        var tab = target.closest('*[data-tab]');
+        var tab = target.parent();
         var tabs = tab.siblings();
-        var tabId = tab.data('tab');
+        var tabId = target.data('tab');
         var element = target.closest('*[data-plugin=tabs]');
 
         if(!tab.hasClass('is-disabled'))
@@ -51,8 +51,8 @@
             return this.each(function (index, domElement) {
                 var element = $(domElement);
 
-                element.find('*[data-tab] > *').off('click', onClick);
-                element.find('*[data-tab] > *').on('click', onClick);
+                element.find('*[data-tab]').off('click', onClick);
+                element.find('*[data-tab]').on('click', onClick);
                 element.data('plugin-tabs', true);
             });
         }
