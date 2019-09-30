@@ -50,7 +50,7 @@
             this.isActive = false;
 
             this.element.removeClass();
-            this.element.addClass(this.options.cssClassName);
+            this.element.addClass(defaultOptions.cssClassName);
             picnic.event.trigger('picnic.preloader.closed');
 
             if(picnic.backdrop.isStackEmpty())

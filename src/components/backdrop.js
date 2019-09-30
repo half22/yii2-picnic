@@ -69,7 +69,8 @@
             this.options = null;
             this.optionsStack = [];
 
-            this.element.removeClass('is-active');
+            this.element.removeClass();
+            this.element.addClass(defaultOptions.cssClassName);
             picnic.event.trigger('picnic.backdrop.closed');
         },
 
