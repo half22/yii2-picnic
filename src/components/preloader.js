@@ -49,7 +49,8 @@
             if(!this.isActive) return;
             this.isActive = false;
 
-            this.element.removeClass('is-active');
+            this.element.removeClass();
+            this.element.addClass(this.options.cssClassName);
             picnic.event.trigger('picnic.preloader.closed');
 
             if(picnic.backdrop.isStackEmpty())

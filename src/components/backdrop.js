@@ -98,6 +98,7 @@
 
         previous: function ()
         {
+            this.options = null;
             var previousOptions = this.optionsStack.pop();
             this.open(previousOptions);
         }
