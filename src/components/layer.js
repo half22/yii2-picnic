@@ -68,7 +68,7 @@
 
         onTriggerClick: function (event)
         {
-            var target = $(event.target);
+            var target = $(event.currentTarget);
             var url = this.attributes.ajaxTriggers ? target.attr('href') : null;
             this.open(url);
             return false;
