@@ -8,7 +8,7 @@
     {
         picnic.controller.call(this);
 
-        this.elements = ['content', 'closeButton', 'preloader', 'preloaderText'];
+        this.elements = ['title', 'content', 'closeButton', 'preloader', 'preloaderText'];
         this.attributes = ['disableBackdropClose', 'backdropCssModifier', 'ajaxUrl', 'ajaxTriggers'];
     };
 
@@ -76,16 +76,29 @@
 
         onLoaded: function(data)
         {
-            if(data.html)
-            {
-                this.updateContent(data.html);
-                picnic.event.trigger('picnic.' + this.type + '.loaded', this.root);
-            }
+            this.updateContent(data);
+            picnic.event.trigger('picnic.' + this.type + '.loaded', this.root);
         },
 
-        updateContent: function (html)
+        updateContent: function (data)
         {
-            this.elements.content.html(html);
+            if(this.elements.content.length)
+            {
+                if(data.html)
+                {
+                    this.elements.content.html(data.html);
+                }
+                if(data.content)
+                {
+                    this.elements.content.html(data.content);
+                }
+            }
+
+            if(this.elements.title.length && data.title)
+            {
+                this.elements.title.html(data.title);
+            }
+
             this.refresh();
         },
 
