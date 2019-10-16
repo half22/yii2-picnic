@@ -32,6 +32,7 @@
                 'touch-action': '',
                 'margin-right': ''
             });
+            $('body').removeClass('is-scrollbar-disabled');
 
             if(isIOS())
             {
@@ -56,6 +57,7 @@
                 'touch-action': 'none',
                 'margin-right': getScrollbarWidth()
             });
+            $('body').addClass('is-scrollbar-disabled');
 
             if(isIOS())
             {
