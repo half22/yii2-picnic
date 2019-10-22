@@ -111,6 +111,14 @@
             target.trigger(eventName, [params]);
         },
 
+        triggerAsync: function(eventName, target, params)
+        {
+            setTimeout(function ()
+            {
+                this.trigger(eventName, target, params);
+            }.bind(this),  0);
+        },
+
         on: function(eventName, target, callback, propagateEvent)
         {
             var picnicEvent = createPicnicEvent(eventName, target, callback, propagateEvent);
