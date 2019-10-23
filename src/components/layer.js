@@ -173,6 +173,7 @@
 
             this.root.addClass('is-active');
             this.registerLayer();
+            this.hideLoading();
 
             if(url = url ? url : this.attributes.ajaxUrl)
             {
