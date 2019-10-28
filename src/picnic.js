@@ -112,19 +112,34 @@
                 var element = $(domElement);
                 var plugins = element.data('plugin').split(',');
                 $.each(plugins, function (index, plugin) {
-                    var picnicPluginName = 'picnic' + ucfirst(plugin.trim());
-                    var customPluginName = plugin.trim();
-                    if(element[picnicPluginName])
+
+                    plugin = plugin.trim();
+                    var pluginNames = [
+                        //picnic plugin
+                        'picnic' + ucfirst(plugin),
+
+                        //custom plugins
+                        plugin,
+                        ucfirst(plugin),
+                        camelCase(plugin),
+                        ucfirst(camelCase(plugin))
+                    ];
+
+                    var pluginFound = false;
+                    for(var i = 0; i < pluginNames.length; i++)
                     {
-                        element[picnicPluginName]();
+                        var pluginName = pluginNames[i];
+                        if(element[pluginName])
+                        {
+                            element[pluginName]();
+                            pluginFound = true;
+                            break;
+                        }
                     }
-                    else if(element[customPluginName])
+
+                    if(!pluginFound)
                     {
-                        element[customPluginName]();
-                    }
-                    else
-                    {
-                        console.error('PICNIC: Plugin "' + customPluginName + '" does not exist.');
+                        console.error('PICNIC: Plugin "' + plugin + '" does not exist.');
                     }
                 });
             }.bind(this));
