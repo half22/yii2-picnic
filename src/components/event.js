@@ -111,12 +111,12 @@
             target.trigger(eventName, [params]);
         },
 
-        triggerAsync: function(eventName, target, params)
+        triggerAsync: function(eventName, timeout, target, params)
         {
             setTimeout(function ()
             {
                 this.trigger(eventName, target, params);
-            }.bind(this),  0);
+            }.bind(this),  timeout ? timeout : 0);
         },
 
         on: function(eventName, target, callback, propagateEvent)
