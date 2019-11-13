@@ -1,8 +1,8 @@
-window.tabsState = window.tabsState || {};
-
 (function(window, $, picnic) {
 
     'use strict';
+
+    picnic.tabsState = {};
 
     function deactivateTabs(tabs)
     {
@@ -38,15 +38,15 @@ window.tabsState = window.tabsState || {};
 
         if(element.data('state-id'))
         {
-            window.tabsState[element.data('state-id')] = tabId;
+            picnic.tabsState[element.data('state-id')] = tabId;
         }
     }
 
     function restoreState(element)
     {
-        if(element.data('state-id') && window.tabsState[element.data('state-id')])
+        if(element.data('state-id') && picnic.tabsState[element.data('state-id')])
         {
-            var tabId = window.tabsState[element.data('state-id')];
+            var tabId = picnic.tabsState[element.data('state-id')];
             var tab = element.find('*[data-tab=' + tabId + ']').parent();
             var tabs = tab.siblings();
 
