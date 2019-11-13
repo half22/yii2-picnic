@@ -1,3 +1,5 @@
+window.tabsState = window.tabsState || {};
+
 (function(window, $, picnic) {
 
     'use strict';
