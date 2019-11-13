@@ -25,6 +25,37 @@
         var tabContent = $('#' + tabId);
         tabContent.addClass('is-active');
         tab.addClass('is-active');
+
+        saveState(tab);
+    }
+
+    function saveState(tab)
+    {
+        var element = tab.closest('*[data-plugin=tabs]');
+        var tabId = tab.children().eq(0).data('tab');
+
+        if(element.data('state-id'))
+        {
+            window.tabsState[element.data('state-id')] = tabId;
+        }
+    }
+
+    function restoreState(element)
+    {
+        if(element.data('state-id') && window.tabsState[element.data('state-id')])
+        {
+            var tabId = window.tabsState[element.data('state-id')];
+            var tab = element.find('*[data-tab=' + tabId + ']').parent();
+            var tabs = tab.siblings();
+
+            if(tab.length && !tab.hasClass('is-disabled'))
+            {
+                deactivateTabs(tabs);
+                activate(tab);
+
+                picnic.event.trigger('picnic.tabs.activated', element, {tabId: tabId});
+            }
+        }
     }
 
     function onClick(event)
@@ -54,6 +85,8 @@
                 element.find('*[data-tab]').off('click', onClick);
                 element.find('*[data-tab]').on('click', onClick);
                 element.data('plugin-tabs', true);
+
+                restoreState(element);
             });
         }
     });
