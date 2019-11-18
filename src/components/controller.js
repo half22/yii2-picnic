@@ -111,6 +111,14 @@
             picnic.initPlugins(this.root);
         },
 
+        replaceRoot: function(html)
+        {
+            var root = $(html);
+            this.root.replaceWith(root);
+            this.root = root;
+            this.refresh();
+        },
+
         register: function(root)
         {
             this.id = Math.random().toString(36).substr(2, 9);
