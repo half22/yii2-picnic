@@ -18,6 +18,7 @@
         isLoading: false,
         isActive: false,
         onTriggerClickCallback: null,
+        ajaxUrl: null,
 
         //backdrop
         backdropCssModifier: '',
@@ -78,6 +79,11 @@
         {
             this.updateContent(data);
             picnic.event.trigger('picnic.' + this.type + '.loaded', this.root);
+        },
+
+        getAjaxUrl: function()
+        {
+            return this.attributes.ajaxUrl ? this.attributes.ajaxUrl : this.ajaxUrl;
         },
 
         updateContent: function (data)
@@ -175,7 +181,7 @@
             this.registerLayer();
             this.hideLoading();
 
-            if(url = url ? url : this.attributes.ajaxUrl)
+            if(url = url ? url : this.getAjaxUrl())
             {
                 this.load(url);
             }
