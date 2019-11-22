@@ -47,7 +47,7 @@ $.extend(Car.prototype, picnic.controller.prototype,
   
 	changeColor: function ()  
 	{
-		this.elements.name.css('color', color);
+		this.elements.name.css('color', this.attributes.color);
 	}
 });
 ```
