@@ -2,6 +2,33 @@
 
     'use strict';
 
+    function initAll(elements)
+    {
+        elements.each(function (index, domElement) {
+            var element = $(domElement);
+            if (!element.data('plugin-sticky'))
+            {
+                if(element.is(':visible'))
+                {
+                    init(element);
+                    createPlaceholder(element);
+
+                    var scrollElement = element.data('scroll-element') ? element.closest(element.data('scroll-element')) : $(window);
+                    scrollElement.on('scroll', function ()
+                    {
+                        onScroll(scrollElement, element);
+                    });
+                    setTimeout(function ()
+                    {
+                        onScroll(scrollElement, element);
+                    }, 0);
+
+                    element.data('plugin-sticky', true);
+                }
+            }
+        });
+    }
+
     function init(element)
     {
         var offsetTop = element.offset().top;
@@ -83,24 +110,9 @@
     $.extend($.fn, {
         picnicSticky: function ()
         {
-            return this.each(function (index, domElement) {
-                var element = $(domElement);
-                if (!element.data('plugin-sticky')) {
-                    init(element);
-                    createPlaceholder(element);
-
-                    var scrollElement = element.data('scroll-element') ? element.closest(element.data('scroll-element')) : $(window);
-                    scrollElement.on('scroll', function () {
-                        onScroll(scrollElement, element);
-                    });
-                    setTimeout(function ()
-                    {
-                        onScroll(scrollElement, element);
-                    }, 0);
-
-                    element.data('plugin-sticky', true);
-                }
-            });
+            $(window).on('resize', initAll(this));
+            initAll(this);
+            return this;
         }
     });
 
