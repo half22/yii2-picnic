@@ -10,7 +10,19 @@
         if(element.length)
         {
             var position = element.offset().top;
-            var offset = target.data('offset') || element.data('offset') || 0;
+            var offset = 0;
+            if(target.data('offset'))
+            {
+                offset = target.data('offset');
+            }
+            else if(target.data('offset-from-element'))
+            {
+                offset = $('#' + element.data('offset-from-element')).height();
+            }
+            else if(element.data('offset'))
+            {
+                offset = element.data('offset');
+            }
             if (position != offset)
             {
                 animateScroll(position - offset, function ()
