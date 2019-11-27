@@ -15,7 +15,7 @@
             {
                 offset = target.data('offset');
             }
-            else if(target.data('offset-from-element'))
+            else if(target.data('offset-from-element-height'))
             {
                 offset = $('#' + target.data('offset-from-element-height')).height();
             }
@@ -23,7 +23,7 @@
             {
                 offset = element.data('offset');
             }
-            else if(element.data('offset-from-element'))
+            else if(element.data('offset-from-element-height'))
             {
                 offset = $('#' + element.data('offset-from-element-height')).height();
             }
