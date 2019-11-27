@@ -110,9 +110,10 @@
     $.extend($.fn, {
         picnicSticky: function ()
         {
-            $(window).on('resize', function() { initAll(this); });
-            initAll(this);
-            return this;
+            var domElements = this;
+            $(window).on('resize', function() { initAll(domElements); });
+            initAll(domElements);
+            return domElements;
         }
     });
 
