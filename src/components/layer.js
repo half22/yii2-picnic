@@ -186,9 +186,11 @@
                 this.load(url);
             }
 
+            picnic.event.trigger('picnic.' + this.type + '.open');
             picnic.event.trigger('picnic.' + this.type + '.open', this.root);
             if(!this.transitionEndEvent)
             {
+                picnic.event.trigger('picnic.' + this.type + '.opened');
                 picnic.event.trigger('picnic.' + this.type + '.opened', this.root);
             }
         },
@@ -207,9 +209,11 @@
             this.root.removeClass('is-active');
             this.unregisterLayer();
 
+            picnic.event.trigger('picnic.' + this.type + '.close');
             picnic.event.trigger('picnic.' + this.type + '.close', this.root);
             if(!this.transitionEndEvent)
             {
+                picnic.event.trigger('picnic.' + this.type + '.closed');
                 picnic.event.trigger('picnic.' + this.type + '.closed', this.root);
             }
 
@@ -235,6 +239,7 @@
             if(event.target !== event.currentTarget) return;
 
             var eventName = this.isActive ? 'picnic.' + this.type + '.opened' : 'picnic.' + this.type + '.closed';
+            picnic.event.trigger(eventName);
             picnic.event.trigger(eventName, this.root);
         },
 

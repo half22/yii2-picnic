@@ -3,7 +3,7 @@
 
 Picnic is a small and easy to use JavaScript framework.
 
-How does it work? 
+How does it work?
 
 ```html
 <div id="car" data-controller="car" data-color="red">
