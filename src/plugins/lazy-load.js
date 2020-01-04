@@ -4,8 +4,15 @@
 
     function load(element, source, updateCallback)
     {
-        var image = new Image();
+        if(source.match('webp'))
+        {
+            if(!isWebpSupported())
+            {
+                source.replace('webp', 'jpg');
+            }
+        }
 
+        var image = new Image();
         image.onload = function ()
         {
             updateCallback(element, source);
