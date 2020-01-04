@@ -8,7 +8,7 @@
         {
             if(!isWebpSupported())
             {
-                source.replace('webp', 'jpg');
+                source = source.replace('webp', 'jpg');
             }
         }
 
