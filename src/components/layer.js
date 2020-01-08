@@ -37,20 +37,34 @@
 
         getTriggersSelector: function ()
         {
-            return '*[data-' + this.type + '=' + this.root.prop('id') + ']';
+            var id = this.root.prop('id');
+            if(id)
+            {
+                return '*[data-' + this.type + '=' + this.root.prop('id') + ']';
+            }
+            return null;
         },
 
         bindTriggers: function ()
         {
             this.onTriggerClickCallback = this.onTriggerClick.bind(this);
-            $('body').on('click', this.getTriggersSelector(), this.onTriggerClickCallback);
+
+            var triggerSelector = this.getTriggersSelector();
+            if(triggerSelector)
+            {
+                $('body').on('click', triggerSelector, this.onTriggerClickCallback);
+            }
         },
 
         unbindTriggers: function ()
         {
             if(this.onTriggerClickCallback)
             {
-                $('body').off('click', this.getTriggersSelector(), this.onTriggerClickCallback);
+                var triggerSelector = this.getTriggersSelector();
+                if(triggerSelector)
+                {
+                    $('body').off('click', triggerSelector, this.onTriggerClickCallback);
+                }
             }
         },
 
