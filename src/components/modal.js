@@ -22,7 +22,7 @@
                 if(matrix)
                 {
                     var values = matrix.split(',');
-                    this.root.css('transform', 'matrix(' + values[0] + ', ' + values[1] + ', ' + values[2] + ', ' + values[3] + ', ' + round(values[4]) + ', ' + round(values[5]) + ')');
+                    this.root.css('transform', 'matrix(' + values[0] + ', ' + values[1] + ', ' + values[2] + ', ' + values[3] + ', ' + Math.round(values[4]) + ', ' + Math.round(values[5]) + ')');
                 }
             }
         }
