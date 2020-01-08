@@ -43,6 +43,7 @@
         updateTitle(target, bubble);
 
         bubble.show();
+        adjustPixelPerfectSize(bubble);
     }
 
     function hide()
@@ -50,6 +51,22 @@
         var target = $(event.currentTarget);
         var bubble = getBubble(target);
         bubble.hide();
+    }
+
+    function adjustPixelPerfectSize(bubble)
+    {
+        bubble.css({
+            width: '',
+            height: ''
+        });
+        if(bubble.outerWidth() % 2 != 0)
+        {
+            bubble.css('width', Math.round(bubble.outerWidth() / 2) * 2);
+        }
+        if(bubble.outerHeight() % 2 != 0)
+        {
+            bubble.css('height', Math.round(bubble.outerHeight() / 2) * 2);
+        }
     }
 
     $.extend($.fn, {
