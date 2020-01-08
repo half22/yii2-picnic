@@ -105,6 +105,7 @@
                 this.elements.title.html(data.title);
             }
 
+            this.adjustPixelPerfectSize();
             this.refresh();
         },
 
@@ -122,6 +123,8 @@
             {
                 this.elements.preloader.show();
             }
+
+            this.adjustPixelPerfectSize();
         },
 
         hideLoading: function()
@@ -133,6 +136,8 @@
             {
                 this.elements.preloader.hide();
             }
+
+            this.adjustPixelPerfectSize();
         },
 
         load: function(url)
@@ -180,6 +185,7 @@
             this.root.addClass('is-active');
             this.registerLayer();
             this.hideLoading();
+            this.adjustPixelPerfectSize();
 
             if(url = url ? url : this.getAjaxUrl())
             {
@@ -241,6 +247,11 @@
             var eventName = this.isActive ? 'picnic.' + this.type + '.opened' : 'picnic.' + this.type + '.closed';
             picnic.event.trigger(eventName);
             picnic.event.trigger(eventName, this.root);
+        },
+
+        adjustPixelPerfectSize: function()
+        {
+            //overridden by children if needed (ie. modal)
         },
 
         destroy: function ()
