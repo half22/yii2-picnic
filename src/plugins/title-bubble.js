@@ -43,7 +43,7 @@
         updateTitle(target, bubble);
 
         bubble.show();
-        adjustPixelPerfectSize(bubble);
+        adjustPixelPerfectPosition(bubble);
     }
 
     function hide()
@@ -53,7 +53,7 @@
         bubble.hide();
     }
 
-    function adjustPixelPerfectSize(bubble)
+    function adjustPixelPerfectPosition(bubble)
     {
         bubble.roundTransformationMatrixValues();
     }

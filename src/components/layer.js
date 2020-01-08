@@ -119,7 +119,7 @@
                 this.elements.title.html(data.title);
             }
 
-            this.adjustPixelPerfectSize();
+            this.adjustPixelPerfectPosition();
             this.refresh();
         },
 
@@ -138,7 +138,7 @@
                 this.elements.preloader.show();
             }
 
-            this.adjustPixelPerfectSize();
+            this.adjustPixelPerfectPosition();
         },
 
         hideLoading: function()
@@ -151,7 +151,7 @@
                 this.elements.preloader.hide();
             }
 
-            this.adjustPixelPerfectSize();
+            this.adjustPixelPerfectPosition();
         },
 
         load: function(url)
@@ -199,7 +199,7 @@
             this.root.addClass('is-active');
             this.registerLayer();
             this.hideLoading();
-            this.adjustPixelPerfectSize();
+            this.adjustPixelPerfectPosition();
 
             if(url = url ? url : this.getAjaxUrl())
             {
@@ -263,7 +263,7 @@
             picnic.event.trigger(eventName, this.root);
         },
 
-        adjustPixelPerfectSize: function()
+        adjustPixelPerfectPosition: function()
         {
             //overridden by children if needed (ie. modal)
         },
