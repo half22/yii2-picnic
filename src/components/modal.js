@@ -12,7 +12,7 @@
         type: 'modal',
         backdropCssModifier: 'modal',
 
-        adjustPixelPerfectSize: function()
+        adjustPixelPerfectPosition: function()
         {
             this.root.roundTransformationMatrixValues();
         }
