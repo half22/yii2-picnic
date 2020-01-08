@@ -20,10 +20,10 @@
         {
             this.css({transform: ''});
 
-            var matrix = this.css('transform').match(/^matrix\((.+)\)$/)[1];
+            var matrix = this.css('transform').match(/^matrix\((.+)\)$/);
             if(matrix)
             {
-                var values = matrix.split(',');
+                var values = matrix[1].split(',');
                 for(var i = 0; i < values.length; i++)
                 {
                     values[i] = Math.round(values[i]);
@@ -31,10 +31,10 @@
                 this.css('transform', 'matrix(' + values.join(', ') + ')');
             }
 
-            var matrix3d = this.css('transform').match(/^matrix3d\((.+)\)$/)[1];
+            var matrix3d = this.css('transform').match(/^matrix3d\((.+)\)$/);
             if(matrix3d)
             {
-                var values3d = matrix3d.split(',');
+                var values3d = matrix3d[1].split(',');
                 for(var j = 0; j < values3d.length; j++)
                 {
                     values3d[j] = Math.round(values3d[j]);
