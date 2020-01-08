@@ -14,17 +14,7 @@
 
         adjustPixelPerfectSize: function()
         {
-            if(this.root.css('transform'))
-            {
-                this.root.css({transform: ''});
-
-                var matrix = this.root.css('transform').match(/^matrix\((.+)\)$/)[1];
-                if(matrix)
-                {
-                    var values = matrix.split(',');
-                    this.root.css('transform', 'matrix(' + values[0] + ', ' + values[1] + ', ' + values[2] + ', ' + values[3] + ', ' + Math.round(values[4]) + ', ' + Math.round(values[5]) + ')');
-                }
-            }
+            this.root.roundTransformationMatrixValues();
         }
     });
 
