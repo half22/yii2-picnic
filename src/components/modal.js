@@ -15,8 +15,8 @@
         adjustPixelPerfectSize: function()
         {
             this.root.css({
-                width: null,
-                height: null
+                width: '',
+                height: ''
             });
             if(this.root.outerWidth() % 2 != 0)
             {
