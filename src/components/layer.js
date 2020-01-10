@@ -8,7 +8,7 @@
     {
         picnic.controller.call(this);
 
-        this.elements = ['title', 'content', 'closeButton', 'preloader', 'preloaderText'];
+        this.elements = ['title', 'header', 'content', 'closeButton', 'preloader', 'preloaderText'];
         this.attributes = ['disableBackdropClose', 'backdropCssModifier', 'ajaxUrl', 'ajaxTriggers'];
     };
 
