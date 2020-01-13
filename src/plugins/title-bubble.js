@@ -78,6 +78,7 @@
                     element.on('titleChanged', titleChanged);
                     element.on('mouseover', show);
                     element.on('mouseout', hide);
+                    element.addClass('has-title-bubble');
                     element.data('plugin-title-bubble', true);
                 }
             });
