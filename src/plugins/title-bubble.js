@@ -2,6 +2,12 @@
 
     'use strict';
 
+    function convertContentToTitle(element)
+    {
+        element.prop('title', element.html());
+        element.empty();
+    }
+
     function titleChanged(event)
     {
         var target = $(event.currentTarget);
@@ -65,6 +71,10 @@
                 var element = $(domElement);
                 if (!element.data('plugin-title-bubble'))
                 {
+                    if(element.data('convert-content-to-title'))
+                    {
+                        convertContentToTitle(element);
+                    }
                     element.on('titleChanged', titleChanged);
                     element.on('mouseover', show);
                     element.on('mouseout', hide);
