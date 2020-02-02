@@ -5,9 +5,14 @@
     var router = {
         rules: {},
 
-        getUrl: function(route)
+        getUrl: function(route, params)
         {
-            return this.rules[route] ? this.rules[route] : route;
+            var url = this.rules[route] ? this.rules[route] : route;
+            if(isDefined(params))
+            {
+                url += '?' + $.param(params);
+            }
+            return url;
         }
     };
 
