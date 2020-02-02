@@ -96,6 +96,7 @@ picnic.router.rules = {
 	'url': '/admin/url'
 };
 picnic.router.getUrl('url');
+picnic.router.getUrl('url', {id: 1});
 
 //url
 picnic.url.queryStringToJson();
