@@ -69,6 +69,7 @@
     picnic.preloader = preloader;
     window.picnic = picnic;
 
+    //triggers
     $('body').on('click', '*[data-preloader=1]', function ()
     {
         picnic.preloader.open();
