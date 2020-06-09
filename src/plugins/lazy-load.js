@@ -38,6 +38,7 @@
         {
             updateCallback(element, source);
             element.addClass('is-image-loaded');
+            element.data('is-image-loaded', 1);
 
             picnic.event.trigger('picnic.lazyLoad.loaded', element);
         };
