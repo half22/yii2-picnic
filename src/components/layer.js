@@ -72,8 +72,8 @@
         {
             this.on('click', this.elements.closeButton, this.forceClose);
             this.on('picnic.backdrop.closeEventTriggered', this.root, this.close);
-            this.on('picnic.' + this.type + '.opened', this.onOpened);
-            this.on('picnic.' + this.type + '.closed', this.onClosed);
+            this.on('picnic.' + this.type + '.opened', this.root, this.onOpened);
+            this.on('picnic.' + this.type + '.closed', this.root, this.onClosed);
 
             if(this.transitionEndEvent)
             {
