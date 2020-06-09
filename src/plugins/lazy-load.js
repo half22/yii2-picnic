@@ -2,19 +2,24 @@
 
     'use strict';
 
-    function preload(element, source, updateCallback)
+    function adjustSource(source)
     {
-        if(element.data('is-image-loaded')) return;
-
         if(source.match('webp'))
         {
             if(!isWebpSupported())
             {
-                source = source.replace('webp', 'jpg');
+                return source.replace('webp', 'jpg');
             }
         }
+        return source;
+    }
+
+    function preload(element, source, updateCallback)
+    {
+        if(element.data('is-image-loaded')) return;
 
         var image = new Image();
+        source = adjustSource(source);
         image.onload = function ()
         {
             if(element.data('is-image-loaded')) return;
@@ -25,15 +30,8 @@
 
     function load(element, source, updateCallback)
     {
-        if(source.match('webp'))
-        {
-            if(!isWebpSupported())
-            {
-                source = source.replace('webp', 'jpg');
-            }
-        }
-
         var image = new Image();
+        source = adjustSource(source);
         image.onload = function ()
         {
             updateCallback(element, source);
