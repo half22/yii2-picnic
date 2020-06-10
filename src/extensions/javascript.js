@@ -49,6 +49,25 @@
         }
     };
 
+    window.getAnimationEndEvent = function (element)
+    {
+        var animations = {
+            'animation': 'animationend',
+            'WebkitAnimation': 'webkitAnimationEnd',
+            'MozAnimation': 'animationend',
+            'OAnimation': 'oAnimationEnd MSAnimationEnd'
+        };
+        var domElement = element.get(0);
+
+        for (var a in animations)
+        {
+            if (domElement.style[a] !== undefined)
+            {
+                return animations[a];
+            }
+        }
+    };
+
     window.isMobile = function ()
     {
         return ('ontouchstart' in document.documentElement);
