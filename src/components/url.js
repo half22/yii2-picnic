@@ -23,6 +23,18 @@
             return url + (jQuery.isEmptyObject(queryString) ? '' : ('?' + $.param(queryString)));
         },
 
+        to: function(url, params)
+        {
+            if(isDefined(params))
+            {
+                var queryString = $.param(params);
+                var separator = (url.indexOf('?') > -1) ? '&' : '?';
+
+                return url + separator + queryString;
+            }
+            return url;
+        },
+
         queryStringToJson: function()
         {
             var query = window.location.search;
