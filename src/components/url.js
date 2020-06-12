@@ -28,9 +28,11 @@
             if(isDefined(params))
             {
                 var queryString = $.param(params);
-                var separator = (url.indexOf('?') > -1) ? '&' : '?';
-
-                return url + separator + queryString;
+                if(queryString.length > 0)
+                {
+                    var separator = (url.indexOf('?') > -1) ? '&' : '?';
+                    return url + separator + queryString;
+                }
             }
             return url;
         },
