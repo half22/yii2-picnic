@@ -12,7 +12,7 @@
 
     function hide(event, element, layer)
     {
-        var target = $(event.target);
+        var target = $(event.relatedTarget);
         if(!target.closest(element).length && !target.closest(layer).length)
         {
             layer.removeClass('is-active');
