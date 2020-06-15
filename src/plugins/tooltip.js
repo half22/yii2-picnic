@@ -15,7 +15,7 @@
         var target = $(event.currentTarget);
         if(!target.closest(element).length && !target.closest(layer).length)
         {
-            layer.hide();
+            layer.removeClass('is-active');
         }
     }
 
