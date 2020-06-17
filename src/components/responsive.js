@@ -45,7 +45,7 @@
             $.each(this.resolutions, function (key, value)
             {
                 $('body').toggleClass(key, this.is(key));
-            }.bind(this))
+            }.bind(this));
         },
 
         run: function ()
