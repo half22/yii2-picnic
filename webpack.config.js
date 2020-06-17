@@ -7,6 +7,7 @@ module.exports = {
             "./src/extensions/javascript.js",
             "./src/extensions/jquery.js",
             "./src/components/locale.js",
+            "./src/components/responsive.js",
             "./src/components/url.js",
             "./src/components/router.js",
             "./src/components/backdrop.js",
