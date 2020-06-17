@@ -40,7 +40,7 @@
             return false;
         },
 
-        onScroll: function ()
+        onResize: function ()
         {
             $.each(this.resolutions, function (key, value)
             {
@@ -50,8 +50,8 @@
 
         run: function ()
         {
-            this.onScroll();
-            $(window).on('scroll', this.onScroll.bind(this));
+            this.onResize();
+            $(window).on('resize', this.onResize.bind(this));
         }
     };
 
