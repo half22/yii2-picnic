@@ -61,13 +61,19 @@
         {
             if(offsetTop <= scrollTop)
             {
-                picnic.event.trigger('picnic.sticky.activated', element);
+                if(!element.hasClass('is-sticky'))
+                {
+                    picnic.event.trigger('picnic.sticky.activated', element);
+                }
                 activate(element);
                 return;
             }
         }
 
-        picnic.event.trigger('picnic.sticky.deactivated', element);
+        if(element.hasClass('is-sticky'))
+        {
+            picnic.event.trigger('picnic.sticky.deactivated', element);
+        }
         deactivate(element);
     }
 
