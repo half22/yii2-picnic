@@ -31,7 +31,7 @@
         {
             if(this.resolutions[resolution])
             {
-                var dimension = this.resolutions[resolution][2] == 'height' ? $(window).height() : $(window).width();
+                var dimension = this.resolutions[resolution][2] == 'height' ? $(window).outerHeight() : $(window).outerWidth();
                 if(dimension <= this.resolutions[resolution][1] && dimension >= this.resolutions[resolution][0])
                 {
                     return true;
