@@ -50,6 +50,7 @@
 
         run: function ()
         {
+            this.onScroll();
             $(window).on('scroll', this.onScroll.bind(this));
         }
     };
