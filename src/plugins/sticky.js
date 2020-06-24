@@ -11,6 +11,7 @@
                 if(element.is(':visible'))
                 {
                     init(element);
+                    createPlaceholder(element);
 
                     var scrollElement = element.data('scroll-element') ? element.closest(element.data('scroll-element')) : $(window);
                     scrollElement.on('scroll', function ()
@@ -39,15 +40,32 @@
     {
         if(!element.data('no-placeholder'))
         {
-            var placeholder = element.data('placeholder');
-            if(!placeholder)
+            if(!element.data('placeholder'))
             {
-                placeholder = $('<div/>');
+                var placeholder = $('<div/>');
                 placeholder.hide();
                 element.after(placeholder);
+                placeholder.height(element.outerHeight());
                 element.data('placeholder', placeholder);
             }
+        }
+    }
+
+    function showPlaceholder(element)
+    {
+        var placeholder = element.data('placeholder');
+        if(placeholder && placeholder.length)
+        {
+            placeholder.show();
             placeholder.height(element.outerHeight());
+        }
+    }
+
+    function hidePlaceholder(element)
+    {
+        if(element.data('placeholder'))
+        {
+            element.data('placeholder').hide();
         }
     }
 
@@ -79,8 +97,6 @@
 
     function activate(element)
     {
-        createPlaceholder(element);
-
         var top = 0;
         if(element.data('top-boundary'))
         {
@@ -104,17 +120,16 @@
         element.css('top' , top);
         element.width(element.data('width'));
         element.addClass('is-sticky');
-        element.data('placeholder').show();
+
+        showPlaceholder(element);
     }
 
     function deactivate(element)
     {
-        if(element.data('placeholder'))
-        {
-            element.data('placeholder').hide();
-        }
         element.attr('style' , '');
         element.removeClass('is-sticky');
+
+        hidePlaceholder(element);
     }
 
     $.extend($.fn, {
