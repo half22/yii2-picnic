@@ -63,9 +63,10 @@
 
     function hidePlaceholder(element)
     {
-        if(element.data('placeholder'))
+        var placeholder = element.data('placeholder');
+        if(placeholder && placeholder.length)
         {
-            element.data('placeholder').hide();
+            placeholder.hide();
         }
     }
 
