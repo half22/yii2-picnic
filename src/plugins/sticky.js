@@ -40,14 +40,15 @@
     {
         if(!element.data('no-placeholder'))
         {
-            if(!element.data('placeholder'))
+            var placeholder = element.data('placeholder');
+            if(!placeholder)
             {
-                var placeholder = $('<div/>');
+                placeholder = $('<div/>');
                 placeholder.hide();
-                placeholder.height(element.outerHeight());
                 element.after(placeholder);
                 element.data('placeholder', placeholder);
             }
+            placeholder.height(element.outerHeight());
         }
     }
 
