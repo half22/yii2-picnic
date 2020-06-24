@@ -11,7 +11,6 @@
                 if(element.is(':visible'))
                 {
                     init(element);
-                    createPlaceholder(element);
 
                     var scrollElement = element.data('scroll-element') ? element.closest(element.data('scroll-element')) : $(window);
                     scrollElement.on('scroll', function ()
@@ -80,6 +79,8 @@
 
     function activate(element)
     {
+        createPlaceholder(element);
+
         var top = 0;
         if(element.data('top-boundary'))
         {
