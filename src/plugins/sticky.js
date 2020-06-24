@@ -115,13 +115,13 @@
             }
         }
 
+        showPlaceholder(element);
+
         element.css('position' , 'fixed');
         element.css('z-index' , 500);
         element.css('top' , top);
         element.width(element.data('width'));
         element.addClass('is-sticky');
-
-        showPlaceholder(element);
     }
 
     function deactivate(element)
