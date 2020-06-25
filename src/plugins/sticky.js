@@ -79,20 +79,32 @@
         {
             if(offsetTop <= scrollTop)
             {
+                var activation = false;
                 if(!element.hasClass('is-sticky'))
+                {
+                    activation = true;
+                    picnic.event.trigger('picnic.sticky.activate', element);
+                }
+                activate(element);
+                if(activation)
                 {
                     picnic.event.trigger('picnic.sticky.activated', element);
                 }
-                activate(element);
                 return;
             }
         }
 
+        var deactivation = false;
         if(element.hasClass('is-sticky'))
+        {
+            deactivation = true;
+            picnic.event.trigger('picnic.sticky.deactivate', element);
+        }
+        deactivate(element);
+        if(deactivation)
         {
             picnic.event.trigger('picnic.sticky.deactivated', element);
         }
-        deactivate(element);
     }
 
     function activate(element)
