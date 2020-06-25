@@ -83,8 +83,8 @@
         start: function ()
         {
             this.stop();
-            this.initControllers();
             this.initPlugins();
+            this.initControllers();
         },
 
         stop: function ()

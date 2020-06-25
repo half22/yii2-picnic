@@ -21,7 +21,7 @@
                     setTimeout(function ()
                     {
                         onScroll(scrollElement, element);
-                    }, 0);
+                    }, 100);
 
                     element.data('plugin-sticky', true);
                 }
