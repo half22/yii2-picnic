@@ -90,6 +90,8 @@
 
     function activate(element)
     {
+        showPlaceholder(element);
+
         var activation = false;
         if(!element.hasClass('is-sticky'))
         {
@@ -114,8 +116,6 @@
                 }
             }
         }
-
-        showPlaceholder(element);
 
         element.css('position' , 'fixed');
         element.css('z-index' , 500);
