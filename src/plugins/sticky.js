@@ -56,6 +56,7 @@
         var placeholder = element.data('placeholder');
         if(placeholder && placeholder.length)
         {
+            placeholder.height(element.outerHeight());
             placeholder.show();
         }
     }
