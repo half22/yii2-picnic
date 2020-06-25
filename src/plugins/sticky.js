@@ -80,36 +80,23 @@
         {
             if(offsetTop <= scrollTop)
             {
-                var activation = false;
-                if(!element.hasClass('is-sticky'))
-                {
-                    activation = true;
-                    picnic.event.trigger('picnic.sticky.activate', element);
-                }
                 activate(element);
-                if(activation)
-                {
-                    picnic.event.trigger('picnic.sticky.activated', element);
-                }
                 return;
             }
         }
 
-        var deactivation = false;
-        if(element.hasClass('is-sticky'))
-        {
-            deactivation = true;
-            picnic.event.trigger('picnic.sticky.deactivate', element);
-        }
         deactivate(element);
-        if(deactivation)
-        {
-            picnic.event.trigger('picnic.sticky.deactivated', element);
-        }
     }
 
     function activate(element)
     {
+        var activation = false;
+        if(!element.hasClass('is-sticky'))
+        {
+            activation = true;
+            picnic.event.trigger('picnic.sticky.activate', element);
+        }
+
         var top = 0;
         if(element.data('top-boundary'))
         {
@@ -135,14 +122,31 @@
         element.css('top' , top);
         element.width(element.data('width'));
         element.addClass('is-sticky');
+
+        if(activation)
+        {
+            picnic.event.trigger('picnic.sticky.activated', element);
+        }
     }
 
     function deactivate(element)
     {
+        var deactivation = false;
+        if(element.hasClass('is-sticky'))
+        {
+            deactivation = true;
+            picnic.event.trigger('picnic.sticky.deactivate', element);
+        }
+
         element.attr('style' , '');
         element.removeClass('is-sticky');
 
         hidePlaceholder(element);
+
+        if(deactivation)
+        {
+            picnic.event.trigger('picnic.sticky.deactivated', element);
+        }
     }
 
     $.extend($.fn, {
