@@ -61,7 +61,7 @@
                     k = k.substring(0, k.length - 2);
                     (params[k] || (params[k] = [])).push(v);
                 }
-                if (k.match(/.+\[\d+\]/))
+                else if (k.match(/.+\[\d+\]/))
                 {
                     k = k.replace(/\[\d+\]/, '');
                     (params[k] || (params[k] = [])).push(v);
