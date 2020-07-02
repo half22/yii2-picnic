@@ -129,4 +129,3 @@
 	}
 
 }(window, jQuery, window.picnic || {}));
-
