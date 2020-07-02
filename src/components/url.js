@@ -37,22 +37,6 @@
             return url;
         },
 
-        jsonToQueryString: function(json, prefix)
-        {
-            var str = [],
-                p;
-            for (p in json) {
-                if (json.hasOwnProperty(p)) {
-                    var k = prefix ? prefix + "[" + p + "]" : p,
-                        v = json[p];
-                    str.push((v !== null && typeof v === "object") ?
-                        this.jsonToQueryString(v, k) :
-                        encodeURIComponent(k) + "=" + encodeURIComponent(v));
-                }
-            }
-            return str.join("&");
-        },
-
         queryStringToJson: function()
         {
             var query = window.location.search;
