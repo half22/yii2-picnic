@@ -79,38 +79,41 @@
         initPlugins: function ()
         {
             var element = $(this);
-            var plugins = element.data('plugin').split(',');
-            $.each(plugins, function (index, plugin) {
-
-                plugin = plugin.trim();
-                var pluginNames = [
-                    //picnic plugin
-                    'picnic' + ucfirst(plugin),
-
-                    //custom plugins
-                    plugin,
-                    ucfirst(plugin),
-                    camelCase(plugin),
-                    ucfirst(camelCase(plugin))
-                ];
-
-                var pluginFound = false;
-                for(var i = 0; i < pluginNames.length; i++)
+            if(element.data('plugin'))
+            {
+                var plugins = element.data('plugin').split(',');
+                $.each(plugins, function (index, plugin)
                 {
-                    var pluginName = pluginNames[i];
-                    if(element[pluginName])
+                    plugin = plugin.trim();
+                    var pluginNames = [
+                        //picnic plugin
+                        'picnic' + ucfirst(plugin),
+
+                        //custom plugins
+                        plugin,
+                        ucfirst(plugin),
+                        camelCase(plugin),
+                        ucfirst(camelCase(plugin))
+                    ];
+
+                    var pluginFound = false;
+                    for (var i = 0; i < pluginNames.length; i++)
                     {
-                        element[pluginName]();
-                        pluginFound = true;
-                        break;
+                        var pluginName = pluginNames[i];
+                        if (element[pluginName])
+                        {
+                            element[pluginName]();
+                            pluginFound = true;
+                            break;
+                        }
                     }
-                }
 
-                if(!pluginFound)
-                {
-                    console.error('PICNIC: Plugin "' + plugin + '" does not exist.');
-                }
-            });
+                    if (!pluginFound)
+                    {
+                        console.error('PICNIC: Plugin "' + plugin + '" does not exist.');
+                    }
+                });
+            }
         }
     });
 
