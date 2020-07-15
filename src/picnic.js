@@ -74,6 +74,43 @@
                 console.error('PICNIC: Controller "' + this.data('controller') + '" does not exist.');
             }
             return null;
+        },
+
+        initPlugins: function ()
+        {
+            var element = $(this);
+            var plugins = element.data('plugin').split(',');
+            $.each(plugins, function (index, plugin) {
+
+                plugin = plugin.trim();
+                var pluginNames = [
+                    //picnic plugin
+                    'picnic' + ucfirst(plugin),
+
+                    //custom plugins
+                    plugin,
+                    ucfirst(plugin),
+                    camelCase(plugin),
+                    ucfirst(camelCase(plugin))
+                ];
+
+                var pluginFound = false;
+                for(var i = 0; i < pluginNames.length; i++)
+                {
+                    var pluginName = pluginNames[i];
+                    if(element[pluginName])
+                    {
+                        element[pluginName]();
+                        pluginFound = true;
+                        break;
+                    }
+                }
+
+                if(!pluginFound)
+                {
+                    console.error('PICNIC: Plugin "' + plugin + '" does not exist.');
+                }
+            });
         }
     });
 
@@ -109,39 +146,7 @@
         {
             $('*[data-plugin]').each(function(index, domElement)
             {
-                var element = $(domElement);
-                var plugins = element.data('plugin').split(',');
-                $.each(plugins, function (index, plugin) {
-
-                    plugin = plugin.trim();
-                    var pluginNames = [
-                        //picnic plugin
-                        'picnic' + ucfirst(plugin),
-
-                        //custom plugins
-                        plugin,
-                        ucfirst(plugin),
-                        camelCase(plugin),
-                        ucfirst(camelCase(plugin))
-                    ];
-
-                    var pluginFound = false;
-                    for(var i = 0; i < pluginNames.length; i++)
-                    {
-                        var pluginName = pluginNames[i];
-                        if(element[pluginName])
-                        {
-                            element[pluginName]();
-                            pluginFound = true;
-                            break;
-                        }
-                    }
-
-                    if(!pluginFound)
-                    {
-                        console.error('PICNIC: Plugin "' + plugin + '" does not exist.');
-                    }
-                });
+                $(domElement).initPlugins();
             }.bind(this));
         }
     };
