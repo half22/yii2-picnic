@@ -76,7 +76,7 @@
 
             if (data.html)
             {
-                this.form.html(data.html);
+                this.replaceRoot(data.html);
                 picnic.event.trigger('picnic.filter.loaded', this.root);
             }
         },
