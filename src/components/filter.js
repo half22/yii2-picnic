@@ -22,10 +22,10 @@
             this.on('click', this.elements.resetButton, this.reset);
         },
 
-        onInputChange: function()
+        onInputChange: function(event)
         {
-            this.autoReload();
-            this.autoSubmit();
+            this.autoReload(event);
+            this.autoSubmit(event);
         },
 
         reset: function()
@@ -35,7 +35,7 @@
             this.submit();
         },
 
-        autoSubmit: function()
+        autoSubmit: function(event)
         {
             if(this.attributes.autoSubmit)
             {
@@ -49,7 +49,7 @@
             }
         },
 
-        autoReload: function()
+        autoReload: function(event)
         {
             if(this.attributes.autoReload && this.attributes.ajaxUrl)
             {
