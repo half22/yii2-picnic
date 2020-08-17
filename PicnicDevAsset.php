@@ -27,6 +27,7 @@ class PicnicDevAsset extends AssetBundle
         'plugins/clicked.js',
         'plugins/dropdown.js',
         'plugins/form-submit-button.js',
+        'plugins/toggle-password.js',
         'plugins/lazy-load.js',
         'plugins/scroll-to.js',
         'plugins/sticky.js',
