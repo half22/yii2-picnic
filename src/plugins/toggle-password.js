@@ -4,7 +4,7 @@
 
     function createButton(input)
     {
-        var button = $('<button type="button" class="c-toggle-password-button"></button>');
+        var button = $('<button type="button" class="c-toggle-password-button" tabindex="-1"></button>');
         button.insertAfter(input);
         return button;
     }
