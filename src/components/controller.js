@@ -108,7 +108,7 @@
             this.unbindEvents();
             this.bindEvents();
 
-            this.root.initPlugins();
+            picnic.initPlugins();
         },
 
         replaceRoot: function(html)
