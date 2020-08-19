@@ -24,6 +24,8 @@
             button.removeClass('is-active');
         }
 
+        input.focus();
+
         return false;
     }
 
