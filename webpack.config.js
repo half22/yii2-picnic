@@ -28,7 +28,8 @@ module.exports = {
             "./src/plugins/title-bubble.js",
             "./src/plugins/tooltip.js",
             "./src/plugins/form-submit-button.js",
-            "./src/plugins/toggle-password.js"
+            "./src/plugins/toggle-password.js",
+            "./src/plugins/floating-label.js"
         ]
     },
 
