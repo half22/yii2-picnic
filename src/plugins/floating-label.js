@@ -14,9 +14,12 @@
             label = $('label[for=' + input.prop('id') + ']');
         }
 
-        var isFloated = input.val().length > 0 || input.is(':focus');
-        input.toggleClass('has-floated-label', isFloated);
+        var isFocused = input.is(':focus');
+        var isFloated = input.val().length > 0 || isFloated;
+        input.toggleClass('is-floated', isFloated);
         label.toggleClass('is-floated', isFloated);
+        input.toggleClass('is-focused', isFocused);
+        label.toggleClass('is-focused', isFocused);
     }
 
     $.extend($.fn, {
