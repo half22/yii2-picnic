@@ -30,7 +30,7 @@
                 if (!input.data('plugin-floating-label')) {
                     input.on('focus blur', function() { toggle(input); });
                     input.data('plugin-floating-label', true);
-                    input.focus();
+                    toggle(input);
                 }
             });
         }
