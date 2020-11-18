@@ -15,7 +15,7 @@
         }
 
         var isFocused = input.is(':focus');
-        var isFloated = input.val().length > 0 || isFloated;
+        var isFloated = input.val().length > 0 || isFocused;
         input.toggleClass('is-floated', isFloated);
         label.toggleClass('is-floated', isFloated);
         input.toggleClass('is-focused', isFocused);
