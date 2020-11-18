@@ -2,35 +2,27 @@
 
     'use strict';
 
-    function toggle(input)
+    function toggle(element, input, label)
     {
-        var label;
-        if(input.closest('label').length)
-        {
-            label = input.closest('label');
-        }
-        else if(input.prop('id'))
-        {
-            label = $('label[for=' + input.prop('id') + ']');
-        }
-
         var isFocused = input.is(':focus');
         var isFloated = input.val().length > 0 || isFocused;
-        input.toggleClass('is-floated', isFloated);
-        label.toggleClass('is-floated', isFloated);
-        input.toggleClass('is-focused', isFocused);
-        label.toggleClass('is-focused', isFocused);
+        element.toggleClass('is-floated', isFloated);
+        element.toggleClass('is-focused', isFocused);
     }
 
     $.extend($.fn, {
         picnicFloatingLabel: function ()
         {
             return this.each(function (index, domElement) {
-                var input = $(domElement);
-                if (!input.data('plugin-floating-label')) {
-                    input.on('focus blur', function() { toggle(input); });
-                    input.data('plugin-floating-label', true);
-                    toggle(input);
+                var element = $(domElement);
+                if (!element.data('plugin-floating-label'))
+                {
+                    var input = element.find('input, select, textarea');
+                    var label = element.find('label');
+
+                    input.on('focus blur', function() { toggle(element, input, label); });
+                    element.data('plugin-floating-label', true);
+                    toggle(element, input, label);
                 }
             });
         }
