@@ -14,7 +14,7 @@
             label = $('label[for=' + input.prop('id') + ']');
         }
 
-        label.toggleClass('is-floated', input.val().length > 0);
+        label.toggleClass('is-floated', input.val().length > 0 || input.is(':focus'));
     }
 
     $.extend($.fn, {
