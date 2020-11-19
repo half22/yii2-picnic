@@ -31,11 +31,13 @@
                     input.on('focus blur', function() { toggle(element, input); });
 
                     //select2
-                    if(input.data('select2-id'))
-                    {
-                        input.on('select2:open', function() { onSelect2Open(element); });
-                        input.on('select2:close', function() { onSelect2Close(element); });
-                    }
+                    setTimeout(function () {
+                        if(input.data('select2-id'))
+                        {
+                            input.on('select2:open', function() { onSelect2Open(element); });
+                            input.on('select2:close', function() { onSelect2Close(element); });
+                        }
+                    }, 0);
 
                     toggle(element, input);
                     element.data('plugin-floating-label', true);
