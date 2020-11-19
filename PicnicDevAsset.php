@@ -34,6 +34,7 @@ class PicnicDevAsset extends AssetBundle
         'plugins/tabs.js',
         'plugins/title-bubble.js',
         'plugins/tooltip.js',
+        "plugins/floating-label.js",
     ];
 
     public $depends = [
