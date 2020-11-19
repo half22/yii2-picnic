@@ -2,12 +2,22 @@
 
     'use strict';
 
-    function toggle(element, input, label)
+    function toggle(element, input)
     {
         var isFocused = input.is(':focus');
         var isFloated = input.val().length > 0 || isFocused;
         element.toggleClass('is-floated', isFloated);
         element.toggleClass('is-focused', isFocused);
+    }
+
+    function onSelect2Open(element)
+    {
+        element.addClass('is-focused');
+    }
+
+    function onSelect2Close(element)
+    {
+        element.removeClass('is-focused');
     }
 
     $.extend($.fn, {
@@ -18,11 +28,17 @@
                 if (!element.data('plugin-floating-label'))
                 {
                     var input = element.find('input, select, textarea');
-                    var label = element.find('label');
+                    input.on('focus blur', function() { toggle(element, input); });
 
-                    input.on('focus blur', function() { toggle(element, input, label); });
+                    //select2
+                    if(input.data('select2-id'))
+                    {
+                        input.on('select2:open', function() { onSelect2Open(element); });
+                        input.on('select2:close', function() { onSelect2Close(element); });
+                    }
+
+                    toggle(element, input);
                     element.data('plugin-floating-label', true);
-                    toggle(element, input, label);
                 }
             });
         }
