@@ -5,7 +5,7 @@
     function toggle(element, input)
     {
         var isFocused = input.is(':focus');
-        var isFloated = input.val().length > 0 || isFocused;
+        var isFloated = input.val() && input.val().length > 0 || isFocused;
         element.toggleClass('is-floated', isFloated);
         element.toggleClass('is-focused', isFocused);
     }
