@@ -52,13 +52,13 @@
                             var searchInput = element.find('input[type=search]');
                             if(searchInput.length)
                             {
-                                searchInput.on('focus', function () { onSelect2MultipleOpen(element); });
-                                searchInput.on('blur', function () { onSelect2MultipleClose(element, input); });
+                                input.on('select2:open', function () { onSelect2MultipleOpen(element, input); });
+                                input.on('select2:close', function () { onSelect2MultipleClose(element, input); });
                             }
                             else
                             {
-                                input.on('select2:open', function () { onSelect2Open(element); });
-                                input.on('select2:close', function () { onSelect2Close(element); });
+                                input.on('select2:open', function () { onSelect2Open(element, input); });
+                                input.on('select2:close', function () { onSelect2Close(element, input); });
                             }
                         }
                     }, 0);
