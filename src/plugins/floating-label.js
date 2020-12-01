@@ -23,6 +23,7 @@
     function onSelect2MultipleOpen(element)
     {
         element.addClass('is-floated');
+        element.addClass('is-focused');
     }
 
     function onSelect2MultipleClose(element, select2Input)
@@ -31,6 +32,7 @@
         {
             element.removeClass('is-floated');
         }
+        element.removeClass('is-focused');
     }
 
     $.extend($.fn, {
@@ -48,10 +50,16 @@
                         if(input.data('select2-id'))
                         {
                             var searchInput = element.find('input[type=search]');
-                            input.on('select2:open', function () { onSelect2Open(element); });
-                            input.on('select2:close', function () { onSelect2Close(element); });
-                            searchInput.on('focus', function () { onSelect2MultipleOpen(element); });
-                            searchInput.on('blur', function () { onSelect2MultipleClose(element, input); });
+                            if(searchInput.length)
+                            {
+                                searchInput.on('focus', function () { onSelect2MultipleOpen(element); });
+                                searchInput.on('blur', function () { onSelect2MultipleClose(element, input); });
+                            }
+                            else
+                            {
+                                input.on('select2:open', function () { onSelect2Open(element); });
+                                input.on('select2:close', function () { onSelect2Close(element); });
+                            }
                         }
                     }, 0);
 
