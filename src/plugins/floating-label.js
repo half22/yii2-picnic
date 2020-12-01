@@ -15,14 +15,22 @@
         element.addClass('is-focused');
     }
 
+    function onSelect2Close(element)
+    {
+        element.removeClass('is-focused');
+    }
+
     function onSelect2MultipleOpen(element)
     {
         element.addClass('is-floated');
     }
 
-    function onSelect2Close(element)
+    function onSelect2MultipleClose(element, select2Input)
     {
-        element.removeClass('is-focused');
+        if(select2Input.select2('data').length == 0)
+        {
+            element.removeClass('is-floated');
+        }
     }
 
     $.extend($.fn, {
@@ -43,6 +51,7 @@
                             input.on('select2:open', function () { onSelect2Open(element); });
                             input.on('select2:close', function () { onSelect2Close(element); });
                             searchInput.on('focus', function () { onSelect2MultipleOpen(element); });
+                            searchInput.on('blur', function () { onSelect2MultipleClose(element, input); });
                         }
                     }, 0);
 
