@@ -38,8 +38,8 @@
                             label.on('click', function() {
                                 setTimeout(function () { input.select2('open'); }, 0);
                             });
-                            input.on('select2:open', function() { onSelect2Open(element); });
-                            input.on('select2:close', function() { onSelect2Close(element); });
+                            input.on('select2:open', function() { onSelect2Open(element); console.log('open');});
+                            input.on('select2:close', function() { onSelect2Close(element); console.log('close');});
                         }
                     }, 0);
 
