@@ -35,7 +35,7 @@
                     setTimeout(function () {
                         if(input.data('select2-id'))
                         {
-                            label.on('click', function() { input.select2('open'); });
+                            label.on('click', function() { input.select2('open'); onSelect2Open(element); });
                             input.on('select2:open', function() { onSelect2Open(element); });
                             input.on('select2:close', function() { onSelect2Close(element); });
                         }
