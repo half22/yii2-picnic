@@ -36,8 +36,7 @@
                         if(input.data('select2-id'))
                         {
                             label.on('click', function() {
-                                input.select2('open');
-                                return false;
+                                setTimeout(function () { input.select2('open'); }, 0);
                             });
                             input.on('select2:open', function() { onSelect2Open(element); });
                             input.on('select2:close', function() { onSelect2Close(element); });
