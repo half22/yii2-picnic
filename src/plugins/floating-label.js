@@ -28,15 +28,16 @@
                 if (!element.data('plugin-floating-label'))
                 {
                     var input = element.find('input, select, textarea');
-                    var label = element.find('label');
                     input.on('focus blur', function() { toggle(element, input); });
 
                     //select2
                     setTimeout(function () {
                         if(input.data('select2-id'))
                         {
-                            input.on('select2:open', function() { onSelect2Open(element); });
-                            input.on('select2:close', function() { onSelect2Close(element); });
+                            var searchInput = element.find('input[type=search]');
+                            input.on('select2:open', function () { onSelect2Open(element); });
+                            input.on('select2:close', function () { onSelect2Close(element); });
+                            searchInput.on('focus', function () { onSelect2Open(element); });
                         }
                     }, 0);
 
