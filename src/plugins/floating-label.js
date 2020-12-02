@@ -2,6 +2,7 @@
 
     'use strict';
 
+    //normal input
     function toggle(element, input)
     {
         var isFocused = input.is(':focus');
@@ -10,6 +11,7 @@
         element.toggleClass('is-focused', isFocused);
     }
 
+    //select2
     function onSelect2Open(element)
     {
         element.addClass('is-focused');
@@ -20,6 +22,17 @@
         element.removeClass('is-focused');
     }
 
+    function onSelect2Selected(element)
+    {
+        element.addClass('is-floated');
+    }
+
+    function onSelect2Cleared(element)
+    {
+        element.removeClass('is-floated');
+    }
+
+    //select2 multiple
     function onSelect2MultipleOpen(element)
     {
         element.addClass('is-floated');
@@ -43,10 +56,9 @@
                 if (!element.data('plugin-floating-label'))
                 {
                     var input = element.find('input[type=text], select, textarea');
-                    input.on('focus blur', function() { toggle(element, input); });
-
-                    //select2
                     setTimeout(function () {
+
+                        //select2
                         if(input.data('select2-id'))
                         {
                             var searchInput = element.find('input[type=search]');
@@ -59,11 +71,19 @@
                             {
                                 input.on('select2:open', function () { onSelect2Open(element, input); });
                                 input.on('select2:close', function () { onSelect2Close(element, input); });
+                                input.on('select2:select', function () { onSelect2Selected(element, input); });
+                                input.on('select2:clear', function () { onSelect2Cleared(element, input); });
                             }
+                        }
+
+                        //normal input
+                        else
+                        {
+                            input.on('focus blur', function() { toggle(element, input); });
+                            toggle(element, input);
                         }
                     }, 0);
 
-                    toggle(element, input);
                     element.data('plugin-floating-label', true);
                 }
             });
