@@ -27,7 +27,11 @@
         element.removeClass('is-floated');
         if(select2Input.select2('data').length > 0)
         {
-            element.addClass('is-floated');
+            var value = select2Input.select2('data')[0];
+            if(value.id)
+            {
+                element.addClass('is-floated');
+            }
         }
     }
 
