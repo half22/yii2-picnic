@@ -40,8 +40,8 @@
 
     function onSelect2MultipleClose(element, select2Input)
     {
-
         element.removeClass('is-focused');
+        onSelect2MultipleToggle(element, select2Input);
     }
 
     function onSelect2MultipleToggle(element, select2Input)
