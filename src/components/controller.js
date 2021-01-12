@@ -100,6 +100,19 @@
             this.attributes = attributes;
         },
 
+        initListeners: function ()
+        {
+            //click
+            var elements = this.root.findElementsWithListener('@click');
+            elements.each(function (index, domElement) {
+                var element = $(domElement);
+                var callback = element.data('@click');
+                this.on('click', element, function (event) {
+                    this[callback](event, element);
+                }.bind(this));
+            }.bind(this));
+        },
+
         refresh: function ()
         {
             this.initAttributes();

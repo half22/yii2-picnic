@@ -18,6 +18,11 @@
             return this.find('*[data-element~=' + name + ']' + (selector || ''));
         },
 
+        findElementsWithListener: function (listener, selector)
+        {
+            return this.find('*[data-' + listener + ']' + (selector || ''));
+        },
+
         closestElement: function (name, selector)
         {
             return this.closest('*[data-element~=' + name + ']' + (selector || ''));
@@ -60,6 +65,7 @@
                 controller.register(this);
                 controller.initAttributes();
                 controller.initElements();
+                controller.initListeners();
 
                 setTimeout(function ()
                 {
