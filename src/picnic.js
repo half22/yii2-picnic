@@ -20,7 +20,7 @@
 
         findElementsWithListener: function (listener, selector)
         {
-            return this.find('*[data-' + listener + ']' + (selector || ''));
+            return this.find('*[data-\\' + listener + ']' + (selector || ''));
         },
 
         closestElement: function (name, selector)
