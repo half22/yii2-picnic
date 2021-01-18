@@ -102,7 +102,7 @@
 
         initListeners: function ()
         {
-            var elements = this.root.find('data-on');
+            var elements = this.root.find('*[data-on]');
             elements.each(function (index, domElement) {
                 var element = $(domElement);
                 var matches = element.data('on').match(/([^:]+):([^:]+)/);
