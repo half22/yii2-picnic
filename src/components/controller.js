@@ -102,13 +102,14 @@
 
         initListeners: function ()
         {
-            //click
-            var elements = this.root.findElementsWithListener('@click');
+            var elements = this.root.find('data-on');
             elements.each(function (index, domElement) {
                 var element = $(domElement);
-                var callback = element.data('@click');
-                this.on('click', element, function (event) {
-                    this[callback](event, element);
+                var matches = element.data('on').match(/([^:]+):([^:]+)/);
+                var event = matches[1];
+                var callback = matches[2];
+                this.on(event, element, function () {
+                    this[callback](arguments);
                 }.bind(this));
             }.bind(this));
         },
