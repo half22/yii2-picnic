@@ -109,7 +109,7 @@
                 var event = matches[1];
                 var callback = matches[2];
                 this.on(event, element, function () {
-                    this[callback](arguments);
+                    this[callback].apply(this, arguments);
                 }.bind(this));
             }.bind(this));
         },
