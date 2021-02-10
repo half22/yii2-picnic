@@ -127,7 +127,7 @@
 
         replaceRoot: function(html)
         {
-            var root = $(html);
+            var root = $('<div>' + html + '</div>', '*[data-controller=' + this.root.data('controller') + ']');
             this.root.replaceWith(root);
             this.root = root;
             this.refresh();
