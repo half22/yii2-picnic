@@ -126,3 +126,12 @@ $('body').findController('controllerName').getController();
 $('body').findController('controllerName').getController().refresh();
 picnic.initControllers();
 ```
+## Quick event binding in HTML
+Sytnax:
+```html
+<div data-on="event:callback"></div>
+```
+Example:
+```html
+<button type="button" data-on="click:close">Close</button>
+```
