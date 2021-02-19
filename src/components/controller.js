@@ -108,9 +108,16 @@
                 var matches = element.data('on').match(/([^:]+):([^:]+)/);
                 var event = matches[1];
                 var callback = matches[2];
-                this.on(event, element, function () {
-                    this[callback].apply(this, arguments);
-                }.bind(this));
+                if(this[callback])
+                {
+                    this.on(event, element, function () {
+                        this[callback].apply(this, arguments);
+                    }.bind(this));
+                }
+                else
+                {
+                    console.error('PICNIC: Callback "' + callback + '" does not exist in "' + this.root.data('controller') + '". Listener "' + element.data('on') + '" can not be bound.');
+                }
             }.bind(this));
         },
 
