@@ -22,6 +22,7 @@ module.exports = {
             "./src/plugins/clicked.js",
             "./src/plugins/dropdown.js",
             "./src/plugins/lazy-load.js",
+            "./src/plugins/horizontal-scroll.js",
             "./src/plugins/scroll-to.js",
             "./src/plugins/sticky.js",
             "./src/plugins/tabs.js",

@@ -30,6 +30,7 @@ class PicnicDevAsset extends AssetBundle
         'plugins/toggle-password.js',
         'plugins/lazy-load.js',
         'plugins/scroll-to.js',
+        'plugins/horizontal-scroll.js',
         'plugins/sticky.js',
         'plugins/tabs.js',
         'plugins/title-bubble.js',
