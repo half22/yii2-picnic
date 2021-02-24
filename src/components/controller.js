@@ -119,7 +119,7 @@
                     }
                     else
                     {
-                        console.error('PICNIC: Callback "' + callback + '" does not exist in "' + this.root.data('controller') + '". Listener "' + element.data('on') + '" can not be bound.');
+                        console.error('PICNIC: Callback "' + callback + '" does not exist in "' + this.root.data('controller') + '". Listener "' + element.data('on') + '" not bound.');
                     }
                 }
             }.bind(this));
