@@ -8,6 +8,11 @@
             return this.data('_controller');
         },
 
+        getControllerName: function ()
+        {
+            return this.data('controller');
+        },
+
         findController: function (name, selector)
         {
             return this.find('*[data-controller~=' + name + ']' + (selector || ''));

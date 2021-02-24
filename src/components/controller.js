@@ -108,8 +108,8 @@
                 var matches = element.data('on').match(/([^:]+):([^:]+)/);
                 var event = matches[1];
                 var callback = matches[2];
-                var controller = element.closest('*[data-controller]');
-                if(controller.length && controller == this.root)
+                var controllerElement = element.closest('*[data-controller]');
+                if(controllerElement.length && controllerElement.getContoller().id == this.id)
                 {
                     if (this[callback])
                     {
@@ -138,7 +138,7 @@
 
         replaceRoot: function(html)
         {
-            var root = $('*[data-controller=' + this.root.data('controller') + ']', '<div>' + html + '</div>');
+            var root = $('*[data-controller=' + this.getControllerName() + ']', '<div>' + html + '</div>');
             this.root.replaceWith(root);
             this.root = root;
             this.refresh();
@@ -150,6 +150,11 @@
             this.root = root;
             this.root.data('_controller', this);
             picnic.controllers[this.id] = this;
+        },
+
+        getControllerName: function ()
+        {
+            return this.root.getControllerName();
         },
 
         destroy: function ()
