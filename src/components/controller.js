@@ -109,7 +109,7 @@
                 var event = matches[1];
                 var callback = matches[2];
                 var controllerElement = element.closest('*[data-controller]');
-                if(controllerElement.length && controllerElement.getContoller().id == this.id)
+                if(controllerElement.length && controllerElement.getController().id == this.id)
                 {
                     if (this[callback])
                     {
