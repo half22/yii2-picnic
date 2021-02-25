@@ -104,6 +104,13 @@
                         //normal input
                         else
                         {
+                            //datepicker
+                            if(input.datepicker)
+                            {
+                                input.datepicker().on('changeDate', function () {
+                                    toggle(element, input);
+                                });
+                            }
                             input.on('focus blur', function() { toggle(element, input); });
                             toggle(element, input);
                         }
