@@ -105,7 +105,7 @@
                         else
                         {
                             //datepicker
-                            if(input.datepicker)
+                            if(input.data('datepicker'))
                             {
                                 input.datepicker().on('changeDate', function () {
                                     toggle(element, input);
