@@ -9,13 +9,14 @@
         picnic.controller.call(this);
 
         this.elements = ['title', 'header', 'content', 'closeButton', 'preloader', 'preloaderText'];
-        this.attributes = ['disableBackdropClose', 'backdropCssModifier', 'ajaxUrl', 'ajaxTriggers'];
+        this.attributes = ['disableBackdropClose', 'backdropCssModifier', 'ajaxUrl', 'ajaxTriggers', 'clearContentWhenLoading'];
     };
 
     $.extend(layer.prototype, picnic.controller.prototype,
     {
         type: null,
         isLoading: false,
+        clearContentWhenLoading: true,
         isActive: false,
         onTriggerClickCallback: null,
         ajaxUrl: null,
@@ -28,6 +29,11 @@
         {
             this.initTransitionEndEvent();
             this.bindTriggers();
+
+            if(isDefined(this.attributes.clearContentWhenLoading))
+            {
+                this.clearContentWhenLoading = this.attributes.clearContentWhenLoading;
+            }
         },
 
         initTransitionEndEvent: function ()
@@ -127,7 +133,11 @@
         {
             this.isLoading = true;
             this.root.addClass('is-loading');
-            this.elements.content.empty();
+
+            if(this.clearContentWhenLoading)
+            {
+                this.elements.content.empty();
+            }
 
             if(this.elements.preloaderText.length)
             {
