@@ -141,6 +141,12 @@
             var root = $('*[data-controller=' + this.getControllerName() + ']', '<div>' + html + '</div>');
             this.root.replaceWith(root);
             this.root = root;
+
+            //css,js
+            var sources = $('link,script', '<div>' + html + '</div>');
+            $('body').append(sources);
+
+            //refresh
             this.refresh();
         },
 
