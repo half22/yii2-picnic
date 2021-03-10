@@ -109,7 +109,7 @@
                             {
                                 input.datepicker().on('changeDate', function () { toggle(element, input); });
                             }
-                            input.on('focus blur', function() { toggle(element, input); });
+                            input.on('focus blur change', function() { toggle(element, input); });
                             toggle(element, input);
                         }
                     }, 0);
