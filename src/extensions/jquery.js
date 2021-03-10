@@ -44,4 +44,22 @@
         }
     };
 
+    var originalVal = $.fn.val;
+    $.fn.val = function()
+    {
+        //This will trigger "change" event when "val(new_val)" called
+        //with value different than the current one
+        var prev;
+        if(arguments.length > 0)
+        {
+            prev = originalVal.apply(this,[]);
+        }
+        var result =originalVal.apply(this,arguments);
+        if(arguments.length>0 && prev!=originalVal.apply(this,[]))
+        {
+            $(this).change();
+        }
+        return result;
+    };
+
 }(window, jQuery));
