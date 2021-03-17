@@ -4,7 +4,12 @@
         totalCount: 0
     };
 
-    picnic.layers = {};
+    picnic.layers = {
+        get: function (id)
+        {
+            return picnic.layers[id];
+        }
+    };
 
     var layer = function()
     {
@@ -283,11 +288,6 @@
         adjustPixelPerfectPosition: function()
         {
             //overridden by children if needed (ie. modal)
-        },
-
-        get: function (id)
-        {
-            return picnic.layers[id];
         },
 
         destroy: function ()
