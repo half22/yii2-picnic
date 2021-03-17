@@ -10,7 +10,11 @@
 
     function createElement()
     {
-        return $('<div>').appendTo('body');
+        var root = $('<div>')
+        root.append($('<div>'));
+        root.appendTo('body');
+
+        return root;
     }
 
     var preloader = {
