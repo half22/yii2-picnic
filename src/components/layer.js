@@ -4,12 +4,14 @@
         totalCount: 0
     };
 
+    picnic.layers = {};
+
     var layer = function()
     {
         picnic.controller.call(this);
 
         this.elements = ['title', 'header', 'content', 'closeButton', 'preloader', 'preloaderText'];
-        this.attributes = ['disableBackdropClose', 'backdropCssModifier', 'ajaxUrl', 'ajaxTriggers', 'clearContentWhenLoading'];
+        this.attributes = ['id', 'disableBackdropClose', 'backdropCssModifier', 'ajaxUrl', 'ajaxTriggers', 'clearContentWhenLoading'];
     };
 
     $.extend(layer.prototype, picnic.controller.prototype,
@@ -33,6 +35,11 @@
             if(isDefined(this.attributes.clearContentWhenLoading))
             {
                 this.clearContentWhenLoading = this.attributes.clearContentWhenLoading;
+            }
+
+            if(isDefined(this.attributes.id))
+            {
+                picnic.layers[this.attributes.id] = this;
             }
         },
 
@@ -278,10 +285,20 @@
             //overridden by children if needed (ie. modal)
         },
 
+        get: function (id)
+        {
+            return picnic.layers[id];
+        },
+
         destroy: function ()
         {
             this.unbindTriggers();
             picnic.controller.prototype.destroy.call(this);
+
+            if(isDefined(this.attributes.id))
+            {
+                delete picnic.layers[this.attributes.id];
+            }
         }
     });
 
