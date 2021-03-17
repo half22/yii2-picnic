@@ -35,7 +35,6 @@
         init: function ()
         {
             this.initTransitionEndEvent();
-            this.bindTriggers();
 
             if(isDefined(this.attributes.clearContentWhenLoading))
             {
@@ -88,6 +87,8 @@
 
         bindEvents: function()
         {
+            this.bindTriggers();
+
             this.on('click', this.elements.closeButton, this.forceClose);
             this.on('picnic.backdrop.closeEventTriggered', this.root, this.close);
             this.on('picnic.' + this.type + '.opened', this.root, this.onOpened);
@@ -97,6 +98,12 @@
             {
                 this.on(this.transitionEndEvent, this.root, this.onTransitionEnd);
             }
+        },
+
+        unbindEvents: function ()
+        {
+            this.unbindTriggers();
+            picnic.controller.prototype.unbindEvents.call(this);
         },
 
         onTriggerClick: function (event)
@@ -292,7 +299,6 @@
 
         destroy: function ()
         {
-            this.unbindTriggers();
             picnic.controller.prototype.destroy.call(this);
 
             if(isDefined(this.attributes.id))
