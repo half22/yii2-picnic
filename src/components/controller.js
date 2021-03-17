@@ -134,6 +134,7 @@
             this.bindEvents();
 
             picnic.initPlugins();
+            this.root('*[data-controller]').initController();
         },
 
         replaceRoot: function(html)
