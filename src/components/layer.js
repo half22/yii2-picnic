@@ -95,9 +95,9 @@
             this.on('click', this.elements.closeButton, this.forceClose);
             this.on('picnic.backdrop.closeEventTriggered', this.root, this.close);
             this.on('picnic.' + this.type + '.opened', this.root, this.onOpened);
-            this.on('picnic.' + this.type + '.opened', this.root, this.afterOpened);
+            this.on('picnic.' + this.type + '.opened', this.root, this.afterOpen);
             this.on('picnic.' + this.type + '.closed', this.root, this.onClosed);
-            this.on('picnic.' + this.type + '.closed', this.root, this.afterClosed);
+            this.on('picnic.' + this.type + '.closed', this.root, this.afterClose);
 
             if(this.transitionEndEvent)
             {
@@ -231,6 +231,11 @@
             picnic.scrollbar.disable();
             picnic.backdrop.open(this.getBackdropOptions());
 
+            var display = this.root.css('display');
+            this.root.css('display', 'block');
+            this.beforeOpen();
+            this.root.css('display', display);
+
             this.root.addClass('is-active');
             this.registerLayer();
             this.hideLoading();
@@ -289,10 +294,13 @@
         onClosed: function()
         {},
 
-        afterOpened: function ()
+        beforeOpen: function ()
         {},
 
-        afterClosed: function()
+        afterOpen: function ()
+        {},
+
+        afterClose: function()
         {},
 
         afterLoaded: function()
