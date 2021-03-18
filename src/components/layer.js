@@ -199,6 +199,7 @@
                 url: url,
                 type: 'GET',
                 success: this.onLoaded.bind(this),
+                error: this.onLoadError.bind(this),
                 complete: this.hideLoading.bind(this)
             });
         },
@@ -306,6 +307,9 @@
         {},
 
         afterLoaded: function()
+        {},
+
+        onLoadError: function ()
         {},
 
         onTransitionEnd: function(event)
