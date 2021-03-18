@@ -134,11 +134,14 @@
             this.bindEvents();
 
             picnic.initPlugins();
-            this.root.find('*[data-controller]').initController();
         },
 
         replaceRoot: function(html)
         {
+            //destroy old controllers in root
+            this.root.find('*[data-controller]').getController().destroy();
+
+            //replace root
             var root = $('*[data-controller=' + this.getControllerName() + ']', '<div>' + html + '</div>');
             this.root.replaceWith(root);
             this.root = root;
@@ -146,6 +149,9 @@
             //css,js
             var sources = $('link,script', '<div>' + html + '</div>');
             $('body').append(sources);
+
+            //create new controllers in root
+            this.root.find('*[data-controller]').initController();
 
             //refresh
             this.refresh();
