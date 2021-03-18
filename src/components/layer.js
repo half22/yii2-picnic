@@ -231,10 +231,9 @@
             picnic.scrollbar.disable();
             picnic.backdrop.open(this.getBackdropOptions());
 
-            var display = this.root.css('display');
             this.root.css('display', 'block');
             this.beforeOpen();
-            this.root.css('display', display);
+            this.root.css({'display': ''});
 
             this.root.addClass('is-active');
             this.registerLayer();
