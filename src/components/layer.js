@@ -92,7 +92,9 @@
             this.on('click', this.elements.closeButton, this.forceClose);
             this.on('picnic.backdrop.closeEventTriggered', this.root, this.close);
             this.on('picnic.' + this.type + '.opened', this.root, this.onOpened);
+            this.on('picnic.' + this.type + '.opened', this.root, this.afterOpened);
             this.on('picnic.' + this.type + '.closed', this.root, this.onClosed);
+            this.on('picnic.' + this.type + '.closed', this.root, this.afterClosed);
 
             if(this.transitionEndEvent)
             {
@@ -118,6 +120,7 @@
         {
             this.updateContent(data);
             picnic.event.trigger('picnic.' + this.type + '.loaded', this.root);
+            this.afterLoaded();
         },
 
         getAjaxUrl: function()
@@ -281,6 +284,15 @@
         {},
 
         onClosed: function()
+        {},
+
+        afterOpened: function ()
+        {},
+
+        afterClosed: function()
+        {},
+
+        afterLoaded: function()
         {},
 
         onTransitionEnd: function(event)
