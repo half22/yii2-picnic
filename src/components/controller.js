@@ -139,19 +139,29 @@
         replaceRoot: function(html)
         {
             //destroy old controllers in root
-            this.root.find('*[data-controller]').getController().destroy();
+            $.each(this.root.findController(), function (index, domElement) {
+                var element = $(domElement);
+                var controller = element.getController();
+                if(controller)
+                {
+                    controller.destroy();
+                }
+            });
 
             //replace root
             var root = $('*[data-controller=' + this.getControllerName() + ']', '<div>' + html + '</div>');
             this.root.replaceWith(root);
             this.root = root;
 
-            //css,js
+            //css, js
             var sources = $('link,script', '<div>' + html + '</div>');
             $('body').append(sources);
 
             //create new controllers in root
-            this.root.find('*[data-controller]').initController();
+            $.each(this.root.findController(), function (index, domElement) {
+                var element = $(domElement);
+                element.initController();
+            });
 
             //refresh
             this.refresh();

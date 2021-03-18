@@ -15,7 +15,11 @@
 
         findController: function (name, selector)
         {
-            return this.find('*[data-controller~=' + name + ']' + (selector || ''));
+            if(name && name.length)
+            {
+                return this.find('*[data-controller~=' + name + ']' + (selector || ''));
+            }
+            return this.find('*[data-controller]' + (selector || ''));
         },
 
         findElement: function (name, selector)
