@@ -49,7 +49,10 @@
 
         initTransitionEndEvent: function ()
         {
-            this.transitionEndEvent = getTransitionEndEvent(this.root);
+            if(this.root.css('transition-duration') !== "0s")
+            {
+                this.transitionEndEvent = getTransitionEndEvent(this.root);
+            }
         },
 
         getTriggersSelector: function ()
