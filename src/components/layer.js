@@ -27,6 +27,7 @@
         isActive: false,
         onTriggerClickCallback: null,
         ajaxUrl: null,
+        isBeforeOpenProcedureRunning: false,
 
         //backdrop
         backdropCssModifier: '',
@@ -231,9 +232,11 @@
             picnic.scrollbar.disable();
             picnic.backdrop.open(this.getBackdropOptions());
 
+            this.isBeforeOpenProcedureRunning = true;
             this.root.css('display', 'block');
             this.beforeOpen();
             this.root.css({'display': ''});
+            this.isBeforeOpenProcedureRunning = false;
 
             this.root.addClass('is-active');
             this.registerLayer();
@@ -308,6 +311,7 @@
         onTransitionEnd: function(event)
         {
             if(event.target !== event.currentTarget) return;
+            if(this.isBeforeOpenProcedureRunning) return;
 
             var eventName = this.isActive ? 'picnic.' + this.type + '.opened' : 'picnic.' + this.type + '.closed';
             picnic.event.trigger(eventName);
