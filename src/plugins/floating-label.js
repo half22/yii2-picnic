@@ -113,7 +113,7 @@
                             toggle(element, input);
                         }
 
-                        element.addClass('is-animated');
+                        element.addClass('is-initialized');
                     }, 0);
 
                     element.data('plugin-floating-label', true);
