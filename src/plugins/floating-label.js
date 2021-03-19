@@ -112,6 +112,8 @@
                             input.on('focus blur change', function() { toggle(element, input); });
                             toggle(element, input);
                         }
+
+                        input.addClass('is-animated');
                     }, 0);
 
                     element.data('plugin-floating-label', true);
