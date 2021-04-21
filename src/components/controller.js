@@ -129,6 +129,7 @@
         {
             this.initAttributes();
             this.initElements();
+            this.initListeners();
 
             this.unbindEvents();
             this.bindEvents();
