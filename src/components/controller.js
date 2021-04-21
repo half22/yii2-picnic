@@ -129,10 +129,11 @@
         {
             this.initAttributes();
             this.initElements();
-            this.initListeners();
 
             this.unbindEvents();
             this.bindEvents();
+
+            this.initListeners();
 
             picnic.initPlugins();
         },

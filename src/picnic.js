@@ -74,12 +74,12 @@
                 controller.register(this);
                 controller.initAttributes();
                 controller.initElements();
+                controller.initListeners();
 
                 setTimeout(function ()
                 {
                     controller.init();
                     controller.bindEvents();
-                    controller.initListeners();
                 }, 0);
 
                 return controller;
