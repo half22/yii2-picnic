@@ -5,7 +5,7 @@
     var defaultOptions = {
         cssClassName: 'c-preloader',
         cssModifier: null,
-        backdropCssModifier: 'c-backdrop--preloader preloader'
+        backdropCssModifier: 'preloader c-backdrop--preloader'
     };
 
     function createElement()
