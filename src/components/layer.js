@@ -269,6 +269,7 @@
             if(!this.isActive) return;
             this.isActive = false;
 
+            this.beforeClose();
             this.root.removeClass('is-active');
             this.unregisterLayer();
 
