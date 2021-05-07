@@ -24,6 +24,7 @@
     $.extend(controller.prototype,
     {
         init: function () {},
+        afterInit: function () {},
         bindEvents: function () {},
 
         on: function (eventName, target, callback, propagateEvent)

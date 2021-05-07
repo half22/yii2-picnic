@@ -82,6 +82,11 @@
                     controller.bindEvents();
                 }, 0);
 
+                setTimeout(function ()
+                {
+                    controller.afterInit();
+                }, 1);
+
                 return controller;
             }
             else
