@@ -85,7 +85,7 @@
                 setTimeout(function ()
                 {
                     controller.afterInit();
-                }, 1);
+                }, 100);
 
                 return controller;
             }
