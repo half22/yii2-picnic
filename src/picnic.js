@@ -80,12 +80,9 @@
                 {
                     controller.init();
                     controller.bindEvents();
-                }, 0);
 
-                setTimeout(function ()
-                {
-                    controller.afterInit();
-                }, 100);
+                    afterControllerInit();
+                }, 0);
 
                 return controller;
             }
@@ -136,6 +133,18 @@
             }
         }
     });
+
+    var initializedControllersCount = 0;
+    function afterControllerInit()
+    {
+        initializedControllersCount++;
+        if(initializedControllersCount == picnic.controllers.length)
+        {
+            $.each(picnic.controllers, function (id, controller) {
+                controller.afterInit();
+            });
+        }
+    }
 
     var picnic = {
         controllers: {},
