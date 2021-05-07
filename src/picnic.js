@@ -138,7 +138,7 @@
     function afterControllerInit()
     {
         initializedControllersCount++;
-        if(initializedControllersCount == picnic.controllers.length)
+        if(initializedControllersCount == Object.keys(picnic.controllers).length)
         {
             $.each(picnic.controllers, function (id, controller) {
                 controller.afterInit();
