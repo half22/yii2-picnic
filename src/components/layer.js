@@ -304,6 +304,9 @@
         afterOpen: function ()
         {},
 
+        beforeClose: function ()
+        {},
+
         afterClose: function()
         {},
 
