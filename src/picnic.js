@@ -52,10 +52,10 @@
             }
 
             var classNames = [
-                this.data('controller'),
                 ucfirst(this.data('controller')),
                 camelCase(this.data('controller')),
-                ucfirst(camelCase(this.data('controller')))
+                ucfirst(camelCase(this.data('controller'))),
+                this.data('controller'),
             ];
 
             var controller = null;
