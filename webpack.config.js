@@ -24,6 +24,7 @@ module.exports = {
             "./src/plugins/lazy-load.js",
             "./src/plugins/horizontal-scroll.js",
             "./src/plugins/scroll-to.js",
+            "./src/plugins/scroll-top.js",
             "./src/plugins/sticky.js",
             "./src/plugins/tabs.js",
             "./src/plugins/title-bubble.js",
