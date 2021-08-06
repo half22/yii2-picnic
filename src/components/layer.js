@@ -115,7 +115,7 @@
         onTriggerClick: function (event)
         {
             var target = $(event.currentTarget);
-            var url = this.attributes.ajaxTriggers ? target.attr('href') : null;
+            var url = this.attributes.ajaxTriggers ? target.attr('href') || target.data('ajax-url') : null;
             this.open(url);
             return false;
         },
