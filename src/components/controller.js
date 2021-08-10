@@ -137,6 +137,12 @@
             this.initListeners();
 
             picnic.initPlugins();
+
+            //create new controllers in root
+            $.each(this.root.findController(), function (index, domElement) {
+                var element = $(domElement);
+                element.initController();
+            });
         },
 
         replaceRoot: function(html)
@@ -159,12 +165,6 @@
             //css, js
             var sources = $('link,script', '<div>' + html + '</div>');
             $('body').append(sources);
-
-            //create new controllers in root
-            $.each(this.root.findController(), function (index, domElement) {
-                var element = $(domElement);
-                element.initController();
-            });
 
             //refresh
             this.refresh();
