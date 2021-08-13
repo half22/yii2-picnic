@@ -64,8 +64,8 @@
                 var element = $(domElement);
                 if (!element.data('plugin-floating-label'))
                 {
-                    var input = element.find('input[type=text], input[type=password], select, textarea');
                     setTimeout(function () {
+                        var input = element.find('input[type=text], input[type=tel], input[type=password], select, textarea');
 
                         //select2
                         if(input.data('select2-id'))
