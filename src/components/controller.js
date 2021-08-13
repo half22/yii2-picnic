@@ -188,6 +188,7 @@
             this.unbindEvents();
             this.root.data('_controller', null);
             delete picnic.controllers[this.id];
+            console.log(picnic.controllers);
         }
     });
 
