@@ -163,6 +163,7 @@
                 controller.destroy();
             });
             this.controllers = {};
+            initializedControllersCount = 0;
         },
 
         initControllers: function()
