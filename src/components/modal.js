@@ -29,7 +29,7 @@
 
             this.elements.backButton.toggle(picnic.activeLayers.modal.length > 0);
             picnic.activeLayers.modal.each(function (index, domElement) {
-                $(domElement).hide();
+                $(domElement).css('visibility', 'hidden');
             });
         },
 
@@ -39,7 +39,7 @@
 
             if(picnic.activeLayers.modal.length)
             {
-                picnic.activeLayers.modal.last().show();
+                picnic.activeLayers.modal.last().css('visibility', '');
             }
         },
 
