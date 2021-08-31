@@ -5,6 +5,10 @@
     var modal = function()
     {
         picnic.layer.call(this);
+
+        this.elements = $.merge(this.elements, [
+            'backButton',
+        ]);
     };
 
     $.extend(modal.prototype, picnic.layer.prototype,
@@ -12,10 +16,18 @@
         type: 'modal',
         backdropCssModifier: 'modal',
 
+        bindEvents: function ()
+        {
+            picnic.layer.prototype.bindEvents();
+
+            this.on('click', this.elements.backButton, this.close);
+        },
+
         beforeOpen: function ()
         {
             picnic.layer.prototype.beforeOpen();
 
+            this.elements.backButton.toggle(picnic.activeLayers.modal.length > 0);
             picnic.activeLayers.modal.each(function (index, domElement) {
                 $(domElement).hide();
             });
