@@ -18,14 +18,14 @@
 
         bindEvents: function ()
         {
-            picnic.layer.prototype.bindEvents();
+            picnic.layer.prototype.bindEvents.call(this);
 
             this.on('click', this.elements.backButton, this.close);
         },
 
         beforeOpen: function ()
         {
-            picnic.layer.prototype.beforeOpen();
+            picnic.layer.prototype.beforeOpen.call(this);
 
             this.elements.backButton.toggle(picnic.activeLayers.modal.length > 0);
             picnic.activeLayers.modal.each(function (index, domElement) {
@@ -35,7 +35,7 @@
 
         afterClose: function ()
         {
-            picnic.layer.prototype.afterClose();
+            picnic.layer.prototype.afterClose.call(this);
 
             if(picnic.activeLayers.modal.length)
             {
