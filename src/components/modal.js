@@ -12,6 +12,25 @@
         type: 'modal',
         backdropCssModifier: 'modal',
 
+        beforeOpen: function ()
+        {
+            picnic.layer.prototype.beforeOpen();
+
+            picnic.activeLayers.modal.each(function (index, domElement) {
+                $(domElement).hide();
+            });
+        },
+
+        afterClose: function ()
+        {
+            picnic.layer.prototype.afterClose();
+
+            if(picnic.activeLayers.modal.length)
+            {
+                picnic.activeLayers.modal.last().show();
+            }
+        },
+
         adjustPixelPerfectPosition: function()
         {
             this.root.roundTransformationMatrixValues();
