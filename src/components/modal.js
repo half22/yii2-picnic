@@ -29,7 +29,7 @@
 
             this.elements.backButton.toggle(picnic.activeLayers.modal.length > 0);
             picnic.activeLayers.modal.each(function (index, domElement) {
-                $(domElement).getController().close();
+                $(domElement).removeClass('.is-active');
             });
         },
 
@@ -39,7 +39,7 @@
 
             if(picnic.activeLayers.modal.length)
             {
-                picnic.activeLayers.modal.last().getController().open();
+                picnic.activeLayers.modal.last().addClass('.is-active');
             }
         },
 
