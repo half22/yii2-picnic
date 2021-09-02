@@ -78,4 +78,8 @@
         return o;
     };
 
+    $.fn.size = function() {
+        return this.length;
+    };
+
 }(window, jQuery));
