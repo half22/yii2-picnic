@@ -4,9 +4,9 @@
 
     function onClick(event)
     {
-        var target = $(event.currentTarget);
-        target.get(0).disabled = true;
-        return true;
+        // var target = $(event.currentTarget);
+        // target.get(0).disabled = true;
+        // return true;
     }
 
     $.extend($.fn, {
