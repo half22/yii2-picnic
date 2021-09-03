@@ -6,7 +6,9 @@
     {
         var target = $(event.currentTarget);
         target.get(0).disabled = true;
-        target.parents("form").submit();
+        setTimeout(function () {
+            target.parents("form").submit();
+        }, 10);
     }
 
     $.extend($.fn, {
