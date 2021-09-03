@@ -6,7 +6,7 @@
     {
         var target = $(event.currentTarget);
         target.get(0).disabled = true;
-        target.parents("form").submit();
+        return true;
     }
 
     $.extend($.fn, {
