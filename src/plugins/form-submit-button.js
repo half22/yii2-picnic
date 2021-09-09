@@ -5,6 +5,10 @@
     function onClick(event)
     {
         var target = $(event.currentTarget);
+        if(target.data('preloader'))
+        {
+            picnic.preloader.open();
+        }
         target.get(0).disabled = true;
         setTimeout(function () {
             target.closest("form").submit();
