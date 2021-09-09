@@ -7,7 +7,7 @@
         var target = $(event.currentTarget);
         target.get(0).disabled = true;
         setTimeout(function () {
-            target.parents("form").submit();
+            target.closest("form").submit();
         }, 10);
     }
 
