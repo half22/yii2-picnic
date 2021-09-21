@@ -29,7 +29,8 @@
             }
             if (position != offset)
             {
-                animateScroll(position - offset, function ()
+                var container = target.data('container') ? $('#' + target.data('container')) : $('html, body');
+                animateScroll(container, position - offset, function ()
                 {
                     if(!target.data('dont-replace-hash'))
                     {
@@ -42,9 +43,9 @@
         return false;
     }
 
-    function animateScroll(top, callback)
+    function animateScroll(container, top, callback)
     {
-        $('html, body').animate({scrollTop: top}, 'fast', null, callback);
+        container.animate({scrollTop: top}, 'fast', null, callback);
     }
 
     $.extend($.fn, {
