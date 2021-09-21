@@ -27,6 +27,10 @@
             {
                 offset = $('#' + element.data('offset-from-element-height')).height();
             }
+            if(target.data('container'))
+            {
+                position += $('#' + target.data('container')).scrollTop();
+            }
             if (position != offset)
             {
                 var container = target.data('container') ? $('#' + target.data('container')) : $('html, body');
