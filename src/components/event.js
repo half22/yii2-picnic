@@ -54,6 +54,7 @@
         unbind: function ()
         {
             this.target.off(this.eventName, this.bindedDispatch);
+            this.bindedDispatch = null;
         },
 
         dispatch: function(event, params, arg1, arg2)
