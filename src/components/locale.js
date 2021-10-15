@@ -29,7 +29,7 @@
 
         t: function(message, params)
         {
-            if(params && parseInt(params) == params)
+            if(isDefined(params) && parseInt(params) == params)
             {
                 params = {n: params};
             }
