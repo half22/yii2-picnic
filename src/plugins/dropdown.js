@@ -40,8 +40,20 @@
         var value = button.findElement('value');
         var icon = button.findElement('icon');
 
-        var valueHtml = target.findElement('value').length > 0 ? target.findElement('value').html() : target.html();
-        value.html(valueHtml);
+        var valueHtml = target.html();
+        if(target.findElement('value').length > 0)
+        {
+            valueHtml = target.findElement('value').html();
+        }
+        if(target.data('value'))
+        {
+            valueHtml = target.data('value');
+        }
+
+        if(value.length)
+        {
+            value.html(valueHtml);
+        }
 
         if(icon.length)
         {
