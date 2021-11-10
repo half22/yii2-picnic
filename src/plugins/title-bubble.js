@@ -58,8 +58,6 @@
         bubbleClone.css('z-index', 1100);
         bubbleClone.show();
         bubble.hide();
-
-        adjustPixelPerfectPosition(bubbleClone);
     }
 
     function hide(element, bubble, bubbleClone)
