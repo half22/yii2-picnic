@@ -50,9 +50,9 @@
 
         bubble.show();
         bubbleClone.css('position', 'absolute');
-        bubbleClone.css('transform', '');
-        bubbleClone.css('-ms-transform', '');
-        bubbleClone.css('-webkit-transform', '');
+        bubbleClone.css('transform', 'none');
+        bubbleClone.css('-ms-transform', 'none');
+        bubbleClone.css('-webkit-transform', 'none');
         bubbleClone.css('top', bubble.offset().top);
         bubbleClone.css('left', bubble.offset().left);
         bubbleClone.css('z-index', 1100);
