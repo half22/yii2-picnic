@@ -15,7 +15,7 @@
         updateTitle(target, bubble);
     }
 
-    function updateTitle(element, bubble)
+    function updateTitle(element, bubble, bubbleClone)
     {
         var title = element.prop('title');
         if(element.data('title') && element.data('title').length)
@@ -24,6 +24,7 @@
         }
 
         bubble.html(title);
+        bubbleClone.html(title);
 
         element.prop('title', '');
         element.data('title', title);
@@ -42,21 +43,32 @@
         return bubble;
     }
 
-    function show(event)
+    function cloneBubble(bubble)
     {
-        var target = $(event.currentTarget);
-        var bubble = getBubble(target);
-        updateTitle(target, bubble);
+        var bubbleClone = bubble.clone();
+        $('body').append(bubbleClone);
 
-        bubble.show();
-        adjustPixelPerfectPosition(bubble);
+        return bubbleClone;
     }
 
-    function hide()
+    function show(element, bubble, bubbleClone)
     {
-        var target = $(event.currentTarget);
-        var bubble = getBubble(target);
+        updateTitle(element, bubble, bubbleClone);
+
+        bubble.show();
+        bubbleClone.css('position', 'absolute');
+        bubbleClone.css('top', bubble.offset().top);
+        bubbleClone.css('left', bubble.offset().left);
+        bubbleClone.css('z-index', 1100);
+        bubbleClone.addClass('is-active');
         bubble.hide();
+
+        adjustPixelPerfectPosition(bubbleClone);
+    }
+
+    function hide(element, bubble, bubbleClone)
+    {
+        bubbleClone.hide();
     }
 
     function adjustPixelPerfectPosition(bubble)
@@ -75,9 +87,17 @@
                     {
                         convertContentToTitle(element);
                     }
+
+                    var bubble = getBubble(element);
+                    var bubbleClone = cloneBubble(bubble);
+
                     element.on('titleChanged', titleChanged);
-                    element.on('mouseover', show);
-                    element.on('mouseout', hide);
+                    element.on('mouseover', function () {
+                        show(element, bubble, bubbleClone);
+                    });
+                    element.on('mouseout', function () {
+                        hide(element, bubble, bubbleClone);
+                    });
                     element.addClass('has-title-bubble');
                     element.data('plugin-title-bubble', true);
                 }
