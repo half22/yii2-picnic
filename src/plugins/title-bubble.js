@@ -50,8 +50,8 @@
 
         bubble.show();
         bubbleClone.css('position', 'absolute');
-        bubbleClone.css('top', bubble.offset().top);
-        bubbleClone.css('left', bubble.offset().left);
+        bubbleClone.css('top', bubble.position().top);
+        bubbleClone.css('left', bubble.position().left);
         bubbleClone.css('z-index', 1100);
         bubbleClone.show();
         bubble.hide();
