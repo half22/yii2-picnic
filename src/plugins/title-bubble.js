@@ -8,13 +8,6 @@
         element.empty();
     }
 
-    function titleChanged(event)
-    {
-        var target = $(event.currentTarget);
-        var bubble = getBubble(target);
-        updateTitle(target, bubble);
-    }
-
     function updateTitle(element, bubble, bubbleClone)
     {
         var title = element.prop('title');
@@ -60,7 +53,7 @@
         bubbleClone.css('top', bubble.offset().top);
         bubbleClone.css('left', bubble.offset().left);
         bubbleClone.css('z-index', 1100);
-        bubbleClone.addClass('is-active');
+        bubbleClone.show();
         bubble.hide();
 
         adjustPixelPerfectPosition(bubbleClone);
@@ -91,7 +84,9 @@
                     var bubble = getBubble(element);
                     var bubbleClone = cloneBubble(bubble);
 
-                    element.on('titleChanged', titleChanged);
+                    element.on('titleChanged', function () {
+                        updateTitle(element, bubble, bubbleClone);
+                    });
                     element.on('mouseover', function () {
                         show(element, bubble, bubbleClone);
                     });
