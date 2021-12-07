@@ -116,19 +116,7 @@
         {
             var target = $(event.currentTarget);
             var url = this.attributes.ajaxTriggers ? target.attr('href') || target.data('ajax-url') : null;
-            if(this.attributes.ajaxTriggers)
-            {
-                if(target.data('ajax-url').indexOf('function()') !== -1)
-                {
-                    var urlFunction = null;
-                    eval('urlFunction = ' + target.data('ajax-url'));
-                    url = urlFunction.call(target);
-                }
-                else
-                {
-                    url = target.attr('href') || target.data('ajax-url');
-                }
-            }
+
             this.open(url);
             return false;
         },
