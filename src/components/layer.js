@@ -118,9 +118,11 @@
             var url = this.attributes.ajaxTriggers ? target.attr('href') || target.data('ajax-url') : null;
             if(this.attributes.ajaxTriggers)
             {
-                if(isFunction(target.data('ajax-url')))
+                if(target.data('ajax-url').indexOf('function()') !== -1)
                 {
-                    url = target.data('ajax-url').call(target);
+                    var urlFunction = null;
+                    eval('urlFunction = ' + target.data('ajax-url'));
+                    url = urlFunction.call(target);
                 }
                 else
                 {
