@@ -71,7 +71,6 @@
             this.onTriggerClickCallback = this.onTriggerClick.bind(this);
 
             var triggerSelector = this.getTriggersSelector();
-            console.log(triggerSelector);
             if(triggerSelector)
             {
                 $('body').on('click', triggerSelector, this.onTriggerClickCallback);
@@ -115,6 +114,7 @@
 
         onTriggerClick: function (event)
         {
+            console.log('click');
             var target = $(event.currentTarget);
             var url = null;
             if(this.attributes.ajaxTriggers)
