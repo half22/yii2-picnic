@@ -114,12 +114,11 @@
 
         onTriggerClick: function (event)
         {
-            console.log('click');
             var target = $(event.currentTarget);
             var url = null;
             if(this.attributes.ajaxTriggers)
             {
-                if(target.data('ajax-url').indexOf('function()') !== -1)
+                if(target.data('ajax-url') && target.data('ajax-url').indexOf('function()') !== -1)
                 {
                     var urlFunction = null;
                     eval('urlFunction = ' + target.data('ajax-url'));
