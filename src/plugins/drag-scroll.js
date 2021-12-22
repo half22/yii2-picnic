@@ -7,6 +7,7 @@
         element.data('dragScrollActive', 1);
         element.data('lastClientX', event.clientX);
         element.data('lastClientY', event.clientY);
+        picnic.event.trigger('picnic.dragScroll.start', element);
 
         event.preventDefault();
     }
