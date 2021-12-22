@@ -2,50 +2,40 @@
 
     'use strict';
 
-    var pushed;
-    var lastClientX;
-    var lastClientY;
-
-
-    function onMouseDown(event)
+    function onMouseDown(event, element)
     {
-        var element = $(event.currentTarget);
-        if (document.elementFromPoint(event.pageX, event.pageY) == element)
-        {
-            pushed = 1;
-            lastClientX = event.clientX;
-            lastClientY = event.clientY;
+        element.data('dragScrollActive', 1);
+        element.data('lastClientX', event.clientX);
+        element.data('lastClientY', event.clientY);
 
-            event.preventDefault();
-        }
+        event.preventDefault();
     }
 
-    function onMouseUp(event)
+    function onMouseUp(event, element)
     {
-        pushed = 0;
+        element.data('dragScrollActive', 0);
     }
 
-    function onMouseMove(event)
+    function onMouseMove(event, element)
     {
-        var element = $(event.currentTarget);
-        if (pushed)
+        if (element.data('dragScrollActive'))
         {
-            var newScrollX = - lastClientX + event.clientX;
-            lastClientX = event.clientX;
+            var newScrollX = - element.data('lastClientX') + event.clientX;
+            element.data('lastClientX', event.clientX);
 
-            var newScrollY = - lastClientY + event.clientY;
-            lastClientY = event.clientY;
+            var newScrollY = - element.data('lastClientY') + event.clientY;
+            element.data('lastClientY', event.clientY)
 
-            element.scrollLeft -= newScrollX;
-            element.scrollTop -= newScrollY;
+            element.get(0).scrollLeft -= newScrollX;
+            element.get(0).scrollTop -= newScrollY;
         }
     }
 
     function dragScroll(element)
     {
-        element.on('mousedown', onMouseDown);
-        element.on('mouseup', onMouseUp);
-        element.on('mousemove', onMouseMove);
+        element.on('mousedown', function(event) { onMouseDown(event, element); });
+        $(window).on('mouseup', function(event) { onMouseUp(event, element); });
+        $(window).on('mousemove', function(event) { onMouseMove(event, element); });
     }
 
     $.extend($.fn, {
@@ -65,11 +55,11 @@
 
     if(typeof exports === 'object')
     {
-		module.exports = $.fn.picnicClicked;
-	}
-	else if(typeof define === 'function' && define.amd)
-	{
-		define(function() { return $.fn.picnicClicked; });
-	}
+        module.exports = $.fn.picnicClicked;
+    }
+    else if(typeof define === 'function' && define.amd)
+    {
+        define(function() { return $.fn.picnicClicked; });
+    }
 
 })(window, jQuery, window.picnic || {});
