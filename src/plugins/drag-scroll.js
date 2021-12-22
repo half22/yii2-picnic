@@ -14,6 +14,7 @@
     function onMouseUp(event, element)
     {
         element.data('dragScrollActive', 0);
+        picnic.event.trigger('picnic.dragScroll.end', element);
     }
 
     function onMouseMove(event, element)
