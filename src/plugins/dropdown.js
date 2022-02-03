@@ -25,6 +25,11 @@
 
     function hide(event, button, layer)
     {
+        if(isMobile() && button.data('panel'))
+        {
+            return false;
+        }
+
         var target = $(event.target);
         if (!target.closest(button).length && !target.closest(layer).length)
         {
