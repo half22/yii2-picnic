@@ -12,13 +12,16 @@
 
     function show(event, button, layer, layerClone)
     {
+        //dropdown moze mat aj mobilnu verziu - panel
         if(button.data('panel'))
         {
             if(isMobile())
             {
+                //ak sme na mobile, layer sa neotvori
                 return false;
             }
 
+            //ak sme na desktope, tak event sa zastavi, aby sa nevyvolalo otvorenie panelu
             event.preventDefault();
             event.stopPropagation();
         }
