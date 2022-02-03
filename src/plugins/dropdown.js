@@ -12,9 +12,15 @@
 
     function show(event, button, layer, layerClone)
     {
-        if(isMobile() && button.data('panel'))
+        if(button.data('panel'))
         {
-            return false;
+            if(isMobile())
+            {
+                return false;
+            }
+
+            event.preventDefault();
+            event.stopPropagation();
         }
         layer.addClass('is-active');
         layerClone.css('position', 'absolute');
