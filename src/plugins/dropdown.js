@@ -10,13 +10,12 @@
         return layerClone;
     }
 
-    function show(layer, layerClone)
+    function show(event, button, layer, layerClone)
     {
         if(isMobile() && button.data('panel'))
         {
             return false;
         }
-
         layer.addClass('is-active');
         layerClone.css('position', 'absolute');
         layerClone.css('top', layer.offset().top);
@@ -28,16 +27,16 @@
         return false;
     }
 
-    function hide(event, button, layer)
+    function hide(event, button, layer, layerClone)
     {
         var target = $(event.target);
-        if (!target.closest(button).length && !target.closest(layer).length)
+        if (!target.closest(button).length && !target.closest(layerClone).length)
         {
-            layer.removeClass('is-active');
+            layerClone.removeClass('is-active');
         }
     }
 
-    function setValue(event, element, button, layer)
+    function setValue(event, element, button, layer, layerClone)
     {
         var target = $(event.currentTarget);
         var item = target.closestElement('item');
@@ -67,7 +66,7 @@
 
         item.siblings().removeClass('is-active');
         item.addClass('is-active');
-        layer.removeClass('is-active');
+        layerClone.removeClass('is-active');
 
         picnic.event.trigger('picnic.dropdown.changed', element, {value: valueHtml});
 
@@ -88,16 +87,16 @@
                     var layerClone = cloneLayer(layer);
                     var valueLink = layerClone.findElement('valueLink');
 
-                    button.on('click', function () {
-                        show(layer, layerClone);
+                    button.on('click', function (event) {
+                        show(event, button, layer, layerClone);
                     });
 
                     $('body').on('click', function (event) {
-                        hide(event, button, layerClone);
+                        hide(event, button, layer, layerClone);
                     });
 
                     valueLink.on('click', function (event) {
-                        setValue(event, element, button, layerClone);
+                        setValue(event, element, button, layer, layerClone);
                     });
 
                     element.data('plugin-dropdown', true);
