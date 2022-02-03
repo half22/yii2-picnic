@@ -151,16 +151,19 @@
             {
                 if(data.html)
                 {
+                    this.elements.content.destroyChildrenControllers();
                     this.elements.content.html(data.html);
                 }
                 if(data.content)
                 {
+                    this.elements.content.destroyChildrenControllers();
                     this.elements.content.html(data.content);
                 }
             }
 
             if(this.elements.title.length && data.title)
             {
+                this.elements.title.destroyChildrenControllers();
                 this.elements.title.html(data.title);
             }
 

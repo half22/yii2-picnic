@@ -147,15 +147,7 @@
 
         replaceRoot: function(html)
         {
-            //destroy old controllers in root
-            $.each(this.root.findController(), function (index, domElement) {
-                var element = $(domElement);
-                var controller = element.getController();
-                if(controller)
-                {
-                    controller.destroy();
-                }
-            });
+            this.root.destroyChildrenControllers();
 
             //replace root
             var root = $('*[data-controller=' + this.getControllerName() + ']', '<div>' + html + '</div>');
