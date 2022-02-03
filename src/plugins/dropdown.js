@@ -12,6 +12,11 @@
 
     function show(layer, layerClone)
     {
+        if(isMobile() && button.data('panel'))
+        {
+            return false;
+        }
+
         layer.addClass('is-active');
         layerClone.css('position', 'absolute');
         layerClone.css('top', layer.offset().top);
@@ -25,11 +30,6 @@
 
     function hide(event, button, layer)
     {
-        if(isMobile() && button.data('panel'))
-        {
-            return false;
-        }
-
         var target = $(event.target);
         if (!target.closest(button).length && !target.closest(layer).length)
         {
