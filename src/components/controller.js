@@ -180,7 +180,7 @@
             this.unbindEvents();
             this.root.data('_controller', null);
             delete picnic.controllers[this.id];
-            initializedControllersCount--;
+            picnic.initializedControllersCount--;
         }
     });
 

@@ -146,11 +146,10 @@
         }
     });
 
-    var initializedControllersCount = 0;
     function afterControllerInit()
     {
-        initializedControllersCount++;
-        if(initializedControllersCount == Object.keys(picnic.controllers).length)
+        picnic.initializedControllersCount++;
+        if(picnic.initializedControllersCount == Object.keys(picnic.controllers).length)
         {
             $.each(picnic.controllers, function (id, controller) {
                 controller.afterInit();
@@ -160,6 +159,7 @@
 
     var picnic = {
         controllers: {},
+        initializedControllersCount: 0,
 
         start: function ()
         {
@@ -175,7 +175,7 @@
                 controller.destroy();
             });
             this.controllers = {};
-            initializedControllersCount = 0;
+            this.initializedControllersCount = 0;
         },
 
         initControllers: function()
