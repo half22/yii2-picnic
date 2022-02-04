@@ -152,11 +152,13 @@
                 if(data.html)
                 {
                     this.elements.content.destroyChildrenControllers();
+                    this.elements.content.empty();
                     this.elements.content.html(data.html);
                 }
                 if(data.content)
                 {
                     this.elements.content.destroyChildrenControllers();
+                    this.elements.content.empty();
                     this.elements.content.html(data.content);
                 }
             }
