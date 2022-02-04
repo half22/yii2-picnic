@@ -178,6 +178,7 @@
 
             if(this.clearContentWhenLoading)
             {
+                this.elements.content.destroyChildrenControllers();
                 this.elements.content.empty();
             }
 
