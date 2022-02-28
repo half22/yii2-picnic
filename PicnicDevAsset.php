@@ -38,6 +38,7 @@ class PicnicDevAsset extends AssetBundle
         'plugins/tooltip.js',
         "plugins/floating-label.js",
         "plugins/drag-scroll.js",
+        "plugins/collapsable.js",
     ];
 
     public $depends = [

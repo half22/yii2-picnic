@@ -32,7 +32,8 @@ module.exports = {
             "./src/plugins/form-submit-button.js",
             "./src/plugins/toggle-password.js",
             "./src/plugins/floating-label.js",
-            "./src/plugins/drag-scroll.js"
+            "./src/plugins/drag-scroll.js",
+            "./src/plugins/collapsable.js"
         ]
     },
 
