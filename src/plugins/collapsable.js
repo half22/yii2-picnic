@@ -4,7 +4,8 @@
 
     function toggle(event, element, button)
     {
-        element.toggleClass('is-collapsed');
+        var cssClass = element.data('collapse-class') ? element.data('collapse-class') : 'is-collapsed';
+        element.toggleClass(cssClass);
         return false;
     }
 
