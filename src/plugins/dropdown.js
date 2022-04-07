@@ -96,12 +96,12 @@
                     var layerClone = cloneLayer(layer);
                     var valueLink = layerClone.findElement('valueLink');
 
-                    button.on('click', function (event) {
-                        show(event, button, layer, layerClone);
-                    });
-
                     $('body').on('click', function (event) {
                         hide(event, button, layer, layerClone);
+                    });
+
+                    button.on('click', function (event) {
+                        show(event, button, layer, layerClone);
                     });
 
                     valueLink.on('click', function (event) {
