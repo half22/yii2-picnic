@@ -129,7 +129,14 @@
                     url = target.attr('href') || target.data('ajax-url');
                 }
             }
+
             this.open(url);
+
+            if(target.data('stopEventPropagation'))
+            {
+                event.stopPropagation();
+            }
+
             return false;
         },
 
