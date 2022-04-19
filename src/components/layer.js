@@ -134,7 +134,7 @@
 
             if(target.data('stopEventPropagation'))
             {
-                event.stopPropagation();
+                event.stopImmediatePropagation();
             }
 
             return false;
