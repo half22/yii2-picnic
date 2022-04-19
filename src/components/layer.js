@@ -132,9 +132,10 @@
 
             this.open(url);
 
-            if(target.data('stopEventPropagation'))
+            if(target.data('eventStopPropagation'))
             {
                 event.stopImmediatePropagation();
+                console.log('aaa');
             }
 
             return false;
