@@ -135,7 +135,6 @@
             if(target.data('eventStopPropagation'))
             {
                 event.stopImmediatePropagation();
-                console.log('aaa');
             }
 
             return false;
