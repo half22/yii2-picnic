@@ -10,6 +10,11 @@
         return layerClone;
     }
 
+    function getParent(element)
+    {
+        return element.data('parent') && $('#' + element.data('parent')).length ? $('#' + element.data('parent')) : $('body');
+    }
+
     function show(event, button, layer, layerClone, parent)
     {
         //dropdown moze mat aj mobilnu verziu - panel
@@ -91,7 +96,7 @@
             return this.each(function (index, domElement) {
                 var element = $(domElement);
                 if (!element.data('plugin-dropdown')) {
-                    var parent = element.data('parent') ? $('#' + element.data('parent')) : $('body');
+                    var parent = getParent(element);
                     var button = element.findElement('button');
                     var layer = element.findElement('layer');
                     var layerClone = cloneLayer(layer, parent);
