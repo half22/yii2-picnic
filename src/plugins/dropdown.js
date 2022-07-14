@@ -2,10 +2,10 @@
 
     'use strict';
 
-    function cloneLayer(layer)
+    function cloneLayer(layer, parent)
     {
         var layerClone = layer.clone();
-        $('body').append(layerClone);
+        parent.append(layerClone);
 
         return layerClone;
     }
@@ -91,9 +91,10 @@
             return this.each(function (index, domElement) {
                 var element = $(domElement);
                 if (!element.data('plugin-dropdown')) {
+                    var parent = $(element.data('parent') || 'body');
                     var button = element.findElement('button');
                     var layer = element.findElement('layer');
-                    var layerClone = cloneLayer(layer);
+                    var layerClone = cloneLayer(layer, parent);
                     var valueLink = layerClone.findElement('valueLink');
 
                     button.on('click', function (event) {
