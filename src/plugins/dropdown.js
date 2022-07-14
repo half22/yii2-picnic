@@ -91,7 +91,7 @@
             return this.each(function (index, domElement) {
                 var element = $(domElement);
                 if (!element.data('plugin-dropdown')) {
-                    var parent = $(element.data('parent') || 'body');
+                    var parent = element.data('parent') ? $('#' + element.data('parent')) : $('body');
                     var button = element.findElement('button');
                     var layer = element.findElement('layer');
                     var layerClone = cloneLayer(layer, parent);
