@@ -10,7 +10,7 @@
         return layerClone;
     }
 
-    function show(event, button, layer, layerClone)
+    function show(event, button, layer, layerClone, parent)
     {
         //dropdown moze mat aj mobilnu verziu - panel
         if(button.data('panel'))
@@ -27,8 +27,8 @@
         }
         layer.addClass('is-active');
         layerClone.css('position', 'absolute');
-        layerClone.css('top', layer.offset().top);
-        layerClone.css('left', layer.offset().left);
+        layerClone.css('top', layer.offset().top - parent.offset().top);
+        layerClone.css('left', layer.offset().left - parent.offset().left);
         layerClone.css('z-index', 1100);
         layerClone.addClass('is-active');
         layer.removeClass('is-active');
@@ -98,7 +98,7 @@
                     var valueLink = layerClone.findElement('valueLink');
 
                     button.on('click', function (event) {
-                        show(event, button, layer, layerClone);
+                        show(event, button, layer, layerClone, parent);
                     });
 
                     $('body').on('click', function (event) {
