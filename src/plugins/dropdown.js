@@ -40,6 +40,7 @@
         }
 
         layerClone.css('top', top);
+        layerClone.css('bottom', 'auto');
 
         layerClone.css('left', layer.offset().left - parent.offset().left);
         layerClone.css('z-index', 1100);
