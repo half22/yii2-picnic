@@ -17,13 +17,12 @@
 
     function show(event, button, layer, layerClone, parent)
     {
+        console.log('1');
         //dropdown moze mat aj mobilnu verziu - panel
         if(button.data('panel'))
         {
             if(isMobile())
             {
-                console.log(button.data('panel'));
-
                 //ak sme na mobile, layer sa neotvori
                 return false;
             }
@@ -34,6 +33,8 @@
         }
         layer.addClass('is-active');
         layerClone.css('position', 'absolute');
+
+        console.log('2');
 
         var top = layer.offset().top - parent.offset().top
         if(parent != $('body'))
@@ -47,6 +48,8 @@
         layerClone.css('z-index', 1100);
         layerClone.addClass('is-active');
         layer.removeClass('is-active');
+
+        console.log('3');
 
         return false;
     }
