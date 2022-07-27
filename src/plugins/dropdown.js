@@ -32,9 +32,6 @@
         }
         layer.addClass('is-active');
 
-        console.log(layer.offset().top);
-        console.log(parent.offset().top);
-        return;
         var top = layer.offset().top - parent.offset().top
         if(parent != $('body'))
         {
