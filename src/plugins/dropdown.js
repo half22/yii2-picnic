@@ -22,6 +22,8 @@
         {
             if(isMobile())
             {
+                console.log(button.data('panel'));
+
                 //ak sme na mobile, layer sa neotvori
                 return false;
             }
