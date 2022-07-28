@@ -33,16 +33,17 @@
         layer.addClass('is-active');
 
         var top = layer.offset().top - parent.offset().top
+        var left = layer.offset().left - parent.offset().left;
         if(parent != $('body'))
         {
             top += parent.scrollTop();
+            left += parent.scrollLeft();
         }
 
         layerClone.css('position', 'absolute');
         layerClone.css('top', top);
+        layerClone.css('left', left);
         layerClone.css('bottom', 'auto');
-
-        layerClone.css('left', layer.offset().left - parent.offset().left);
         layerClone.css('z-index', 1100);
         layerClone.addClass('is-active');
         layer.removeClass('is-active');
