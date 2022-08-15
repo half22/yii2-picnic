@@ -9,13 +9,21 @@
             if($.isArray(messages[message]))
             {
                 var index = 0;
-                if(count == 0 || count >= 5)
+                if(count > 1 && count < 5)
+                {
+                    index = 1;
+                }
+                else if(count >= 5)
                 {
                     index = 2;
                 }
-                else if(count > 1 && count < 5)
+                else if(count === 0)
                 {
-                    index = 1;
+                    index = 2;
+                    if(messages[message][3])
+                    {
+                        index = 3;
+                    }
                 }
                 return messages[message][index];
             }
