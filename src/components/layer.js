@@ -130,6 +130,7 @@
                 }
             }
 
+            this.trigger = target;
             this.open(url);
 
             if(target.data('eventStopPropagation'))
