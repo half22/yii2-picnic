@@ -14,6 +14,20 @@
             return window.location.pathname;
         },
 
+        queryString: function (url)
+        {
+            if(url)
+            {
+                var urlParts = url.split('?');
+                if(urlParts[1])
+                {
+                    return urlParts[1];
+                }
+                return '';
+            }
+            return window.location.search;
+        },
+
         current: function (params)
         {
             var url = this.base();
@@ -44,13 +58,11 @@
 
         queryStringToJson: function(queryString)
         {
-            if(!queryString)
+            queryString = queryString || this.queryString();
+
+            if(queryString.indexOf('?') !== -1)
             {
-                queryString = window.location.search;
-                if(queryString.indexOf('?') !== -1)
-                {
-                    queryString = queryString.substring(queryString.indexOf('?') + 1);
-                }
+                queryString = queryString.substring(queryString.indexOf('?') + 1);
             }
 
             if (queryString.length == 0) return {};
