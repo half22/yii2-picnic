@@ -4,8 +4,13 @@
 
     var url = {
 
-        base: function ()
+        base: function (url)
         {
+            if(url)
+            {
+                var urlParts = url.split("?");
+                return urlParts[0];
+            }
             return window.location.pathname;
         },
 
@@ -37,13 +42,19 @@
             return url;
         },
 
-        queryStringToJson: function()
+        queryStringToJson: function(queryString)
         {
-            var query = window.location.search;
-            if (query.length == 0) return {};
-        
-            query = query.substring(query.indexOf('?') + 1);
-        
+            if(!queryString)
+            {
+                queryString = window.location.search;
+                if(queryString.indexOf('?') !== -1)
+                {
+                    queryString = queryString.substring(queryString.indexOf('?') + 1);
+                }
+            }
+
+            if (queryString.length == 0) return {};
+
             var re = /([^&=]+)=?([^&]*)/g;
             var decodeRE = /\+/g;
         
@@ -53,7 +64,7 @@
             };
         
             var params = {}, e;
-            while (e = re.exec(query))
+            while (e = re.exec(queryString))
             {
                 var k = decode(e[1]), v = decode(e[2]);
                 if (k.substring(k.length - 2) === '[]')
