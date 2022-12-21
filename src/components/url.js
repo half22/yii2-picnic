@@ -3,6 +3,15 @@
     'use strict';
 
     var url = {
+        base: function (url)
+        {
+            if(url)
+            {
+                var urlParts = url.split('?');
+                return urlParts[0];
+            }
+            return window.location.pathname;
+        },
 
         queryString: function (url)
         {
@@ -16,16 +25,6 @@
                 return '';
             }
             return window.location.search;
-        },
-
-        base: function (url)
-        {
-            if(url)
-            {
-                var urlParts = url.split('?');
-                return urlParts[0];
-            }
-            return window.location.pathname;
         },
 
         current: function (params)
