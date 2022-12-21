@@ -8,7 +8,7 @@
         {
             if(url)
             {
-                var urlParts = url.split("?");
+                var urlParts = url.split('?');
                 return urlParts[0];
             }
             return window.location.pathname;
