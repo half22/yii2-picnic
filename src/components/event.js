@@ -112,12 +112,20 @@
             target.trigger(eventName, [params]);
         },
 
-        triggerAsync: function(eventName, target, params, timeout)
+        triggerAsync: async function(eventName, target, params, timeout)
         {
-            setTimeout(function ()
-            {
-                this.trigger(eventName, target, params);
-            }.bind(this),  timeout ? timeout : 0);
+            await new Promise(function(resolve) {
+                setTimeout(function () {
+                    this.trigger(eventName, target, params);
+                    resolve();
+                }.bind(this), timeout ? timeout : 0)
+            }.bind(this));
+
+
+            // setTimeout(function ()
+            // {
+            //     this.trigger(eventName, target, params);
+            // }.bind(this),  timeout ? timeout : 0);
         },
 
         on: function(eventName, target, callback, propagateEvent)
