@@ -49,14 +49,18 @@
         updateTitle(element, bubble, bubbleClone);
 
         bubble.show();
+        bubbleClone.show();
+
         bubbleClone.css('position', 'absolute');
         bubbleClone.css('transform', 'none');
         bubbleClone.css('-ms-transform', 'none');
         bubbleClone.css('-webkit-transform', 'none');
+        bubbleClone.css('z-index', 1100);
+        bubble.width(bubbleClone.width());
+
         bubbleClone.css('top', bubble.offset().top);
         bubbleClone.css('left', bubble.offset().left);
-        bubbleClone.css('z-index', 1100);
-        bubbleClone.show();
+
         bubble.hide();
     }
 
