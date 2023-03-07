@@ -145,7 +145,8 @@
         {
             this.updateContent(data);
             picnic.event.trigger('picnic.' + this.type + '.loaded', this.root);
-            this.afterLoaded();
+
+            setTimeout(this.afterLoaded.bind(this), 0);
         },
 
         getAjaxUrl: function()
