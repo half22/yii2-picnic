@@ -49,6 +49,7 @@
             var tabId = picnic.tabsState[element.data('state-id')];
             var tab = element.find('*[data-tab=' + tabId + ']').parent();
             var tabs = tab.siblings();
+            var tabContent = $('#' + tabId);
 
             if(tab.length && !tab.hasClass('is-disabled'))
             {
@@ -56,6 +57,7 @@
                 activate(tab);
 
                 picnic.event.trigger('picnic.tabs.activated', element, {tabId: tabId});
+                picnic.event.trigger('picnic.tabs.activated', tabContent, {tabId: tabId});
             }
         }
     }
