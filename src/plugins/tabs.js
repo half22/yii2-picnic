@@ -69,6 +69,7 @@
         var tabs = tab.siblings();
         var tabId = target.data('tab');
         var element = target.closest('*[data-plugin=tabs]');
+        var tabContent = $('#' + tabId);
 
         if(!tab.hasClass('is-disabled'))
         {
@@ -76,6 +77,7 @@
             activate(tab);
 
             picnic.event.trigger('picnic.tabs.activated', element, {tabId: tabId});
+            picnic.event.trigger('picnic.tabs.activated', tabContent, {tabId: tabId});
         }
 
         return false;
