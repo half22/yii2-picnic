@@ -112,7 +112,7 @@
             target.trigger(eventName, [params]);
         },
 
-        triggerAsync: async function(eventName, target, params, timeout)
+        triggerAsync: async function(eventName, target, params, timeout, callback)
         {
             // await new Promise(function(resolve) {
             //     setTimeout(function () {
@@ -124,6 +124,11 @@
             setTimeout(function ()
             {
                 this.trigger(eventName, target, params);
+
+                if(callback)
+                {
+                    callback();
+                }
             }.bind(this),  timeout ? timeout : 0);
         },
 
