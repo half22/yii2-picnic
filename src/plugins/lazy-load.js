@@ -14,21 +14,50 @@
         return source;
     }
 
-    function preload(element, source, updateCallback)
+    function canPreload(element)
+    {
+        return element.data('preload-src') || element.data('preload-background');
+    }
+
+    function preload(element)
     {
         if(element.data('is-image-loaded')) return;
 
+        if (element.data('preload-src'))
+        {
+            preloadSrc(element, element.data('preload-src'), updateSrc);
+        }
+        else if (element.data('preload-background'))
+        {
+            preloadSrc(element, element.data('preload-background'), updateBackground);
+        }
+    }
+
+    function preloadSrc(element, source, updateCallback)
+    {
         var image = new Image();
         source = adjustSource(source);
         image.onload = function ()
         {
-            if(element.data('is-image-loaded')) return;
             updateCallback(element, source);
+            load(element);
         };
         image.src = source;
     }
 
-    function load(element, source, updateCallback)
+    function load(element)
+    {
+        if (element.data('src'))
+        {
+            loadSrc(element, element.data('src'), updateSrc);
+        }
+        else if (element.data('background'))
+        {
+            loadSrc(element, element.data('background'), updateBackground);
+        }
+    }
+
+    function loadSrc(element, source, updateCallback)
     {
         var image = new Image();
         source = adjustSource(source);
@@ -60,22 +89,13 @@
                 var element = $(domElement);
                 if (!element.data('plugin-lazy-load'))
                 {
-                    if (element.data('preload-src'))
+                    if(canPreload(element))
                     {
-                        preload(element, element.data('preload-src'), updateSrc);
+                        preload(element);
                     }
-                    else if (element.data('preload-background'))
+                    else
                     {
-                        preload(element, element.data('preload-background'), updateBackground);
-                    }
-
-                    if (element.data('src'))
-                    {
-                        load(element, element.data('src'), updateSrc);
-                    }
-                    else if (element.data('background'))
-                    {
-                        load(element, element.data('background'), updateBackground);
+                        load(element);
                     }
 
                     element.data('plugin-lazy-load', true);
