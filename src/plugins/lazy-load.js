@@ -16,13 +16,11 @@
 
     function canPreload(element)
     {
-        return element.data('preload-src') || element.data('preload-background');
+        return !element.data('is-image-loaded') && (element.data('preload-src') || element.data('preload-background'));
     }
 
     function preload(element)
     {
-        if(element.data('is-image-loaded')) return;
-
         if (element.data('preload-src'))
         {
             preloadSrc(element, element.data('preload-src'), updateSrc);
