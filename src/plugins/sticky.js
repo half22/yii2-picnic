@@ -16,7 +16,6 @@
                     var scrollElement = element.data('scroll-element') ? element.closest(element.data('scroll-element')) : $(window);
                     scrollElement.on('scroll', function ()
                     {
-                        console.log('scroll');
                         onScroll(scrollElement, element);
                     });
                     setTimeout(function ()
@@ -81,6 +80,10 @@
         var topBoundary = parseInt(element.data('top-boundary') || 0);
         var offsetTop = element.data('offset-top') - topBoundary;
 
+        console.log('EH: ' + element.height());
+        console.log('WH: ' + $(window).height());
+        console.log('OT: ' + offsetTop);
+        console.log('ST: ' + scrollTop);
         if(element.height() < $(window).height())
         {
             if(offsetTop <= scrollTop)
