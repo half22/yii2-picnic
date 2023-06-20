@@ -10,10 +10,11 @@
             {
                 if(element.is(':visible'))
                 {
-                    init(element);
+                    var scrollElement = element.data('scroll-element') ? element.closest(element.data('scroll-element')) : $(window);
+
+                    init(scrollElement, element);
                     createPlaceholder(element);
 
-                    var scrollElement = element.data('scroll-element') ? element.closest(element.data('scroll-element')) : $(window);
                     scrollElement.on('scroll', function ()
                     {
                         onScroll(scrollElement, element);
@@ -29,9 +30,9 @@
         });
     }
 
-    function init(element)
+    function init(scrollElement, element)
     {
-        var offsetTop = element.offset().top;
+        var offsetTop = scrollElement ? element.position().top : element.offset().top;
         element.data('offset-top', offsetTop);
         element.data('width', element.width());
     }
@@ -80,10 +81,6 @@
         var topBoundary = parseInt(element.data('top-boundary') || 0);
         var offsetTop = element.data('offset-top') - topBoundary;
 
-        console.log('EH: ' + element.height());
-        console.log('WH: ' + $(window).height());
-        console.log('OT: ' + offsetTop);
-        console.log('ST: ' + scrollTop);
         if(element.height() < $(window).height())
         {
             if(offsetTop <= scrollTop)
