@@ -10,11 +10,12 @@
             {
                 if(element.is(':visible'))
                 {
-                    console.log(element);
                     init(element);
                     createPlaceholder(element);
 
                     var scrollElement = element.data('scroll-element') ? element.closest(element.data('scroll-element')) : $(window);
+                    console.log(scrollElement);
+
                     scrollElement.on('scroll', function ()
                     {
                         onScroll(scrollElement, element);
@@ -26,10 +27,6 @@
 
                     element.data('plugin-sticky', true);
                 }
-            }
-            else
-            {
-                console.log('not visible');
             }
         });
     }
