@@ -14,10 +14,9 @@
                     createPlaceholder(element);
 
                     var scrollElement = element.data('scroll-element') ? element.closest(element.data('scroll-element')) : $(window);
-                    console.log(scrollElement);
-
                     scrollElement.on('scroll', function ()
                     {
+                        console.log('scroll');
                         onScroll(scrollElement, element);
                     });
                     setTimeout(function ()
