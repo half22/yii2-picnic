@@ -143,7 +143,6 @@
 
         onLoaded: function(data)
         {
-            this.hideLoading();
             this.updateContent(data);
             picnic.event.trigger('picnic.' + this.type + '.loaded', this.root);
 
@@ -228,7 +227,8 @@
                 url: url,
                 type: 'GET',
                 success: this.onLoaded.bind(this),
-                error: this.onLoadError.bind(this)
+                error: this.onLoadError.bind(this),
+                complete: this.hideLoading.bind(this)
             });
         },
 
@@ -342,9 +342,7 @@
         {},
 
         onLoadError: function ()
-        {
-            this.hideLoading();
-        },
+        {},
 
         onTransitionEnd: function(event)
         {
