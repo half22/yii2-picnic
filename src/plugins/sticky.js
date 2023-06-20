@@ -10,6 +10,7 @@
             {
                 if(element.is(':visible'))
                 {
+                    console.log(element);
                     init(element);
                     createPlaceholder(element);
 
@@ -25,6 +26,10 @@
 
                     element.data('plugin-sticky', true);
                 }
+            }
+            else
+            {
+                console.log('not visible');
             }
         });
     }
