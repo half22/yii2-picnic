@@ -60,7 +60,7 @@
 
         queryStringToJson: function(queryString)
         {
-            queryString = queryString || this.queryString();
+            queryString = isDefined(queryString) ? queryString : this.queryString();
 
             if(queryString.indexOf('?') !== -1)
             {
