@@ -51,8 +51,9 @@
                 var newQueryString = $.param(newQueryStringJson);
                 if(newQueryString.length > 0)
                 {
+                    var baseUrl = this.base(url);
                     var separator = (url.indexOf('?') > -1) ? '&' : '?';
-                    return url + separator + newQueryString;
+                    return baseUrl + separator + newQueryString;
                 }
             }
             return url;
