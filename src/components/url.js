@@ -52,8 +52,7 @@
                 if(newQueryString.length > 0)
                 {
                     var baseUrl = this.base(url);
-                    var separator = (url.indexOf('?') > -1) ? '&' : '?';
-                    return baseUrl + separator + newQueryString;
+                    return baseUrl + '?' + newQueryString;
                 }
             }
             return url;
