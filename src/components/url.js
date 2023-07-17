@@ -45,11 +45,14 @@
         {
             if(isDefined(params))
             {
-                var queryString = $.param(params);
-                if(queryString.length > 0)
+                var queryString = this.queryString(url);
+                var queryStringJson = this.queryStringToJson(queryString);
+                var newQueryStringJson = $.extend(queryStringJson, params);
+                var newQueryString = $.param(newQueryStringJson);
+                if(newQueryString.length > 0)
                 {
                     var separator = (url.indexOf('?') > -1) ? '&' : '?';
-                    return url + separator + queryString;
+                    return url + separator + newQueryString;
                 }
             }
             return url;
