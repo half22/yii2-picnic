@@ -15,11 +15,19 @@
             {
                 offset = target.data('offset');
             }
+            else if(isMobile() && target.data('mobile-offset'))
+            {
+                offset = target.data('offset');
+            }
             else if(target.data('offset-from-element-height'))
             {
                 offset = $('#' + target.data('offset-from-element-height')).height();
             }
             else if(element.data('offset'))
+            {
+                offset = element.data('offset');
+            }
+            else if(isMobile() && element.data('mobile-offset'))
             {
                 offset = element.data('offset');
             }
