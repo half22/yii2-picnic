@@ -11,11 +11,12 @@
         {
             var position = element.offset().top;
             var offset = 0;
-            if(target.data('offset'))
+
+            if(isMobile() && target.data('mobile-offset'))
             {
                 offset = target.data('offset');
             }
-            else if(isMobile() && target.data('mobile-offset'))
+            else if(target.data('offset'))
             {
                 offset = target.data('offset');
             }
@@ -23,11 +24,11 @@
             {
                 offset = $('#' + target.data('offset-from-element-height')).height();
             }
-            else if(element.data('offset'))
+            else if(isMobile() && element.data('mobile-offset'))
             {
                 offset = element.data('offset');
             }
-            else if(isMobile() && element.data('mobile-offset'))
+            else if(element.data('offset'))
             {
                 offset = element.data('offset');
             }
