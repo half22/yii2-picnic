@@ -14,7 +14,7 @@
 
             if(isMobile() && target.data('mobile-offset'))
             {
-                offset = target.data('offset');
+                offset = target.data('mobile-offset');
             }
             else if(target.data('offset'))
             {
@@ -26,7 +26,7 @@
             }
             else if(isMobile() && element.data('mobile-offset'))
             {
-                offset = element.data('offset');
+                offset = element.data('mobile-offset');
             }
             else if(element.data('offset'))
             {
