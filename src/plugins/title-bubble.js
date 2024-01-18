@@ -90,7 +90,14 @@
                     var bubbleClone = cloneBubble(bubble);
 
                     element.on('titleChanged', function () {
-                        show(element, bubble, bubbleClone);
+                        if(bubbleClone.is(':visible'))
+                        {
+                            show(element, bubble, bubbleClone);
+                        }
+                        else
+                        {
+                            updateTitle(element, bubble, bubbleClone);
+                        }
                     });
                     element.on('mouseover', function () {
                         show(element, bubble, bubbleClone);
