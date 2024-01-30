@@ -323,7 +323,7 @@
         closeAll: function ()
         {
             picnic.activeLayers[this.type].each(function (index, layer) {
-                layer.close();
+                layer.getController().close();
             })
         },
 
