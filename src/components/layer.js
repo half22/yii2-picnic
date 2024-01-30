@@ -325,7 +325,7 @@
         closeAll: function ()
         {
             picnic.activeLayers[this.type].each(function (index, domElement) {
-                $('domElement').getController().close();
+                $(domElement).getController().close();
             })
         },
 
