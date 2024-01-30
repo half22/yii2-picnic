@@ -15,7 +15,7 @@
     {
         picnic.controller.call(this);
 
-        this.elements = ['title', 'header', 'content', 'closeButton', 'preloader', 'preloaderText'];
+        this.elements = ['title', 'header', 'content', 'closeButton', 'closeAllButton', 'preloader', 'preloaderText'];
         this.attributes = ['id', 'disableBackdropClose', 'backdropCssModifier', 'ajaxUrl', 'ajaxTriggers', 'clearContentWhenLoading'];
     };
 
@@ -94,6 +94,8 @@
             this.bindTriggers();
 
             this.on('click', this.elements.closeButton, this.forceClose);
+            this.on('click', this.elements.closeAllButton, this.closeAll);
+
             this.on('picnic.backdrop.closeEventTriggered', this.root, this.close);
             this.on('picnic.' + this.type + '.opened', this.root, this.onOpened);
             this.on('picnic.' + this.type + '.opened', this.root, this.afterOpen);
