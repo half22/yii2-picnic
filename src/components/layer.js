@@ -97,8 +97,8 @@
         bindEvents: function()
         {
             this.bindTriggers();
+            this.bindCloseEvent();
 
-            this.primaryCloseEvent = this.on('click', this.elements.closeButton, this.forceClose);
             this.on('click', this.elements.closeAllButton, this.closeAll);
             this.on('click', this.elements.backButton, this.close);
 
@@ -118,6 +118,42 @@
         {
             this.unbindTriggers();
             picnic.controller.prototype.unbindEvents.call(this);
+        },
+
+        bindCloseEvent: function ()
+        {
+            if(!this.isSecondary)
+            {
+                if(!this.primaryCloseEvent)
+                {
+                    this.primaryCloseEvent = this.on('click', this.elements.closeButton, this.forceClose);
+                }
+                else
+                {
+                    this.primaryCloseEvent.bind();
+                }
+                if(this.secondaryCloseEvent)
+                {
+                    this.secondaryCloseEvent.unbind();
+                    this.secondaryCloseEvent = null;
+                }
+            }
+            else
+            {
+                if(!this.secondaryCloseEvent)
+                {
+                    this.secondaryCloseEvent = this.on('click', this.elements.closeButton, this.closeAll);
+                }
+                else
+                {
+                    this.secondaryCloseEvent.bind();
+                }
+                if(this.primaryCloseEvent)
+                {
+                    this.primaryCloseEvent.unbind();
+                    this.primaryCloseEvent = null;
+                }
+            }
         },
 
         onTriggerClick: function (event)
@@ -188,7 +224,6 @@
 
             this.adjustPixelPerfectPosition();
             this.refresh();
-            this.updateSecondaryLayer();
         },
 
         showLoading: function(withText)
@@ -302,22 +337,7 @@
             this.root.toggleClass('is-secondary', this.isSecondary);
             this.elements.backButton.toggleClass('is-hidden', !this.isSecondary);
 
-            if(this.isSecondary)
-            {
-                this.primaryCloseEvent.unbind();
-                if(!this.secondaryCloseEvent)
-                {
-                    this.secondaryCloseEvent = this.on('click', this.elements.closeButton, this.closeAll);
-                }
-            }
-            else
-            {
-                this.primaryCloseEvent.bind();
-                if(this.secondaryCloseEvent)
-                {
-                    this.secondaryCloseEvent.unbind();
-                }
-            }
+            this.bindCloseEvent();
         },
 
         forceClose: function ()
