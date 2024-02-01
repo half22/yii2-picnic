@@ -305,7 +305,10 @@
             this.isBeforeOpenProcedureRunning = false;
 
             this.updateNestedLayer();
-            this.root.addClass('is-active');
+            setTimeout(function () {
+                this.root.addClass('is-active');
+            }.bind(this), 1000);
+
             this.registerLayer();
             this.hideLoading();
             this.adjustPixelPerfectPosition();
