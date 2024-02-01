@@ -320,7 +320,7 @@
 
         updateSecondaryLayer: function ()
         {
-            this.isSecondary = picnic.activeLayers.modal.length == 1;
+            this.isSecondary = picnic.activeLayers[this.type].length == 1;
             this.root.toggleClass('is-secondary', this.isSecondary);
             this.elements.backButton.toggleClass('is-hidden', !this.isSecondary);
 
