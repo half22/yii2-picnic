@@ -306,9 +306,7 @@
             this.isBeforeOpenProcedureRunning = false;
 
             this.updateNestedLayer();
-            setTimeout(function () {
-                this.root.addClass('is-active');
-            }.bind(this), 10);
+            this.root.addClass('is-active');
 
             this.registerLayer();
             this.hideLoading();
