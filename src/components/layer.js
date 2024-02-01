@@ -28,10 +28,15 @@
         onTriggerClickCallback: null,
         ajaxUrl: null,
         isBeforeOpenProcedureRunning: false,
+        isSecondary: false,
 
         //backdrop
         backdropCssModifier: '',
         disableBackdropClose: false,
+
+        //primary/secondary close event
+        primaryCloseEvent: null,
+        secondaryCloseEvent: null,
 
         init: function ()
         {
@@ -93,7 +98,7 @@
         {
             this.bindTriggers();
 
-            this.on('click', this.elements.closeButton, this.forceClose);
+            this.primaryCloseEvent = this.on('click', this.elements.closeButton, this.forceClose);
             this.on('click', this.elements.closeAllButton, this.closeAll);
             this.on('click', this.elements.backButton, this.close);
 
@@ -266,6 +271,7 @@
 
             this.isBeforeOpenProcedureRunning = true;
             this.root.css('display', 'block');
+            this.updateSecondaryLayer();
             this.beforeOpen();
             this.root.css({'display': ''});
             this.isBeforeOpenProcedureRunning = false;
@@ -286,6 +292,30 @@
             {
                 picnic.event.trigger('picnic.' + this.type + '.opened');
                 picnic.event.trigger('picnic.' + this.type + '.opened', this.root);
+            }
+        },
+
+        updateSecondaryLayer: function ()
+        {
+            this.isSecondary = picnic.activeLayers.modal.length > 0;
+            this.root.toggleClass('is-secondary', this.isSecondary);
+            this.elements.backButton.toggleClass('is-hidden', !this.isSecondary);
+
+            if(this.isSecondary)
+            {
+                this.primaryCloseEvent.unbind();
+                if(!this.secondaryCloseEvent)
+                {
+                    this.secondaryCloseEvent = this.on('click', this.elements.closeButton, this.closeAll);
+                }
+            }
+            else
+            {
+                this.primaryCloseEvent.bind();
+                if(this.secondaryCloseEvent)
+                {
+                    this.secondaryCloseEvent.unbind();
+                }
             }
         },
 
