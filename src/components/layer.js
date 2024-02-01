@@ -122,37 +122,24 @@
 
         bindCloseEvent: function ()
         {
+            if(this.primaryCloseEvent)
+            {
+                this.primaryCloseEvent.unbind();
+                this.primaryCloseEvent = null;
+            }
+            if(this.secondaryCloseEvent)
+            {
+                this.secondaryCloseEvent.unbind();
+                this.secondaryCloseEvent = null;
+            }
+
             if(!this.isSecondary)
             {
-                if(!this.primaryCloseEvent)
-                {
-                    this.primaryCloseEvent = this.on('click', this.elements.closeButton, this.forceClose);
-                }
-                else
-                {
-                    this.primaryCloseEvent.bind();
-                }
-                if(this.secondaryCloseEvent)
-                {
-                    this.secondaryCloseEvent.unbind();
-                    this.secondaryCloseEvent = null;
-                }
+                this.primaryCloseEvent = this.on('click', this.elements.closeButton, this.forceClose);
             }
             else
             {
-                if(!this.secondaryCloseEvent)
-                {
-                    this.secondaryCloseEvent = this.on('click', this.elements.closeButton, this.closeAll);
-                }
-                else
-                {
-                    this.secondaryCloseEvent.bind();
-                }
-                if(this.primaryCloseEvent)
-                {
-                    this.primaryCloseEvent.unbind();
-                    this.primaryCloseEvent = null;
-                }
+                this.secondaryCloseEvent = this.on('click', this.elements.closeButton, this.closeAll);
             }
         },
 
