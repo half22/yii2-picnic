@@ -304,17 +304,15 @@
             this.root.css({'display': ''});
             this.isBeforeOpenProcedureRunning = false;
 
+            this.root.addClass('is-active');
             this.updateNestedLayer();
-            setTimeout(function () {
-                this.root.addClass('is-active');
-            }.bind(this), 0);
             this.registerLayer();
             this.hideLoading();
             this.adjustPixelPerfectPosition();
 
             if(url = url ? url : this.getAjaxUrl())
             {
-                this.load(url);
+                // this.load(url);
             }
 
             picnic.event.trigger('picnic.' + this.type + '.open');
