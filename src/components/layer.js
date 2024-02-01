@@ -28,15 +28,15 @@
         onTriggerClickCallback: null,
         ajaxUrl: null,
         isBeforeOpenProcedureRunning: false,
-        isSecondary: false,
+        isNested: false,
 
         //backdrop
         backdropCssModifier: '',
         disableBackdropClose: false,
 
-        //primary/secondary close event
+        //primary/nested close event
         primaryCloseEvent: null,
-        secondaryCloseEvent: null,
+        nestedCloseEvent: null,
 
         init: function ()
         {
@@ -127,19 +127,19 @@
                 this.primaryCloseEvent.unbind();
                 this.primaryCloseEvent = null;
             }
-            if(this.secondaryCloseEvent)
+            if(this.nestedCloseEvent)
             {
-                this.secondaryCloseEvent.unbind();
-                this.secondaryCloseEvent = null;
+                this.nestedCloseEvent.unbind();
+                this.nestedCloseEvent = null;
             }
 
-            if(!this.isSecondary)
+            if(!this.isNested)
             {
                 this.primaryCloseEvent = this.on('click', this.elements.closeButton, this.forceClose);
             }
             else
             {
-                this.secondaryCloseEvent = this.on('click', this.elements.closeButton, this.closeAll);
+                this.nestedCloseEvent = this.on('click', this.elements.closeButton, this.closeAll);
             }
         },
 
@@ -294,7 +294,7 @@
 
             this.isBeforeOpenProcedureRunning = true;
             this.root.css('display', 'block');
-            this.updateSecondaryLayer();
+            this.updateNestedLayer();
             this.beforeOpen();
             this.root.css({'display': ''});
             this.isBeforeOpenProcedureRunning = false;
@@ -318,11 +318,17 @@
             }
         },
 
-        updateSecondaryLayer: function ()
+        updateNestedLayer: function ()
         {
-            this.isSecondary = picnic.activeLayers[this.type].length == 1;
-            this.root.toggleClass('is-secondary', this.isSecondary);
-            this.elements.backButton.toggleClass('is-hidden', !this.isSecondary);
+            this.isNested = picnic.activeLayers[this.type].length > 0;
+
+            var cssClasses = ['is-secondary', 'is-tertiary'];
+            this.root.removeClass(cssClasses);
+            if(this.isNested)
+            {
+                this.root.addClass(cssClasses[picnic.activeLayers[this.type].length - 1]);
+            }
+            this.elements.backButton.toggleClass('is-hidden', !this.isNested);
 
             this.bindCloseEvent();
         },
