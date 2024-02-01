@@ -16,7 +16,7 @@
         picnic.controller.call(this);
 
         this.elements = ['title', 'header', 'content', 'backButton', 'closeButton', 'closeAllButton', 'preloader', 'preloaderText'];
-        this.attributes = ['id', 'disableBackdropClose', 'backdropCssModifier', 'ajaxUrl', 'ajaxTriggers', 'clearContentWhenLoading'];
+        this.attributes = ['id', 'disableBackdropClose', 'backdropCssModifier', 'ajaxUrl', 'ajaxTriggers', 'clearContentWhenLoading', 'showNestedCloseButton'];
     };
 
     $.extend(layer.prototype, picnic.controller.prototype,
@@ -29,6 +29,7 @@
         ajaxUrl: null,
         isBeforeOpenProcedureRunning: false,
         isNested: false,
+        showNestedCloseButton: true,
 
         //backdrop
         backdropCssModifier: '',
@@ -45,6 +46,11 @@
             if(isDefined(this.attributes.clearContentWhenLoading))
             {
                 this.clearContentWhenLoading = this.attributes.clearContentWhenLoading;
+            }
+
+            if(isDefined(this.attributes.showNestedCloseButton))
+            {
+                this.showNestedCloseButton = this.attributes.showNestedCloseButton;
             }
 
             if(isDefined(this.attributes.id))
@@ -322,13 +328,23 @@
         {
             this.isNested = picnic.activeLayers[this.type].length > 0;
 
+            //root
             var cssClasses = ['is-secondary', 'is-tertiary'];
             this.root.removeClass(cssClasses);
             if(this.isNested)
             {
                 this.root.addClass(cssClasses[picnic.activeLayers[this.type].length - 1]);
             }
+
+            //back button
             this.elements.backButton.toggleClass('is-hidden', !this.isNested);
+
+            //close button
+            this.elements.closeButton.removeClass('is-hidden');
+            if(this.isNested && !this.showNestedCloseButton)
+            {
+                this.elements.closeButton.addClass('is-hidden');
+            }
 
             this.bindCloseEvent();
         },
