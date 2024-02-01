@@ -18,6 +18,7 @@ module.exports = {
             "./src/components/layer.js",
             "./src/components/modal.js",
             "./src/components/panel.js",
+            "./src/components/sheet.js",
             "./src/components/filter.js",
             "./src/plugins/clicked.js",
             "./src/plugins/dropdown.js",
