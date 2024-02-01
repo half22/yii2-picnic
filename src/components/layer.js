@@ -333,8 +333,9 @@
             this.root.removeClass(cssClasses);
             if(this.isNested)
             {
-                this.root.addClass(cssClasses[picnic.activeLayers[this.type].length - 1]);
-                console.log(cssClasses[picnic.activeLayers[this.type].length - 1]);
+                setTimeout(function () {
+                    this.root.addClass(cssClasses[picnic.activeLayers[this.type].length - 1]);
+                }.bind(this), 0)
             }
 
             //back button
