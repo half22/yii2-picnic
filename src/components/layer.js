@@ -333,8 +333,9 @@
             this.root.removeClass(cssClasses);
             if(this.isNested)
             {
+                var cssClass = cssClasses[picnic.activeLayers[this.type].length - 1];
                 setTimeout(function () {
-                    this.root.addClass(cssClasses[picnic.activeLayers[this.type].length - 1]);
+                    this.root.addClass(cssClass);
                 }.bind(this), 0)
             }
 
