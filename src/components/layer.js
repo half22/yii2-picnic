@@ -30,6 +30,7 @@
         isBeforeOpenProcedureRunning: false,
         isNested: false,
         showNestedCloseButton: true,
+        nestedCssClasses: ['is-secondary', 'is-tertiary'],
 
         //backdrop
         backdropCssModifier: '',
@@ -307,7 +308,7 @@
             this.updateNestedLayer();
             setTimeout(function () {
                 this.root.addClass('is-active');
-            }.bind(this), 1000);
+            }.bind(this), 10);
 
             this.registerLayer();
             this.hideLoading();
@@ -332,11 +333,10 @@
             this.isNested = picnic.activeLayers[this.type].length > 0;
 
             //root
-            var cssClasses = ['is-secondary', 'is-tertiary'];
-            this.root.removeClass(cssClasses);
+            this.root.removeClass(this.nestedCssClasses);
             if(this.isNested)
             {
-                var cssClass = cssClasses[picnic.activeLayers[this.type].length - 1];
+                var cssClass = this.nestedCssClasses[picnic.activeLayers[this.type].length - 1];
                 this.root.addClass(cssClass);
             }
 
