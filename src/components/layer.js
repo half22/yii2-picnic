@@ -304,8 +304,8 @@
             this.root.css({'display': ''});
             this.isBeforeOpenProcedureRunning = false;
 
-            this.root.addClass('is-active');
             this.updateNestedLayer();
+            this.root.addClass('is-active');
             this.registerLayer();
             this.hideLoading();
             this.adjustPixelPerfectPosition();
