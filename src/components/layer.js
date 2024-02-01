@@ -312,7 +312,7 @@
 
             if(url = url ? url : this.getAjaxUrl())
             {
-                // this.load(url);
+                this.load(url);
             }
 
             picnic.event.trigger('picnic.' + this.type + '.open');
