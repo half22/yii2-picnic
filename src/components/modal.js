@@ -12,11 +12,6 @@
         type: 'modal',
         backdropCssModifier: 'modal',
 
-        bindEvents: function ()
-        {
-            picnic.layer.prototype.bindEvents.call(this);
-        },
-
         beforeOpen: function ()
         {
             picnic.layer.prototype.beforeOpen.call(this);
