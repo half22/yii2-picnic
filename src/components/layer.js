@@ -334,6 +334,7 @@
             if(this.isNested)
             {
                 this.root.addClass(cssClasses[picnic.activeLayers[this.type].length - 1]);
+                console.log(cssClasses[picnic.activeLayers[this.type].length - 1]);
             }
 
             //back button
