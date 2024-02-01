@@ -188,6 +188,7 @@
 
             this.adjustPixelPerfectPosition();
             this.refresh();
+            this.updateSecondaryLayer();
         },
 
         showLoading: function(withText)

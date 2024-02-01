@@ -16,7 +16,6 @@
     function logDispatch(target, params)
     {
         if(picnic.event.debug)
-
         {
             console.log('-- picnic.event.dispatch --');
             console.log(target);
