@@ -304,8 +304,10 @@
             this.root.css({'display': ''});
             this.isBeforeOpenProcedureRunning = false;
 
-            this.root.addClass('is-active');
             this.updateNestedLayer();
+            setTimeout(function () {
+                this.root.addClass('is-active');
+            }.bind(this), 0);
             this.registerLayer();
             this.hideLoading();
             this.adjustPixelPerfectPosition();
@@ -334,9 +336,7 @@
             if(this.isNested)
             {
                 var cssClass = cssClasses[picnic.activeLayers[this.type].length - 1];
-                setTimeout(function () {
-                    this.root.addClass(cssClass);
-                }.bind(this), 0)
+                this.root.addClass(cssClass);
             }
 
             //back button
