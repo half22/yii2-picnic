@@ -17,8 +17,8 @@
 
     function show(event, button, layer, layerClone, parent)
     {
-        //dropdown moze mat aj mobilnu verziu - panel
-        if(button.data('panel'))
+        //dropdown moze mat aj mobilnu verziu - panel/sheet
+        if(button.data('panel') || button.data('sheet'))
         {
             if(isMobile())
             {
