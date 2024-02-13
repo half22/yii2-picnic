@@ -12,6 +12,12 @@
             var position = element.offset().top;
             var offset = 0;
 
+            if(target.data('container'))
+            {
+                var scrollContainer = $('#' + target.data('container'));
+                position = element.offset().top - scrollContainer.offset().top + scrollContainer.scrollTop();
+            }
+
             if(isMobile() && target.data('mobile-offset'))
             {
                 offset = target.data('mobile-offset');
@@ -36,10 +42,7 @@
             {
                 offset = $('#' + element.data('offset-from-element-height')).height();
             }
-            if(target.data('container'))
-            {
-                position = element.position().top + $('#' + target.data('container')).scrollTop();
-            }
+
             if (position != offset)
             {
                 var container = target.data('container') ? $('#' + target.data('container')) : $('html, body');
