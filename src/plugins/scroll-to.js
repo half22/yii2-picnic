@@ -38,7 +38,7 @@
             }
             if(target.data('container'))
             {
-                position += $('#' + target.data('container')).scrollTop();
+                position = element.position().top + $('#' + target.data('container')).scrollTop();
             }
             if (position != offset)
             {
