@@ -43,20 +43,14 @@
                 offset = $('#' + element.data('offset-from-element-height')).height();
             }
 
-            console.log(element.offset().top  + ' ' +  scrollContainer.offset().top  + ' ' +  scrollContainer.scrollTop());
-            console.log(position + ' ' + offset);
-
-            if (position != offset)
+            var container = target.data('container') ? $('#' + target.data('container')) : $('html, body');
+            animateScroll(container, position - offset, function ()
             {
-                var container = target.data('container') ? $('#' + target.data('container')) : $('html, body');
-                animateScroll(container, position - offset, function ()
+                if(!target.data('dont-replace-hash'))
                 {
-                    if(!target.data('dont-replace-hash'))
-                    {
-                        picnic.url.replaceHash(hash);
-                    }
-                });
-            }
+                    picnic.url.replaceHash(hash);
+                }
+            });
         }
 
         return false;
@@ -64,7 +58,7 @@
 
     function animateScroll(container, top, callback)
     {
-        container.animate({scrollTop: top}, 'fast', null, callback);
+        container.animate({scrollTop: Math.max(0, top)}, 'fast', null, callback);
     }
 
     $.extend($.fn, {
