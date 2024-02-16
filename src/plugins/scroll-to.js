@@ -43,6 +43,8 @@
                 offset = $('#' + element.data('offset-from-element-height')).height();
             }
 
+            console.log(position + ' ' + offset);
+
             if (position != offset)
             {
                 var container = target.data('container') ? $('#' + target.data('container')) : $('html, body');
@@ -61,8 +63,7 @@
 
     function animateScroll(container, top, callback)
     {
-        console.log(Math.max(top, 0));
-        container.animate({scrollTop: Math.max(top, 0)}, 'fast', null, callback);
+        container.animate({scrollTop: top}, 'fast', null, callback);
     }
 
     $.extend($.fn, {
