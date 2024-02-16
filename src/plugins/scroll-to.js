@@ -61,7 +61,7 @@
 
     function animateScroll(container, top, callback)
     {
-        container.animate({scrollTop: top}, 'fast', null, callback);
+        container.animate({scrollTop: Math.max(top, 0)}, 'fast', null, callback);
     }
 
     $.extend($.fn, {
