@@ -43,6 +43,7 @@
                 offset = $('#' + element.data('offset-from-element-height')).height();
             }
 
+            console.log(element.offset().top  + ' ' +  scrollContainer.offset().top  + ' ' +  scrollContainer.scrollTop());
             console.log(position + ' ' + offset);
 
             if (position != offset)
