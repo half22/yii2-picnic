@@ -166,6 +166,7 @@
                 {
                     url = target.attr('href') || target.data('ajax-url');
                 }
+                this.ajaxUrl = url;
             }
 
             this.trigger = target;
