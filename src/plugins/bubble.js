@@ -2,37 +2,48 @@
 
     'use strict';
 
-    function cloneLayer(layer)
-    {
-        var layerClone = layer.clone();
-        $('body').append(layerClone);
+    var bubbleLayerClone;
 
-        return layerClone;
+    function createLayer(layer)
+    {
+        removeLayer();
+
+        bubbleLayerClone = layer.clone();
+        $('body').append(bubbleLayerClone);
+
+        return bubbleLayerClone;
+    }
+
+    function removeLayer()
+    {
+        if(bubbleLayerClone)
+        {
+            bubbleLayerClone.remove();
+            bubbleLayerClone = null;
+        }
     }
 
     function hide(event, element)
     {
         var target = $(event.relatedTarget);
-        var layer = element.data('layer');
         if(target.closest(element).length)
         {
            return;
         }
 
-        if(layer && target.closest(layer).length)
+        if(bubbleLayerClone && target.closest(bubbleLayerClone).length)
         {
             return;
         }
 
-        layer.remove();
-        element.data('layer', null);
+        removeLayer();
     }
 
     function show(element)
     {
         var isSticky = element.data('is-sticky');
         var layer = element.find('*[data-element=layer]');
-        var layerClone = cloneLayer(layer);
+        var layerClone = createLayer(layer);
 
         layer.addClass('is-active');
         layerClone.css('position', isSticky ? 'fixed' : 'absolute');
@@ -42,8 +53,6 @@
         layerClone.css('left', layer.offset().left);
         layerClone.addClass('is-active');
         layer.removeClass('is-active');
-
-        element.data('layer', layerClone);
 
         layerClone.on('mouseout', function (event) {
             hide(event, element);
