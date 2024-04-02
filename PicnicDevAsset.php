@@ -37,6 +37,7 @@ class PicnicDevAsset extends AssetBundle
         'plugins/tabs.js',
         'plugins/title-bubble.js',
         'plugins/tooltip.js',
+        'plugins/bubble.js',
         "plugins/floating-label.js",
         "plugins/drag-scroll.js",
         "plugins/collapsable.js",
