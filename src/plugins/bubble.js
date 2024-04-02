@@ -10,17 +10,30 @@
         return layerClone;
     }
 
-    function hide(event, element, layer)
+    function hide(event, element)
     {
         var target = $(event.relatedTarget);
-        if(!target.closest(element).length && !target.closest(layer).length)
+        var layer = element.data('layer');
+        if(target.closest(element).length)
         {
-            layer.removeClass('is-active');
+           return;
         }
+
+        if(layer && target.closest(layer).length)
+        {
+            return;
+        }
+
+        layer.remove();
+        element.data('layer', null);
     }
 
-    function show(layer, layerClone, isSticky)
+    function show(element)
     {
+        var isSticky = element.data('is-sticky');
+        var layer = element.find('*[data-element=layer]');
+        var layerClone = cloneLayer(layer);
+
         layer.addClass('is-active');
         layerClone.css('position', isSticky ? 'fixed' : 'absolute');
         layerClone.height(layer.height());
@@ -29,6 +42,12 @@
         layerClone.css('left', layer.offset().left);
         layerClone.addClass('is-active');
         layer.removeClass('is-active');
+
+        element.data('layer', layerClone);
+
+        layerClone.on('mouseout', function (event) {
+            hide(event, element);
+        });
     }
 
     $.extend($.fn, {
@@ -37,20 +56,13 @@
             return this.each(function (index, domElement) {
                 var element = $(domElement);
                 if (!element.data('plugin-bubble')) {
-                    var isSticky = element.data('is-sticky');
-                    var layer = element.find('*[data-element=layer]');
-                    var layerClone = cloneLayer(layer);
-
-                    layerClone.on('mouseout', function (event) {
-                        hide(event, element, layerClone);
-                    });
 
                     element.on('mouseout', function (event) {
-                        hide(event, element, layerClone);
+                        hide(event, element);
                     });
 
                     element.on('mouseover', function () {
-                        show(layer, layerClone, isSticky);
+                        show(element);
                     });
 
                     element.data('plugin-bubble', true);
