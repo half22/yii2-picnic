@@ -77,7 +77,7 @@ Available plugins:
 * sticky
 * tabs
 * title-bubble
-* tooltip
+* bubble (tooltip) 
 
 ## Other components
 
