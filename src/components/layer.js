@@ -257,6 +257,11 @@
             this.adjustPixelPerfectPosition();
         },
 
+        reload: function ()
+        {
+            this.load(this.getAjaxUrl());
+        },
+
         load: function(url)
         {
             if(this.isLoading) return;
