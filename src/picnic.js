@@ -143,6 +143,46 @@
                     }
                 });
             }
+        },
+
+        destroyPlugins: function ()
+        {
+            var element = $(this);
+            if(element.data('plugin'))
+            {
+                var plugins = element.data('plugin').split(',');
+                $.each(plugins, function (index, plugin)
+                {
+                    plugin = plugin.trim();
+                    var pluginNames = [
+                        //picnic plugin
+                        'picnic' + ucfirst(plugin),
+
+                        //custom plugins
+                        plugin,
+                        ucfirst(plugin),
+                        camelCase(plugin),
+                        ucfirst(camelCase(plugin))
+                    ];
+
+                    var pluginFound = false;
+                    for (var i = 0; i < pluginNames.length; i++)
+                    {
+                        var pluginName = pluginNames[i] + 'Destroy';
+                        if (element[pluginName])
+                        {
+                            element[pluginName]();
+                            pluginFound = true;
+                            break;
+                        }
+                    }
+
+                    if (!pluginFound)
+                    {
+                        console.error('PICNIC: Plugin "' + plugin + '" can not be destroyed.');
+                    }
+                });
+            }
         }
     });
 

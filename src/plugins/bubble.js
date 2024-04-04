@@ -65,16 +65,37 @@
             return this.each(function (index, domElement) {
                 var element = $(domElement);
                 if (!element.data('plugin-bubble')) {
-
-                    element.on('mouseout', function (event) {
-                        hide(event, element);
-                    });
-
-                    element.on('mouseover', function () {
+                    var mouseoverCallback = function () {
                         show(element);
-                    });
+                    };
+                    var mouseoutCallback = function (event) {
+                        hide(event, element);
+                    };
 
+                    element.on('mouseover', mouseoverCallback);
+                    element.on('mouseout', mouseoutCallback);
+
+                    element.data('plugin-bubble-mouseover', mouseoverCallback);
+                    element.data('plugin-bubble-mouseout', mouseoutCallback);
                     element.data('plugin-bubble', true);
+                }
+            });
+        },
+
+        picnicBubbleDestroy: function ()
+        {
+            removeLayer();
+
+            return this.each(function (index, domElement) {
+                var element = $(domElement);
+                if (element.data('plugin-bubble')) {
+
+                    element.off('mouseover', element.data('plugin-bubble-mouseover'));
+                    element.off('mouseout', element.data('plugin-bubble-mouseout'));
+
+                    element.data('plugin-bubble-mouseover', null);
+                    element.data('plugin-bubble-mouseout', null);
+                    element.data('plugin-bubble', false);
                 }
             });
         }
