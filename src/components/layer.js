@@ -27,6 +27,7 @@
         isActive: false,
         onTriggerClickCallback: null,
         ajaxUrl: null,
+        loadedUrl: null,
         isBeforeOpenProcedureRunning: false,
         isNested: false,
         showNestedCloseButton: true,
@@ -259,13 +260,17 @@
 
         reload: function ()
         {
-            this.load(this.getAjaxUrl());
+            if(this.loadedUrl) {
+                this.load(this.loadedUrl);
+            }
         },
 
         load: function(url)
         {
             if(this.isLoading) return;
             this.showLoading(true);
+
+            this.loadedUrl = url;
 
             $.ajax( {
                 url: url,
