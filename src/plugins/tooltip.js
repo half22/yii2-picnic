@@ -43,6 +43,10 @@
 
                     if(isMobile())
                     {
+                        element.on('mouseout', function (event) {
+                            hide(event, element, layerClone);
+                        });
+
                         element.on('click', function (event) {
                             if(layerClone.hasClass('is-active'))
                             {
