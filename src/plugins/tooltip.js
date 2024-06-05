@@ -41,17 +41,33 @@
                     var layer = element.find('*[data-element=layer]');
                     var layerClone = cloneLayer(layer);
 
-                    layerClone.on('mouseout', function (event) {
-                        hide(event, element, layerClone);
-                    });
+                    if(isMobile())
+                    {
+                        element.on('click', function (event) {
+                            if(layerClone.hasClass('is-active'))
+                            {
+                                hide(event, element, layerClone);
+                            }
+                            else
+                            {
+                                show(layer, layerClone, isSticky);
+                            }
+                        });
+                    }
+                    else
+                    {
+                        layerClone.on('mouseout', function (event) {
+                            hide(event, element, layerClone);
+                        });
 
-                    element.on('mouseout', function (event) {
-                        hide(event, element, layerClone);
-                    });
+                        element.on('mouseout', function (event) {
+                            hide(event, element, layerClone);
+                        });
 
-                    element.on('mouseover', function () {
-                        show(layer, layerClone, isSticky);
-                    });
+                        element.on('mouseover', function () {
+                            show(layer, layerClone, isSticky);
+                        });
+                    }
 
                     element.data('plugin-tooltip', true);
                 }
