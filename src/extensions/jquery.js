@@ -82,4 +82,10 @@
         return this.length;
     };
 
+    var uniqueId = 1;
+    $.fn.geenerateId = function() {
+        this.prop('id', 'id_' + (uniqueId++));
+        return this;
+    };
+
 }(window, jQuery));
