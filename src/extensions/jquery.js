@@ -83,7 +83,7 @@
     };
 
     var uniqueId = 1;
-    $.fn.geenerateId = function() {
+    $.fn.generateId = function() {
         this.prop('id', 'id_' + (uniqueId++));
         return this;
     };
