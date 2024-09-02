@@ -139,10 +139,7 @@
             picnic.initPlugins();
 
             //create new controllers in root
-            $.each(this.root.findController(), function (index, domElement) {
-                var element = $(domElement);
-                element.initController();
-            });
+            this.root.initChildrenControllers();
         },
 
         replaceRoot: function(html)

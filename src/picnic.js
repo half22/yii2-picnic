@@ -42,6 +42,13 @@
             return this.closest('*[data-controller~=' + name + ']' + (selector || ''));
         },
 
+        initChildrenControllers: function()
+        {
+            $.each(this.findController(), function (index, domElement) {
+                $(domElement).initController();
+            });
+        },
+
         destroyChildrenControllers: function()
         {
             $.each(this.findController(), function (index, domElement) {
