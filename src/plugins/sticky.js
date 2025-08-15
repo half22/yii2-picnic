@@ -83,7 +83,7 @@
 
         if(element.height() < $(window).height())
         {
-            if(offsetTop <= scrollTop)
+            if(scrollTop > 0 && offsetTop <= scrollTop)
             {
                 activate(element);
                 return;
