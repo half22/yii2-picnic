@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "@types/node": "^18.11.17",
-    "webpack": "^5.62.2",
+    "webpack": "^5.76.0",
     "webpack-cli": "^5.0.1"
   },
   "dependencies": {}
