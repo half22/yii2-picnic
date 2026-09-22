@@ -78,6 +78,30 @@
         return o;
     };
 
+    $.fn.serializeNested = function () {
+        const result = {};
+        $.each(this.serializeArray(), function (_, field) {
+            const keys = field.name.replace(/\]/g, '').split('[');
+            let obj = result;
+            keys.forEach(function (key, i) {
+                const last = i === keys.length - 1;
+                if (last) {
+                    if (key === '') {
+                        // name[] -> push do poľa
+                        obj.push(field.value);
+                    } else {
+                        obj[key] = field.value;
+                    }
+                } else {
+                    const nextIsArray = keys[i + 1] === '';
+                    if (obj[key] === undefined) obj[key] = nextIsArray ? [] : {};
+                    obj = obj[key];
+                }
+            });
+        });
+        return result;
+    };
+
     $.fn.size = function() {
         return this.length;
     };
